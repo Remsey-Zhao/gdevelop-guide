@@ -1,0 +1,2975 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GDevelop 在线编辑器 · 新手实操情报网页</title>
+<meta name="description" content="一份写给零基础新手的 GDevelop 在线编辑器长指南：注册、界面、事件、对象、变量、AI、调试、发布与免费额度，一次讲清。">
+<meta name="theme-color" content="#21182f">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:title" content="GDevelop 在线编辑器 · 新手实操情报网页">
+<meta property="og:description" content="零基础也能读的 GDevelop 在线编辑器长指南：注册、界面、事件、对象、变量、AI、调试、发布与免费额度，一次讲清。">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="GDevelop 在线编辑器 · 新手实操情报网页">
+<meta name="twitter:description" content="零基础也能读的 GDevelop 在线编辑器长指南：从注册到发布第一个小游戏。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27 shape-rendering=%27crispEdges%27%3E%3Crect width=%2716%27 height=%2716%27 fill=%27%23c9f26d%27/%3E%3Crect x=%273%27 y=%273%27 width=%274%27 height=%274%27 fill=%27%2321182f%27/%3E%3Crect x=%279%27 y=%273%27 width=%274%27 height=%274%27 fill=%27%2321182f%27/%3E%3Crect x=%273%27 y=%279%27 width=%274%27 height=%274%27 fill=%27%2321182f%27/%3E%3Crect x=%279%27 y=%279%27 width=%274%27 height=%274%27 fill=%27%236d3fa4%27/%3E%3C/svg%3E">
+<style>
+:root{
+  --paper:#f7f4ec;--paper-2:#efe9dc;--paper-3:#e7dfcf;--card:#fffdf8;
+  --ink:#1b1725;--ink-2:#3b3448;--muted:#6f687d;--faint:#8d8698;
+  --line:#ded6c7;--line-2:#cbc1b0;
+  --plum:#21182f;--plum-2:#2c2040;--plum-3:#3a2b52;
+  --purple:#6d3fa4;--purple-2:#8b5cf6;--purple-3:#ede6f7;--purple-4:#f5f0fb;
+  --lime:#c9f26d;--lime-2:#eaf8cf;--lime-3:#d8ef9e;
+  --coral:#cf5f3e;--coral-2:#f8e1d7;
+  --gold:#b98a2f;--gold-2:#f6e9c6;
+  --teal:#26756a;--teal-2:#d9ede8;
+  --shadow:0 1px 0 rgba(27,23,37,.04),0 20px 44px -32px rgba(27,23,37,.42);
+  --shadow-lg:0 30px 70px -42px rgba(27,23,37,.55);
+  --radius:18px;--sidebar:272px;
+  --serif:"Songti SC","Noto Serif SC","Source Han Serif SC",Georgia,"Times New Roman",serif;
+  --sans:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",system-ui,-apple-system,sans-serif;
+  --mono:"SFMono-Regular",Menlo,Consolas,"Liberation Mono",monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:24px}
+body{
+  margin:0;color:var(--ink);background-color:var(--paper);
+  background-image:radial-gradient(rgba(27,23,37,.035) 1px,transparent 1px);
+  background-size:19px 19px;font-family:var(--sans);font-size:16px;line-height:1.78;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+::selection{background:var(--lime);color:var(--ink)}
+a{color:var(--purple);text-decoration:none;border-bottom:1px solid rgba(109,63,164,.3);transition:color .18s,border-color .18s}
+a:hover{color:var(--coral);border-bottom-color:rgba(207,95,62,.55)}
+a.ext::after{content:"↗";display:inline-block;font-size:.76em;margin-left:3px;transform:translateY(-1px);opacity:.55}
+strong{font-weight:650}
+p{margin:0 0 1em}
+ul,ol{margin:0;padding-left:1.2em}
+li{margin:.36em 0}
+img,svg{max-width:100%}
+button{font:inherit}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:600;letter-spacing:-.01em}
+h2{font-size:clamp(30px,3.3vw,44px);line-height:1.18;margin:0 0 12px}
+h3{font-size:19px;line-height:1.38;margin:0 0 8px}
+h4{font-size:16px;margin:0 0 6px}
+.mono{font-family:var(--mono)}
+.muted{color:var(--muted)}
+.small{font-size:13px}.tiny{font-size:11.5px}
+.center{text-align:center}
+.serif{font-family:var(--serif)}
+.nowrap{white-space:nowrap}
+.mt-8{margin-top:8px}.mt-16{margin-top:16px}.mt-24{margin-top:24px}.mt-32{margin-top:32px}.mt-48{margin-top:48px}
+.mb-0{margin-bottom:0}.mb-8{margin-bottom:8px}.mb-16{margin-bottom:16px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.skip{position:fixed;left:12px;top:-100px;z-index:200;background:var(--ink);color:#fff;padding:10px 16px;border-radius:8px;border:0}
+.skip:focus{top:12px}
+
+/* reading progress */
+#readbar{position:fixed;left:0;top:0;height:3px;width:0;background:linear-gradient(90deg,var(--purple),var(--purple-2),var(--lime));z-index:120;transition:width .1s linear}
+
+/* ===== SIDEBAR ===== */
+.sidebar{position:fixed;inset:0 auto 0 0;width:var(--sidebar);z-index:90;display:flex;flex-direction:column;
+  padding:26px 20px 18px;background:var(--plum);color:#f7f4ec;overflow:hidden;
+  background-image:radial-gradient(600px 300px at 10% 0%,rgba(139,92,246,.16),transparent 60%),radial-gradient(500px 300px at 100% 100%,rgba(201,242,109,.06),transparent 60%)}
+.sidebar-top{display:flex;flex-direction:column;gap:18px}
+.brand{display:flex;align-items:center;gap:11px;color:#f7f4ec;border:0;text-decoration:none}
+.brand:hover{color:#fff;border:0}
+.brand-mark{flex:0 0 36px;width:36px;height:36px;display:grid;place-items:center;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:10px}
+.brand-text{display:flex;flex-direction:column;line-height:1.15}
+.brand-text strong{font-family:var(--mono);font-size:12.5px;letter-spacing:.18em;font-weight:600}
+.brand-text small{font-size:10.5px;color:#a99ab9;letter-spacing:.08em;margin-top:3px}
+.progress-card{display:flex;align-items:center;gap:13px;padding:12px;border:1px solid rgba(255,255,255,.1);border-radius:14px;background:rgba(255,255,255,.035)}
+.ring-wrap{position:relative;flex:0 0 58px;width:58px;height:58px}
+.ring{width:58px;height:58px;transform:rotate(-90deg)}
+.ring-bg{fill:none;stroke:rgba(255,255,255,.14);stroke-width:5}
+.ring-fg{fill:none;stroke:var(--lime);stroke-width:5;stroke-linecap:round;stroke-dasharray:163.36;stroke-dashoffset:163.36;transition:stroke-dashoffset .5s ease}
+.ring-label{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.1}
+.ring-label strong{font-family:var(--mono);font-size:11px;color:#fff}
+.ring-label small{font-size:8.5px;color:#a99ab9;letter-spacing:.08em}
+.progress-copy{display:flex;flex-direction:column;line-height:1.35;min-width:0}
+.progress-copy span{font-size:10px;color:#a99ab9;letter-spacing:.08em}
+.progress-copy strong{font-family:var(--mono);font-size:16px;color:#fff}
+.save-state{font-size:9.5px!important;color:#7e6d91!important;transition:color .2s}
+.save-state.show{color:var(--lime)!important}
+.sidebar-nav{display:flex;flex-direction:column;gap:1px;margin:22px -8px 0;padding:0 8px;overflow-y:auto;flex:1;scrollbar-width:none}
+.sidebar-nav::-webkit-scrollbar{display:none}
+.nav-link{display:flex;align-items:baseline;gap:9px;padding:7px 10px;border-radius:9px;color:#b9acc7;border:0;font-size:12.5px;line-height:1.4;transition:background .18s,color .18s}
+.nav-link:hover{color:#fff;background:rgba(255,255,255,.05);border:0}
+.nav-link.active{color:#fff;background:rgba(255,255,255,.085)}
+.nav-link .n{font-family:var(--mono);font-size:9px;color:#7e6d91;width:18px;flex:0 0 18px;letter-spacing:.02em}
+.nav-link.active .n{color:var(--lime)}
+.sidebar-actions{margin-top:14px;padding-top:13px;border-top:1px solid rgba(255,255,255,.1);display:flex;flex-direction:column;gap:7px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:9px 14px;border-radius:9px;border:1px solid transparent;background:var(--purple);color:#fff;font-size:12.5px;cursor:pointer;transition:transform .15s,background .15s,border-color .15s;text-decoration:none}
+.btn:hover{background:#5b318c;transform:translateY(-1px);color:#fff;border-color:transparent}
+.btn:active{transform:none}
+.btn-ghost{background:transparent;border-color:rgba(255,255,255,.18);color:#ded5e8}
+.btn-ghost:hover{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.3)}
+.btn-light{background:var(--card);border-color:var(--line-2);color:var(--ink)}
+.btn-light:hover{background:var(--lime-2);color:var(--ink)}
+.btn-sm{padding:6px 11px;font-size:11.5px;border-radius:7px}
+main{margin-left:var(--sidebar);min-width:0}
+.wrap{max-width:1180px;margin:0 auto;padding:0 52px}
+
+/* mobile topbar */
+.topbar{display:none;position:fixed;left:0;right:0;top:0;height:56px;z-index:85;align-items:center;gap:12px;padding:0 16px;background:rgba(33,24,47,.97);color:#f7f4ec;border-bottom:1px solid rgba(255,255,255,.08);backdrop-filter:blur(10px)}
+.topbar .brand-mark{width:30px;height:30px;flex-basis:30px;border-radius:8px}
+.topbar-brand{display:flex;align-items:center;gap:9px;border:0;color:#fff;font-family:var(--mono);font-size:11.5px;letter-spacing:.12em}
+.topbar-brand:hover{color:#fff;border:0}
+.menu-btn{margin-left:auto;display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);color:#fff;border-radius:8px;padding:7px 11px;font-size:12px;cursor:pointer}
+.overlay{display:none;position:fixed;inset:0;background:rgba(20,14,30,.55);z-index:89}
+body.menu-open .overlay{display:block}
+@media(max-width:1080px){
+  html{scroll-padding-top:72px}
+  .sidebar{transform:translateX(-102%);transition:transform .28s ease;width:min(86vw,320px);box-shadow:20px 0 60px rgba(0,0,0,.3)}
+  body.menu-open .sidebar{transform:translateX(0)}
+  main{margin-left:0;padding-top:56px}
+  .topbar{display:flex}
+}
+
+/* ===== HERO ===== */
+.hero{position:relative;overflow:hidden;padding:72px 52px 46px;border-bottom:1px solid var(--line);
+  background:
+    radial-gradient(900px 520px at 88% 2%,#e8dcf4 0%,transparent 60%),
+    radial-gradient(760px 460px at 2% 96%,#eef4d9 0%,transparent 58%),
+    var(--paper)}
+.hero-grid{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1.06fr .94fr;gap:48px;align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
+.eyebrow::before{content:"";width:26px;height:2px;background:var(--coral)}
+.hero h1{font-size:clamp(40px,4.9vw,64px);line-height:1.07;letter-spacing:-.025em;margin:16px 0 20px;font-weight:600}
+.hero h1 em{font-style:normal;color:var(--purple);background:linear-gradient(transparent 64%,var(--lime-3) 64%)}
+.lead{max-width:600px;font-size:16.5px;line-height:1.85;color:var(--ink-2)}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:22px}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border:1px solid var(--line-2);border-radius:999px;background:rgba(255,253,248,.7);font-size:11.5px;color:var(--ink-2)}
+.chip b{font-family:var(--mono);font-weight:600;color:var(--purple)}
+.hero-note{margin-top:24px;padding-left:14px;border-left:2px solid var(--coral);font-size:12.5px;line-height:1.7;color:var(--muted);max-width:560px}
+.hero-note strong{color:var(--ink-2)}
+
+/* hero mock editor */
+.hero-visual{display:flex;flex-direction:column;gap:10px}
+.mock-window{background:#191322;border-radius:16px;padding:9px;box-shadow:var(--shadow-lg);border:1px solid rgba(255,255,255,.1);transform:rotate(.7deg)}
+.mock-titlebar{display:flex;align-items:center;gap:8px;padding:2px 4px 9px}
+.dots{display:flex;gap:5px}
+.dots i{width:7px;height:7px;border-radius:50%;background:#5e506f}
+.dots i:nth-child(1){background:#cf5f3e}.dots i:nth-child(2){background:#b98a2f}.dots i:nth-child(3){background:#7fbf6a}
+.mock-url{margin-left:4px;font-family:var(--mono);font-size:8.5px;letter-spacing:.04em;color:#a99ab9;background:rgba(255,255,255,.06);padding:3px 8px;border-radius:4px}
+.mock-live{margin-left:auto;display:flex;align-items:center;gap:4px;font-family:var(--mono);font-size:8px;letter-spacing:.1em;color:#c9f26d}
+.mock-live i{width:5px;height:5px;border-radius:50%;background:#c9f26d;animation:pulse 1.8s infinite}
+@keyframes pulse{50%{opacity:.25}}
+.mock-ui{background:#f7f4ec;border-radius:10px;overflow:hidden;border:1px solid #d8d0c1}
+.mock-tabs{display:flex;align-items:center;gap:2px;background:#eee8dc;border-bottom:1px solid #d8d0c1;padding:0 7px;height:29px;overflow:hidden}
+.mock-tab{font-size:8.5px;color:#6f687d;padding:5px 8px;border-radius:4px 4px 0 0;white-space:nowrap}
+.mock-tab.active{background:#f7f4ec;color:#271c35;font-weight:600;border:1px solid #d8d0c1;border-bottom-color:#f7f4ec}
+.mock-plus{font-size:10px;color:#8d8698;padding:0 5px}
+.mock-actions{margin-left:auto;display:flex;gap:5px;align-items:center}
+.mock-actions b{font-size:8px;font-weight:500;padding:3px 7px;border-radius:4px;background:#fffdf8;border:1px solid #d8d0c1;color:#3b3448}
+.mock-actions b:first-child{background:#6d3fa4;border-color:#6d3fa4;color:#fff}
+.mock-body{display:grid;grid-template-columns:98px 1fr 92px;min-height:252px}
+.mock-left,.mock-right{background:#f0ebdf;padding:8px 7px;font-size:7.5px;color:#6f687d;overflow:hidden}
+.mock-left{border-right:1px solid #d8d0c1}
+.mock-right{border-left:1px solid #d8d0c1}
+.mock-panel-title{font-size:7px;letter-spacing:.08em;color:#8d8698;text-transform:uppercase;margin-bottom:6px;display:flex;gap:4px}
+.mock-panel-title b{color:#3b3448;font-weight:600}
+.mock-tabs-mini{display:flex;gap:5px;margin-bottom:7px;border-bottom:1px solid #d8d0c1;padding-bottom:5px}
+.mock-tabs-mini span{font-size:7px;color:#8d8698}
+.mock-tabs-mini .on{color:#6d3fa4;font-weight:600;border-bottom:1px solid #6d3fa4}
+.mock-field{height:10px;border-radius:2px;background:#e1d9ca;margin:0 0 5px;position:relative}
+.mock-field.short{width:72%}
+.mock-field.tall{height:24px}
+.mock-field b{position:absolute;left:4px;top:2px;font-size:6px;font-weight:500;color:#8d8698;letter-spacing:.02em}
+.mock-canvas{padding:9px;background:#e9e2d5;display:flex;flex-direction:column;gap:5px;min-width:0}
+.game-frame{position:relative;border:1px solid #b9ad9c;background:#cfe8f4;box-shadow:0 1px 0 #fff inset;overflow:hidden}
+.pixel-scene{display:block;width:100%;height:auto;image-rendering:pixelated}
+.hud{position:absolute;left:5px;top:5px;background:rgba(27,23,37,.78);color:#fff;font-family:var(--mono);font-size:7px;line-height:1;padding:4px 6px;border-radius:3px;letter-spacing:.05em}
+.hud b{color:#f6d06b}
+.canvas-status{display:flex;justify-content:space-between;font-family:var(--mono);font-size:6.5px;color:#8d8698;letter-spacing:.04em}
+.mock-object{display:flex;align-items:center;gap:4px;padding:3px 3px;border-radius:3px;font-size:7px;color:#3b3448}
+.mock-object.on{background:#e2d6f1;color:#4c2b73}
+.mock-object i{width:8px;height:8px;border-radius:2px;background:#b98a2f;flex:0 0 8px}
+.mock-object:nth-child(3) i{background:#6d3fa4}.mock-object:nth-child(4) i{background:#7fbf6a}.mock-object:nth-child(5) i{background:#cf5f3e}
+.mock-add{margin-top:5px;border:1px dashed #b9ad9c;border-radius:3px;text-align:center;font-size:6.5px;color:#8d8698;padding:3px}
+.mock-status{display:flex;justify-content:space-between;gap:8px;background:#1f172a;color:#8f81a3;padding:5px 8px;font-family:var(--mono);font-size:6.5px;letter-spacing:.05em}
+.mock-caption{font-size:11px;line-height:1.55;color:var(--muted);text-align:center;margin:0}
+.player{animation:playerIdle 1.6s steps(2,end) infinite;transform-box:fill-box;transform-origin:center}
+@keyframes playerIdle{50%{transform:translateY(-1px)}}
+.coin{animation:coinBob 2.2s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+.coin.c2{animation-delay:.4s}.coin.c3{animation-delay:.9s}
+@keyframes coinBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+.cloud{animation:cloudDrift 16s linear infinite;transform-box:fill-box}
+.cloud.c2{animation-duration:23s;animation-delay:-6s}
+@keyframes cloudDrift{from{transform:translateX(0)}to{transform:translateX(16px)}}
+@media(prefers-reduced-motion:reduce){.player,.coin,.cloud,.mock-live i{animation:none}}
+
+/* dash */
+.dash{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(255,253,248,.55);max-width:1284px;margin:0 auto}
+.dash-item{padding:17px 24px;border-right:1px solid var(--line)}
+.dash-item:last-child{border-right:0}
+.dash-item span{display:block;font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.dash-item strong{display:block;font-family:var(--serif);font-size:22px;line-height:1.3;margin:2px 0 0;color:var(--ink)}
+.dash-item small{display:block;font-size:10.5px;color:var(--muted)}
+
+/* ===== SECTION BASE ===== */
+.section{padding:68px 0;border-bottom:1px solid var(--line);position:relative}
+.section:last-of-type{border-bottom:0}
+.section-head{display:grid;grid-template-columns:72px 1fr;gap:22px;margin-bottom:30px}
+.section-num{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:var(--coral);padding-top:12px;line-height:1.5}
+.section-head h2{margin-bottom:10px}
+.section-head .lede{max-width:800px;font-size:15px;line-height:1.9;color:var(--muted);margin:0}
+.subhead{display:flex;align-items:baseline;gap:12px;margin:38px 0 14px;font-family:var(--serif);font-size:23px;line-height:1.3}
+.subhead::after{content:"";flex:1;height:1px;background:var(--line)}
+.subhead .tag{margin-left:2px}
+
+/* grid & cards */
+.grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.grid-4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px 20px 18px;box-shadow:var(--shadow);min-width:0}
+.card h3{display:flex;align-items:center;gap:8px}
+.card p:last-child,.card ul:last-child{margin-bottom:0}
+.card-soft{background:rgba(255,253,248,.55);box-shadow:none}
+.card-accent{border-top:3px solid var(--purple)}
+.card-lime{border-top:3px solid var(--lime-3);background:linear-gradient(180deg,#fbfdf4,#fffdf8)}
+.card-warn{border-top:3px solid var(--coral);background:linear-gradient(180deg,#fdf6f2,#fffdf8)}
+.card-num{font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--faint);margin-bottom:8px}
+.icon{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:8px;background:var(--purple-3);color:var(--purple);font-size:14px;flex:0 0 30px}
+.icon.lime{background:var(--lime-2);color:#4d6b17}
+.icon.coral{background:var(--coral-2);color:#a94227}
+.icon.teal{background:var(--teal-2);color:var(--teal)}
+
+/* callout */
+.callout{position:relative;padding:15px 18px 15px 44px;border:1px solid var(--line);border-radius:12px;background:var(--card);font-size:13.5px;line-height:1.8;margin:16px 0}
+.callout::before{position:absolute;left:15px;top:14px;font-family:var(--mono);font-size:13px;font-weight:700}
+.callout strong{color:var(--ink)}
+.callout p:last-child{margin-bottom:0}
+.callout.tip{border-color:#cddfae;background:#f7fbee}
+.callout.tip::before{content:"✦";color:#5d7d21}
+.callout.warn{border-color:#e8c4b6;background:#fdf5f1}
+.callout.warn::before{content:"!";color:var(--coral);border:1.5px solid var(--coral);border-radius:50%;width:15px;height:15px;display:grid;place-items:center;font-size:10px;left:13px;top:14px}
+.callout.info{border-color:#d7c8ea;background:#f8f4fd}
+.callout.info::before{content:"i";color:var(--purple);border:1.5px solid var(--purple);border-radius:50%;width:15px;height:15px;display:grid;place-items:center;font-size:10px;left:13px;top:14px}
+.callout.source{border-color:var(--line-2);background:var(--paper-2);font-size:12px;color:var(--muted)}
+.callout.source::before{content:"§";color:var(--faint)}
+
+/* tags, pills */
+.tag{display:inline-flex;align-items:center;padding:2px 7px;border-radius:4px;font-family:var(--mono);font-size:9.5px;letter-spacing:.04em;line-height:1.6;background:var(--paper-2);color:var(--muted);border:1px solid var(--line);vertical-align:middle;font-weight:500}
+.tag.free{background:var(--lime-2);border-color:#cbe49a;color:#49631a}
+.tag.paid{background:var(--gold-2);border-color:#e5d19d;color:#7c5b18}
+.tag.new{background:var(--purple-3);border-color:#d9c8ee;color:#5b318c}
+.tag.hot{background:var(--coral-2);border-color:#ecc3b4;color:#a94227}
+.pill-row{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.pill{display:inline-flex;align-items:center;gap:5px;padding:3px 9px;border:1px solid var(--line);border-radius:999px;font-size:11px;color:var(--ink-2);background:rgba(255,253,248,.7)}
+.pill b{font-family:var(--mono);font-size:10px;color:var(--purple)}
+
+/* tables */
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--card);box-shadow:var(--shadow);-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;min-width:620px;font-size:13px;line-height:1.65}
+th,td{text-align:left;vertical-align:top;padding:11px 14px;border-bottom:1px solid var(--line)}
+th{background:var(--paper-2);font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td strong{color:var(--ink)}
+tbody tr:hover{background:#fbf8f1}
+table.compact th,table.compact td{padding:8px 11px}
+.table-note{font-size:11.5px;line-height:1.7;color:var(--muted);margin:8px 0 0}
+
+/* price */
+.price-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;align-items:stretch}
+.price{position:relative;background:var(--card);border:1px solid var(--line);border-radius:15px;padding:18px 16px 15px;display:flex;flex-direction:column;min-width:0}
+.price.free{border:2px solid var(--purple);background:linear-gradient(180deg,#fbf8ff,#fffdf8);box-shadow:var(--shadow)}
+.price.featured{border:1px solid var(--line-2);background:linear-gradient(180deg,#fffdf4,#fffdf8)}
+.price .badge{position:absolute;top:-10px;left:14px;background:var(--purple);color:#fff;font-family:var(--mono);font-size:9px;letter-spacing:.06em;padding:3px 8px;border-radius:999px}
+.price h3{font-size:18px;margin:0 0 2px}
+.price .amount{font-family:var(--serif);font-size:30px;line-height:1.1;margin:4px 0 1px;color:var(--ink)}
+.price .amount small{font-family:var(--sans);font-size:11px;color:var(--muted);font-weight:400}
+.price .blurb{font-size:11.5px;line-height:1.55;color:var(--muted);min-height:36px;margin:4px 0 10px}
+.price ul{list-style:none;padding:0;margin:0;font-size:12px;line-height:1.6;flex:1}
+.price li{display:flex;gap:6px;padding:4px 0;border-bottom:1px dashed var(--line);margin:0}
+.price li:last-child{border-bottom:0}
+.price li::before{content:"✓";color:var(--teal);font-weight:700;flex:0 0 12px}
+.price li.no::before{content:"—";color:var(--faint)}
+.price li.no{color:var(--faint)}
+.price .best{font-size:10.5px;color:var(--muted);margin-top:9px;padding-top:8px;border-top:1px solid var(--line)}
+
+/* steps */
+.steps{counter-reset:step;display:flex;flex-direction:column;gap:0;margin-top:8px}
+.step{position:relative;display:grid;grid-template-columns:44px 1fr;gap:16px;padding:0 0 22px}
+.step::before{counter-increment:step;content:counter(step,decimal-leading-zero);width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--plum);color:var(--lime);font-family:var(--mono);font-size:10.5px;letter-spacing:.02em;position:relative;z-index:1;margin-top:2px}
+.step::after{content:"";position:absolute;left:17px;top:38px;bottom:2px;width:1px;background:var(--line-2)}
+.step:last-child::after{display:none}
+.step-body{min-width:0;padding-top:3px}
+.step-body h3{margin:0 0 5px;font-size:18px}
+.step-static::before{content:"12"}
+.step-body p{font-size:14px;line-height:1.8;margin:0 0 .55em}
+.step-body ul,.step-body ol{font-size:14px;line-height:1.8}
+.step-meta{display:flex;flex-wrap:wrap;gap:6px;margin:2px 0 8px}
+.path{display:inline-flex;flex-wrap:wrap;align-items:center;gap:5px;font-size:11.5px;color:var(--ink-2);background:var(--paper-2);border:1px solid var(--line);border-radius:6px;padding:2px 7px;line-height:1.7;margin:2px 0}
+.path b{font-weight:600;color:var(--purple)}
+.mono-block{font-family:var(--mono);font-size:12px;background:#241b33;color:#e9e2f1;border-radius:10px;padding:12px 14px;overflow-x:auto;line-height:1.7;margin:10px 0;border:1px solid #3a2b52;white-space:pre-wrap}
+.mono-block .k{color:#c9f26d}.mono-block .c{color:#9d8fae}.mono-block .s{color:#f0c987}
+code{font-family:var(--mono);font-size:.9em;background:rgba(109,63,164,.08);color:#5b318c;padding:1px 5px;border-radius:4px;overflow-wrap:anywhere}
+kbd{font-family:var(--mono);font-size:11px;background:var(--card);border:1px solid var(--line-2);border-bottom-width:2px;border-radius:5px;padding:1px 6px;color:var(--ink-2);white-space:nowrap}
+
+/* event anatomy */
+.event-card{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--card);margin:12px 0}
+.event-head{display:flex;align-items:center;gap:8px;padding:7px 12px;background:var(--paper-2);border-bottom:1px solid var(--line);font-family:var(--mono);font-size:10px;letter-spacing:.06em;color:var(--muted)}
+.event-head b{color:var(--ink);font-weight:600}
+.event-cols{display:grid;grid-template-columns:1fr 1fr;min-width:0}
+.event-col{padding:10px 12px;min-width:0}
+.event-col + .event-col{border-left:1px solid var(--line)}
+.event-col h4{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);margin:0 0 6px}
+.event-line{display:flex;gap:7px;align-items:flex-start;font-size:12.5px;line-height:1.65;padding:3px 0}
+.event-line i{flex:0 0 15px;font-style:normal;color:var(--purple);font-family:var(--mono);font-size:10px;padding-top:2px}
+.event-line.act i{color:var(--teal)}
+.event-line b{font-weight:600}
+
+/* checklist */
+.checklist{display:grid;gap:8px;margin:12px 0 0}
+.check{display:flex;gap:10px;align-items:flex-start;padding:9px 11px;border:1px solid var(--line);border-radius:9px;background:var(--card);cursor:pointer;font-size:13px;line-height:1.6;transition:background .15s,border-color .15s}
+.check:hover{background:#fbf8f1;border-color:var(--line-2)}
+.check input{appearance:none;flex:0 0 18px;width:18px;height:18px;border:1.5px solid var(--line-2);border-radius:5px;margin:2px 0 0;background:var(--card);cursor:pointer;position:relative;transition:background .15s,border-color .15s}
+.check input:checked{background:var(--purple);border-color:var(--purple)}
+.check input:checked::after{content:"✓";position:absolute;inset:0;display:grid;place-items:center;color:#fff;font-size:12px;font-weight:700}
+.check input:focus-visible{outline:2px solid var(--purple-2);outline-offset:2px}
+.check span{min-width:0}
+.check input:checked + span{color:var(--muted);text-decoration:line-through;text-decoration-color:rgba(111,104,125,.45)}
+.check small{display:block;color:var(--faint);font-size:10.5px;margin-top:2px}
+.check-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:10px}
+.check-status{font-size:11px;color:var(--muted)}
+
+/* details */
+details{border:1px solid var(--line);border-radius:11px;background:var(--card);margin:9px 0}
+details summary{cursor:pointer;padding:11px 14px;font-size:13.5px;font-weight:600;line-height:1.55;list-style:none;display:flex;align-items:flex-start;gap:8px}
+details summary::-webkit-details-marker{display:none}
+details summary::before{content:"+";font-family:var(--mono);font-size:14px;color:var(--purple);flex:0 0 14px;line-height:1.5;transition:transform .2s}
+details[open] summary::before{content:"−"}
+details summary:hover{background:#fbf8f1}
+details .details-body{padding:0 14px 13px 36px;font-size:13px;line-height:1.8;color:var(--ink-2)}
+details .details-body p:last-child{margin-bottom:0}
+details[open]{box-shadow:var(--shadow)}
+.trouble summary::before{content:"?";color:var(--coral);font-weight:700}
+.trouble[open] summary::before{content:"!"}
+.trouble .details-body{border-top:1px dashed var(--line);padding-top:9px;margin-top:0}
+.trouble .fix{display:block;margin-top:6px;padding:7px 10px;background:var(--lime-2);border-left:2px solid #9cc24d;border-radius:0 5px 5px 0;font-size:12.5px}
+details.companion{border:1px solid #d7c8ea;background:linear-gradient(180deg,#fbf8ff,#fffdf8)}
+details.companion summary{font-size:15px;padding:15px 17px;color:var(--purple)}
+details.companion .details-body{padding:4px 20px 20px}
+details.companion .details-body h3{margin-top:18px}
+input[type="search"]:focus{outline:2px solid var(--purple-2);outline-offset:2px;border-color:var(--purple)}
+[hidden]{display:none!important}
+
+/* misc blocks */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
+.checklist-box{border:1px solid var(--line);border-radius:14px;padding:16px 17px;background:rgba(255,253,248,.6)}
+.checklist-box h4{display:flex;align-items:center;gap:7px;margin:0 0 4px}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:5px 14px;font-size:12.5px;line-height:1.65;margin:8px 0 0}
+.kv dt{color:var(--muted);white-space:nowrap}
+.kv dd{margin:0;color:var(--ink-2)}
+.quote{border-left:3px solid var(--lime-3);padding:4px 0 4px 16px;margin:16px 0;font-family:var(--serif);font-size:17px;line-height:1.75;color:var(--ink-2)}
+.quote small{display:block;font-family:var(--sans);font-size:11px;color:var(--muted);margin-top:4px}
+.hr-soft{height:1px;background:var(--line);margin:26px 0;border:0}
+.list-tight{font-size:13.5px;line-height:1.8}
+.list-tight li{margin:.24em 0}
+.two-col-list{columns:2;column-gap:28px;font-size:13.5px;line-height:1.8}
+.two-col-list li{break-inside:avoid;margin:.25em 0}
+@media(max-width:720px){.two-col-list{columns:1}}
+
+/* links */
+.link-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.link-card{display:flex;flex-direction:column;gap:3px;padding:13px 14px;border:1px solid var(--line);border-radius:10px;background:var(--card);text-decoration:none;border-bottom:1px solid var(--line);transition:transform .15s,border-color .15s,box-shadow .15s;min-width:0}
+.link-card:hover{transform:translateY(-2px);border-color:#c9b6df;box-shadow:var(--shadow);color:var(--ink)}
+.link-card b{font-size:13px;line-height:1.4;color:var(--ink);font-weight:600}
+.link-card span{font-size:10.5px;line-height:1.5;color:var(--muted)}
+.link-card .u{font-family:var(--mono);font-size:9px;color:var(--purple);word-break:break-all;margin-top:2px}
+
+/* ui map */
+.ui-map{display:grid;grid-template-columns:1.25fr .75fr;gap:16px;align-items:start;margin-top:8px}
+.ui-stage{background:#191322;border-radius:14px;padding:9px;border:1px solid #3a2b52;box-shadow:var(--shadow-lg)}
+.ui-canvas{position:relative;background:#f7f4ec;border-radius:8px;overflow:hidden;border:1px solid #d8d0c1;min-height:280px}
+.ui-top{display:flex;align-items:center;gap:5px;background:#241b33;color:#cbbfd8;padding:5px 7px;font-family:var(--mono);font-size:7px;letter-spacing:.04em}
+.ui-top .grow{flex:1}
+.ui-top b{background:#6d3fa4;color:#fff;border-radius:3px;padding:2px 6px;font-weight:500}
+.ui-tabs{display:flex;gap:3px;padding:4px 7px;background:#eee8dc;border-bottom:1px solid #d8d0c1}
+.ui-tabs span{font-size:7px;color:#6f687d;padding:2px 6px;border-radius:3px}
+.ui-tabs .on{background:#fffdf8;color:#271c35;font-weight:600;border:1px solid #d8d0c1}
+.ui-body{display:grid;grid-template-columns:76px 1fr 78px;min-height:210px}
+.ui-side{background:#f0ebdf;padding:7px 6px;border-right:1px solid #d8d0c1;font-size:6.5px;color:#8d8698}
+.ui-side.right{border-right:0;border-left:1px solid #d8d0c1}
+.ui-side .line{height:7px;background:#e1d9ca;border-radius:2px;margin:5px 0}
+.ui-side .line.s{width:70%}
+.ui-canvas-area{position:relative;background:linear-gradient(180deg,#dff0f7,#cfe3ee);min-height:210px;overflow:hidden}
+.ui-floor{position:absolute;left:0;right:0;bottom:0;height:48px;background:#4a3b52;border-top:4px solid #8fd17a}
+.ui-player{position:absolute;left:38px;bottom:46px;width:15px;height:22px;background:#cf5f3e;border-radius:2px;box-shadow:inset 0 0 0 3px #f2b08f}
+.ui-coin{position:absolute;width:12px;height:12px;border-radius:50%;background:#f0c34a;box-shadow:0 0 0 2px #b98a2f inset}
+.ui-flag{position:absolute;right:30px;bottom:46px;width:2px;height:34px;background:#3b3448}
+.ui-flag::after{content:"";position:absolute;left:2px;top:1px;border-left:14px solid var(--purple);border-top:7px solid transparent;border-bottom:7px solid transparent}
+.hotspot{position:absolute;width:22px;height:22px;border-radius:50%;border:2px solid #fff;background:var(--purple);color:#fff;font-family:var(--mono);font-size:9px;line-height:1;display:grid;place-items:center;cursor:pointer;z-index:2;box-shadow:0 2px 8px rgba(0,0,0,.3);padding:0;transition:transform .15s,background .15s}
+.hotspot:hover,.hotspot[aria-pressed="true"]{background:var(--coral);transform:scale(1.15)}
+.hotspot:focus-visible{outline:2px solid var(--lime);outline-offset:2px}
+.ui-detail{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;min-height:160px;box-shadow:var(--shadow)}
+.ui-detail .kicker{font-family:var(--mono);font-size:9px;letter-spacing:.1em;color:var(--coral);text-transform:uppercase}
+.ui-detail h3{font-size:18px;margin:3px 0 6px}
+.ui-detail p{font-size:12.5px;line-height:1.75;margin:0 0 7px;color:var(--ink-2)}
+.ui-detail p:last-child{margin-bottom:0}
+.ui-detail .hint{font-size:11px;color:var(--muted);border-top:1px dashed var(--line);padding-top:8px;margin-top:9px}
+
+/* footer */
+.footer{background:var(--plum);color:#cbbfd8;padding:46px 52px 34px;margin-left:0}
+.footer-in{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1.2fr .8fr;gap:32px}
+.footer h3{color:#fff;font-size:20px;margin:0 0 6px}
+.footer p{font-size:12px;line-height:1.8;max-width:560px;margin:0 0 8px}
+.footer a{color:#d9cce8;border-bottom-color:rgba(217,204,232,.3)}
+.footer a:hover{color:var(--lime)}
+.footer .cols{display:grid;grid-template-columns:1fr 1fr;gap:8px 20px;font-size:11.5px}
+.footer .cols a{display:block;border:0;padding:2px 0}
+.footer-bottom{max-width:1180px;margin:26px auto 0;padding-top:14px;border-top:1px solid rgba(255,255,255,.12);font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;color:#7e6d91;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+/* to top */
+.to-top{position:fixed;right:18px;bottom:18px;z-index:80;width:38px;height:38px;border-radius:50%;border:1px solid var(--line-2);background:var(--card);color:var(--purple);display:grid;place-items:center;cursor:pointer;box-shadow:var(--shadow);opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;font-size:15px}
+.to-top.show{opacity:1;pointer-events:auto}
+.to-top:hover{transform:translateY(-2px);background:var(--lime-2)}
+@media(max-width:1080px){.to-top{bottom:16px;right:14px}}
+
+/* responsive */
+@media(max-width:1180px){
+  .wrap{padding:0 36px}.hero{padding-left:36px;padding-right:36px}
+  .price-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:980px){
+  .hero-grid{grid-template-columns:1fr;gap:30px}
+  .hero{padding-top:52px}
+  .hero-visual{max-width:640px}
+  .grid-3,.link-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ui-map{grid-template-columns:1fr}
+  .dash{grid-template-columns:repeat(2,1fr)}
+  .dash-item:nth-child(2){border-right:0}
+  .dash-item:nth-child(1),.dash-item:nth-child(2){border-bottom:1px solid var(--line)}
+}
+@media(max-width:720px){
+  body{font-size:15px}
+  .wrap{padding:0 19px}
+  .hero{padding:40px 19px 34px}
+  .hero h1{font-size:clamp(36px,10vw,48px)}
+  .lead{font-size:15px}
+  .section{padding:48px 0}
+  .section-head{grid-template-columns:1fr;gap:4px;margin-bottom:22px}
+  .section-num{padding-top:0;font-size:9.5px}
+  .section-head .lede{font-size:14px}
+  .grid-2,.grid-3,.grid-4,.link-grid,.split{grid-template-columns:1fr}
+  .price-grid{grid-template-columns:1fr}
+  .event-cols{grid-template-columns:1fr}
+  .event-col + .event-col{border-left:0;border-top:1px solid var(--line)}
+  .step{grid-template-columns:34px 1fr;gap:12px}
+  .step::before{width:28px;height:28px;font-size:9px}
+  .step::after{left:14px;top:31px}
+  .step-body h3{font-size:17px}
+  .card{padding:17px 16px}
+  .footer{padding:36px 19px 28px}
+  .footer-in{grid-template-columns:1fr}
+  .two-col-list{columns:1}
+  .ui-body{grid-template-columns:58px 1fr 60px}
+  .mock-body{grid-template-columns:72px 1fr 66px;min-height:210px}
+  .mock-left,.mock-right{font-size:6.5px;padding:6px 5px}
+  .mock-left .mock-field:nth-of-type(n+5){display:none}
+  .dash-item{padding:13px 16px}
+  .dash-item strong{font-size:19px}
+  .hero .mock-actions b:last-child{display:none}
+  .topbar{padding:0 13px}
+  .to-top{width:34px;height:34px}
+}
+@media(max-width:420px){
+  .mock-body{grid-template-columns:1fr}
+  .mock-left,.mock-right{display:none}
+  .ui-body{grid-template-columns:44px 1fr 46px}
+  .chips .chip:nth-child(n+5){display:none}
+}
+@media print{
+  #readbar,.sidebar,.topbar,.to-top,.overlay,.check-actions,.btn,.menu-btn{display:none!important}
+  main{margin:0;padding:0}
+  body{background:#fff;font-size:11pt}
+  .hero{padding:24px 0;background:#fff}
+  .wrap,.hero-grid{max-width:none;padding:0}
+  .section{padding:24px 0;break-inside:avoid}
+  .card,.table-wrap,details{break-inside:avoid;box-shadow:none}
+  a{color:#000;border:0}
+  .footer{background:#fff;color:#000;padding:20px 0}
+  .footer h3,.footer a{color:#000}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+<div id="readbar" aria-hidden="true"></div>
+<div class="overlay" id="overlay" aria-hidden="true"></div>
+
+<div class="topbar">
+  <a class="topbar-brand" href="#top" aria-label="回到顶部">
+    <span class="brand-mark" aria-hidden="true">
+      <svg width="16" height="16" viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true"><rect width="16" height="16" fill="#c9f26d"/><rect x="3" y="3" width="4" height="4" fill="#21182f"/><rect x="9" y="3" width="4" height="4" fill="#21182f"/><rect x="3" y="9" width="4" height="4" fill="#21182f"/><rect x="9" y="9" width="4" height="4" fill="#6d3fa4"/></svg>
+    </span>
+    GDEVELOP 情报
+  </a>
+  <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="sidebar">目录 <span aria-hidden="true">☰</span></button>
+</div>
+
+<aside class="sidebar" id="sidebar" aria-label="页面目录">
+  <div class="sidebar-top">
+    <a class="brand" href="#top">
+      <span class="brand-mark" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true"><rect width="16" height="16" fill="#c9f26d"/><rect x="3" y="3" width="4" height="4" fill="#21182f"/><rect x="9" y="3" width="4" height="4" fill="#21182f"/><rect x="3" y="9" width="4" height="4" fill="#21182f"/><rect x="9" y="9" width="4" height="4" fill="#6d3fa4"/></svg>
+      </span>
+      <span class="brand-text"><strong>GDEVELOP</strong><small>在线编辑器 · 新手情报</small></span>
+    </a>
+    <div class="progress-card">
+      <div class="ring-wrap" aria-hidden="true">
+        <svg class="ring" viewBox="0 0 58 58"><circle class="ring-bg" cx="29" cy="29" r="26"/><circle class="ring-fg" id="ringFg" cx="29" cy="29" r="26"/></svg>
+        <div class="ring-label"><strong id="ringPct">0%</strong><small>清单</small></div>
+      </div>
+      <div class="progress-copy">
+        <span>7 天上手进度</span>
+        <strong id="ringCount">0 / 21</strong>
+        <span class="save-state" id="saveState">自动记录在本机</span>
+      </div>
+    </div>
+  </div>
+  <nav class="sidebar-nav" aria-label="章节导航">
+    <a class="nav-link" href="#s00"><span class="n">00</span>先看结论</a>
+    <a class="nav-link" href="#s01"><span class="n">01</span>这是什么工具</a>
+    <a class="nav-link" href="#s02"><span class="n">02</span>在线版 vs 桌面版</a>
+    <a class="nav-link" href="#s03"><span class="n">03</span>账号与云项目</a>
+    <a class="nav-link" href="#s04"><span class="n">04</span>界面地图</a>
+    <a class="nav-link" href="#s05"><span class="n">05</span>第一个游戏</a>
+    <a class="nav-link" href="#s06"><span class="n">06</span>事件系统</a>
+    <a class="nav-link" href="#s07"><span class="n">07</span>对象与素材</a>
+    <a class="nav-link" href="#s08"><span class="n">08</span>变量与存档</a>
+    <a class="nav-link" href="#s09"><span class="n">09</span>行为与扩展</a>
+    <a class="nav-link" href="#s10"><span class="n">10</span>AI 助手</a>
+    <a class="nav-link" href="#s11"><span class="n">11</span>预览与排错</a>
+    <a class="nav-link" href="#s12"><span class="n">12</span>发布与导出</a>
+    <a class="nav-link" href="#s13"><span class="n">13</span>价格与额度</a>
+    <a class="nav-link" href="#s14"><span class="n">14</span>边界与局限</a>
+    <a class="nav-link" href="#s15"><span class="n">15</span>7 天学习计划</a>
+    <a class="nav-link" href="#s16"><span class="n">16</span>速查与链接</a>
+    <a class="nav-link" href="#s17"><span class="n">17</span>来源与核验</a>
+    <a class="nav-link" href="#s18"><span class="n">18</span>开始吧</a>
+  </nav>
+  <div class="sidebar-actions">
+    <button class="btn btn-ghost btn-sm" id="printBtn" type="button">打印 / 存为 PDF</button>
+    <a class="btn btn-ghost btn-sm" href="#top">回到顶部 ↑</a>
+  </div>
+</aside>
+
+<main id="main">
+<a id="top"></a>
+
+<header class="hero">
+  <div class="hero-grid">
+    <div>
+      <div class="eyebrow">GDevelop · Online Editor · Field Guide</div>
+      <h1>把第一个游戏，<br><em>做进浏览器里</em>。</h1>
+      <p class="lead">不用安装、不用付费、不用先学编程。这是一份写给零基础新手的 GDevelop 在线编辑器实操指南：从注册账号，到做出一个能跑能跳的小关卡，再到把链接发给朋友。</p>
+      <div class="chips">
+        <span class="chip"><b>01</b> 零基础可读</span>
+        <span class="chip"><b>02</b> 免费路线优先</span>
+        <span class="chip"><b>03</b> 中文界面</span>
+        <span class="chip"><b>04</b> 2026-10 核验</span>
+        <span class="chip"><b>05</b> 不换电脑</span>
+      </div>
+      <p class="hero-note"><strong>先说清楚：</strong>这份页面不是“三分钟速成”。它会把在线编辑器的能力、限制、菜单路径和真实价格都摊开讲。信息核验于 2026 年 10 月 28 日；软件和价格会变，关键决定请以官网为准。</p>
+    </div>
+    <div class="hero-visual">
+      <div class="mock-window" aria-hidden="true">
+        <div class="mock-titlebar">
+          <span class="dots"><i></i><i></i><i></i></span>
+          <span class="mock-url">editor.gdevelop.io</span>
+          <span class="mock-live"><i></i> LIVE</span>
+        </div>
+        <div class="mock-ui">
+          <div class="mock-tabs">
+            <span class="mock-tab active">Level 01</span>
+            <span class="mock-tab">Level 01 · 事件</span>
+            <span class="mock-plus">+</span>
+            <span class="mock-actions"><b>▶ 预览</b><b>分享</b></span>
+          </div>
+          <div class="mock-body">
+            <div class="mock-left">
+              <div class="mock-panel-title"><b>属性</b><span>行为</span><span>变量</span></div>
+              <div class="mock-field"><b>X / Y</b></div>
+              <div class="mock-field short"><b>宽 / 高</b></div>
+              <div class="mock-field"><b>图层</b></div>
+              <div class="mock-field short"><b>动画</b></div>
+              <div class="mock-field tall"><b>行为：Platformer character</b></div>
+            </div>
+            <div class="mock-canvas">
+              <div class="game-frame">
+                <svg class="pixel-scene" viewBox="0 0 320 180" shape-rendering="crispEdges" role="img" aria-label="像素风平台游戏示意图">
+                  <defs>
+                    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#dff0f7"/><stop offset="1" stop-color="#c7e0ec"/></linearGradient>
+                  </defs>
+                  <rect width="320" height="180" fill="url(#sky)"/>
+                  <circle cx="268" cy="36" r="17" fill="#f6d06b" opacity=".9"/>
+                  <g class="cloud c1" fill="#fffdf8" opacity=".9">
+                    <rect x="30" y="30" width="34" height="8"/><rect x="38" y="24" width="18" height="8"/><rect x="24" y="36" width="48" height="6"/>
+                  </g>
+                  <g class="cloud c2" fill="#fffdf8" opacity=".75">
+                    <rect x="196" y="52" width="28" height="7"/><rect x="204" y="46" width="14" height="7"/>
+                  </g>
+                  <path d="M0 132 L38 96 L72 118 L110 86 L150 120 L196 92 L240 118 L282 94 L320 122 L320 180 L0 180 Z" fill="#9ec9a7"/>
+                  <path d="M0 146 L44 120 L82 138 L126 112 L170 140 L214 118 L262 142 L320 120 L320 180 L0 180 Z" fill="#7fb38d"/>
+                  <rect x="0" y="150" width="320" height="30" fill="#4a3b52"/>
+                  <rect x="0" y="150" width="320" height="5" fill="#8fd17a"/>
+                  <rect x="120" y="112" width="86" height="12" fill="#5a4764"/>
+                  <rect x="120" y="112" width="86" height="4" fill="#8fd17a"/>
+                  <rect x="224" y="84" width="66" height="12" fill="#5a4764"/>
+                  <rect x="224" y="84" width="66" height="4" fill="#8fd17a"/>
+                  <g class="coin c1"><rect x="146" y="92" width="12" height="12" rx="6" fill="#f0c34a"/><rect x="150" y="95" width="4" height="6" fill="#b98a2f"/></g>
+                  <g class="coin c2"><rect x="246" y="66" width="12" height="12" rx="6" fill="#f0c34a"/><rect x="250" y="69" width="4" height="6" fill="#b98a2f"/></g>
+                  <g class="coin c3"><rect x="292" y="126" width="12" height="12" rx="6" fill="#f0c34a"/><rect x="296" y="129" width="4" height="6" fill="#b98a2f"/></g>
+                  <g class="player">
+                    <rect x="38" y="126" width="14" height="18" fill="#cf5f3e"/>
+                    <rect x="41" y="121" width="10" height="9" fill="#f2b08f"/>
+                    <rect x="43" y="124" width="2" height="2" fill="#21182f"/>
+                    <rect x="49" y="124" width="2" height="2" fill="#21182f"/>
+                    <rect x="36" y="132" width="4" height="8" fill="#f2b08f"/>
+                    <rect x="50" y="140" width="4" height="5" fill="#3b3448"/>
+                    <rect x="40" y="144" width="4" height="3" fill="#3b3448"/>
+                    <rect x="46" y="144" width="4" height="3" fill="#3b3448"/>
+                  </g>
+                  <g>
+                    <rect x="300" y="112" width="2" height="38" fill="#3b3448"/>
+                    <path d="M302 113 L316 119 L302 125 Z" fill="#6d3fa4"/>
+                  </g>
+                  <rect x="0" y="0" width="320" height="180" fill="none" stroke="#b9ad9c" stroke-width="2"/>
+                </svg>
+                <div class="hud">★ <b>0</b> / 3</div>
+              </div>
+              <div class="canvas-status"><span>Scene 01 · 1280 × 720</span><span>2D · 100%</span></div>
+            </div>
+            <div class="mock-right">
+              <div class="mock-panel-title"><b>对象</b><span>场景</span></div>
+              <div class="mock-object on"><i></i>Player</div>
+              <div class="mock-object"><i></i>Ground</div>
+              <div class="mock-object"><i></i>Coin</div>
+              <div class="mock-object"><i></i>Flag</div>
+              <div class="mock-object"><i></i>ScoreText</div>
+              <div class="mock-add">+ 添加对象</div>
+            </div>
+          </div>
+          <div class="mock-status"><span>场景 1 · 60 FPS</span><span>已保存到云端</span></div>
+        </div>
+      </div>
+      <p class="mock-caption">界面示意图，按 2026-10 在线版布局绘制；实际以你打开时为准。</p>
+    </div>
+  </div>
+</header>
+
+<div class="dash" aria-label="关键数字">
+  <div class="dash-item"><span>起步成本</span><strong>€0</strong><small>免费档就能做完一个游戏</small></div>
+  <div class="dash-item"><span>免费云项目</span><strong>3 个</strong><small>做完一个再开下一个</small></div>
+  <div class="dash-item"><span>免费 AI 额度</span><strong>40</strong><small>credits / 月，够问很多问题</small></div>
+  <div class="dash-item"><span>gd.games 发布</span><strong>∞</strong><small>免费托管，生成分享链接</small></div>
+</div>
+<section class="section" id="s00">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">00 / START HERE</div>
+      <div>
+        <h2>先看结论：这件事没有你想的那么难</h2>
+        <p class="lede">GDevelop 不是“专业程序员才能碰”的引擎。它把游戏逻辑做成了可以读懂的“事件表”：左边是条件，右边是动作。你不需要先学一门编程语言，但需要愿意试错、愿意把一个大想法拆小。</p>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card card-accent">
+        <div class="card-num">01 / SCOPE</div>
+        <h3><span class="icon">◆</span>第一个游戏，越小越好</h3>
+        <p>不要一上来做开放世界、联机、抽卡、存档系统。先做一个单屏或两屏的平台关：<strong>能移动、能跳、能吃 3 个金币、掉下去会重来、碰到旗子会过关</strong>。这就是一个完整的游戏循环。</p>
+        <p class="small muted mb-0">预计 2–4 小时；可以拆成 2–3 次做完。</p>
+      </div>
+      <div class="card card-accent">
+        <div class="card-num">02 / TOOL</div>
+        <h3><span class="icon lime">▣</span>在线版是“真的编辑器”</h3>
+        <p>它不是试玩版，也不是只能拖几个方块的小工具。你可以在浏览器里建场景、加对象、写事件、预览、调试、用 AI、发布到 gd.games。代价是：它依赖网络，而且不能像桌面软件那样直接管理本地项目文件。</p>
+      </div>
+      <div class="card card-accent">
+        <div class="card-num">03 / MONEY</div>
+        <h3><span class="icon teal">€</span>免费档足够做完第一个游戏</h3>
+        <p>引擎功能不锁、gd.games 发布不限量、免费云项目 3 个、每月 40 个 AI credits。付费主要买的是更多云项目、更多 AI 额度、iOS 发布和更多一键打包次数——不是“解锁做游戏的权利”。</p>
+      </div>
+      <div class="card card-warn">
+        <div class="card-num">04 / DEBUG</div>
+        <h3><span class="icon coral">?</span>卡住时，先查这三件事</h3>
+        <ul class="list-tight mb-0">
+          <li><strong>事件顺序</strong>：上面的先执行，下面的后执行。</li>
+          <li><strong>对象挑选</strong>：条件只“选中”碰到的那一个，还是全部？</li>
+          <li><strong>碰撞与图层</strong>：行为加了吗？碰撞掩码对吗？对象在正确的图层吗？</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout tip">
+      <strong>一句话版本：</strong>先用在线版开一个云项目，跟着第 05 节做一个“三金币平台关”；做完就发布到 gd.games，把链接发给朋友。等你确定要继续做第二个游戏，再考虑装桌面版、买不买会员。
+    </div>
+
+    <div class="split mt-24">
+      <div class="checklist-box">
+        <h4><span class="icon lime">✓</span>它很适合你，如果……</h4>
+        <ul class="list-tight mb-0">
+          <li>你想做 2D 平台、俯视角、解谜、射击、点击/放置类小游戏。</li>
+          <li>你想先学“游戏逻辑”，而不是先啃 C++ 或 Unity。</li>
+          <li>你愿意用免费素材，或者自己画简单的像素图。</li>
+          <li>你的电脑能流畅开十几个浏览器标签页。</li>
+          <li>你想在一两天内看到一个能玩的东西。</li>
+        </ul>
+      </div>
+      <div class="checklist-box">
+        <h4><span class="icon coral">×</span>它可能不适合你，如果……</h4>
+        <ul class="list-tight mb-0">
+          <li>你主要想做 3A 级 3D、主机游戏或大型联机游戏。</li>
+          <li>你完全不想碰逻辑，只想让 AI 一键生成完整商业游戏。</li>
+          <li>你需要离线工作，且网络长期不稳定。</li>
+          <li>你打算直接上架 Switch / PlayStation / Xbox。</li>
+          <li>你希望“做完就一定有人玩”——那是发行和运营问题，不是引擎能保证的。</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="subhead">今天就能做的三步</div>
+    <div class="steps">
+      <div class="step"><div class="step-body"><h3>打开在线编辑器，注册一个免费账号</h3><p>地址是 <a href="https://editor.gdevelop.io/?utm_medium=website&amp;utm_source=hero" target="_blank" rel="noopener" class="ext">editor.gdevelop.io</a>。右上角可以切换中文（ZH-CN）。先不要装任何东西。</p></div></div>
+      <div class="step"><div class="step-body"><h3>创建一个 1280×720 的空项目，存到 GDevelop 云</h3><p>路径：<span class="path"><b>创建</b> → <b>创建新游戏</b> → <b>空项目</b> → 选 <b>1280×720</b> → 命名 → 存储位置选 <b>GDevelop 云</b></span>。</p></div></div>
+      <div class="step"><div class="step-body"><h3>点一次“预览”，再关掉</h3><p>你会看到一个空窗口。这一步只是确认浏览器、WebGL、音频和预览窗口都正常。然后回到第 05 节，开始做第一个角色。</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="s01">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">01 / WHAT IT IS</div>
+      <div>
+        <h2>你打开的到底是什么：GDevelop 与在线编辑器</h2>
+        <p class="lede">GDevelop 是一个开源、以 2D 为主的无代码游戏引擎。在线编辑器则是把同一个编辑器搬进浏览器：不用安装，打开网页就能做。理解这一点，能帮你判断什么时候该用它、什么时候该换桌面版。</p>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3><span class="icon">G</span>GDevelop 本身</h3>
+        <p>一个免费、开源（MIT 许可证）的游戏引擎，主打“事件驱动”的可视化逻辑。它把游戏拆成<strong>场景（Scene）</strong>、<strong>对象（Object）</strong>、<strong>实例（Instance）</strong>、<strong>行为（Behavior）</strong>和<strong>事件（Event）</strong>。</p>
+        <p class="mb-0">它最擅长的不是写实 3D，而是 2D 平台、俯视角、解谜、弹幕、点击、放置、视觉小说式的小游戏和原型。</p>
+      </div>
+      <div class="card">
+        <h3><span class="icon lime">◎</span>在线编辑器</h3>
+        <p>地址固定为 <a href="https://editor.gdevelop.io/?utm_medium=website&amp;utm_source=hero" target="_blank" rel="noopener" class="ext">editor.gdevelop.io</a>。它把编辑器跑在浏览器里，项目可以存到 GDevelop 云，也可以选择“现在不保存此项目”做临时实验。</p>
+        <p class="mb-0">它和桌面版共享同一套项目格式与核心功能。区别主要在<strong>文件管理、离线能力、性能和打包方式</strong>，不在“能不能做游戏”。</p>
+      </div>
+    </div>
+
+    <div class="subhead">它是什么，不是什么</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th style="width:26%">问题</th><th>答案</th></tr></thead>
+        <tbody>
+          <tr><td><strong>要写代码吗？</strong></td><td>不需要。核心逻辑用“条件 + 动作”的事件表完成。想做高级效果时可以写 JavaScript，但那是可选项，不是入门门槛。</td></tr>
+          <tr><td><strong>是 Scratch 吗？</strong></td><td>不是。Scratch 更像编程启蒙积木；GDevelop 是面向“做成一个能发布的游戏”的引擎，有相机、碰撞、物理、粒子、存档、导出和发布流程。</td></tr>
+          <tr><td><strong>是 Roblox / Minecraft 吗？</strong></td><td>不是。它不提供一个现成的巨型平台和玩家社区，你要自己搭游戏；发布到 gd.games 只是其中一种分发方式。</td></tr>
+          <tr><td><strong>能做出商业游戏吗？</strong></td><td>可以，已经有人用它发布商业作品。但“能做”不等于“容易卖”；美术、设计、测试、发行仍然占大头。</td></tr>
+          <tr><td><strong>AI 能一键做完吗？</strong></td><td>不能。AI 可以帮你搭机制、改事件、解释概念，但它会犯错，也需要你验收。它更像一个随时在线的助教，不是外包团队。</td></tr>
+          <tr><td><strong>免费吗？</strong></td><td>引擎免费、开源，免费档可以做完并发布游戏。云项目数量、AI 额度、iOS 发布和一键打包次数有分级限制。</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="subhead">你需要准备什么</div>
+    <div class="table-wrap">
+      <table class="compact">
+        <thead><tr><th>项目</th><th>建议</th><th>说明</th></tr></thead>
+        <tbody>
+          <tr><td><strong>浏览器</strong></td><td>最新版 Chrome / Edge / Firefox / Safari</td><td>优先 Chrome 或 Edge；老旧浏览器、奇怪插件、广告拦截器可能影响加载。遇到白屏先换浏览器试。</td></tr>
+          <tr><td><strong>网络</strong></td><td>稳定宽带 / Wi-Fi</td><td>云项目要联网保存；第一次加载编辑器要下载较多资源，慢是正常的。</td></tr>
+          <tr><td><strong>账号</strong></td><td>免费 GDevelop 账号</td><td>不登录也能“现在不保存”地玩一下，但刷新或关闭标签页就没了。认真做必须登录。</td></tr>
+          <tr><td><strong>屏幕</strong></td><td>建议 1280×720 以上，越大越舒服</td><td>在线版面板多，小屏会挤。手机/平板能打开，但不适合长时间编辑。</td></tr>
+          <tr><td><strong>鼠标</strong></td><td>强烈建议</td><td>拖对象、拉平台、调碰撞掩码都靠鼠标；触控板也能用，但效率低一些。</td></tr>
+          <tr><td><strong>内存</strong></td><td>8 GB 起更稳，16 GB 更从容</td><td>这不是官方硬性门槛，是实用建议。浏览器本身很吃内存，别同时开几十个标签页。</td></tr>
+          <tr><td><strong>显卡</strong></td><td>能正常跑网页 3D 的集成显卡即可</td><td>2D 项目通常没问题；复杂粒子、特效和 3D 会更吃 GPU。</td></tr>
+        </tbody>
+      </table>
+      <p class="table-note">以上是“用起来舒服”的建议，不是官方最低配置。真正的硬门槛是你的浏览器能不能稳定运行 WebGL 和编辑器。</p>
+    </div>
+
+    <div class="subhead">在线版能做什么</div>
+    <div class="grid-3">
+      <div class="card card-soft"><h4>建场景与对象</h4><p class="small mb-0">多场景、图层、相机、Sprite、文字、Tilemap、粒子、3D 对象等。</p></div>
+      <div class="card card-soft"><h4>写事件逻辑</h4><p class="small mb-0">条件、动作、子事件、对象组、变量、循环、JavaScript 事件。</p></div>
+      <div class="card card-soft"><h4>加行为</h4><p class="small mb-0">平台角色、平台、俯视移动、物理、寻路、Tween、拖拽等。</p></div>
+      <div class="card card-soft"><h4>预览与调试</h4><p class="small mb-0">实时预览、热更新、调试器、性能分析器、局域网手机预览。</p></div>
+      <div class="card card-soft"><h4>AI 助手</h4><p class="small mb-0">读取项目结构，解释、搭建或修改事件；有免费额度。</p></div>
+      <div class="card card-soft"><h4>发布与导出</h4><p class="small mb-0">gd.games、Web 文件夹、桌面、Android、iOS（按订阅档位）。</p></div>
+    </div>
+
+    <div class="callout warn">
+      <strong>看到这句话别误会：</strong>“在您的计算机上保存：下载 GDevelop 桌面应用程序”是一个下载桌面版的提示，不是把当前项目直接存到你选的文件夹。在线编辑器可以手动「保存项目 → 下载副本 → 下载压缩游戏和资源」，得到一个含 <code>game.json</code> 的 zip 作备份；但想持续管理本地项目文件，官方路线仍是桌面版。
+    </div>
+
+    <div class="callout info">
+      <strong>在线版不是“功能残缺的试用版”。</strong>它的核心编辑能力和桌面版同源；真正的差别在于浏览器环境：不能随意读写本地文件、性能上限更低、离线不可用。对第一个小游戏来说，这些限制通常不构成问题。
+    </div>
+  </div>
+</section>
+
+<section class="section" id="s02">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">02 / ONLINE VS DESKTOP</div>
+      <div>
+        <h2>在线版还是桌面版：别选“更高级”，选“更适合现在”</h2>
+        <p class="lede">这是整份指南里最值得先想清楚的一件事。选错了不会毁掉项目，但会让你在保存、备份和性能上反复踩坑。</p>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th style="width:20%">维度</th><th style="width:40%">在线编辑器</th><th>桌面版（Windows / macOS / Linux）</th></tr></thead>
+        <tbody>
+          <tr><td><strong>打开方式</strong></td><td>浏览器打开网址，无需安装</td><td>下载安装包，首次安装需要几分钟</td></tr>
+          <tr><td><strong>项目保存</strong></td><td>主要存 GDevelop 云；免费 3 个项目；也能手动下载项目 zip</td><td>可直接存本地 <code>.json</code> 文件，想存多少存多少</td></tr>
+          <tr><td><strong>自动保存</strong></td><td>云项目自动保存，跨设备登录可继续</td><td>本地项目也可自动保存，但文件在你电脑上</td></tr>
+          <tr><td><strong>离线</strong></td><td>基本不可用；断网时云保存会失败</td><td>可离线编辑，联网时再发布/打包</td></tr>
+          <tr><td><strong>本地文件</strong></td><td>可「保存项目 → 下载副本」下载含 <code>game.json</code> 的 zip；不能像桌面版那样直接保存/覆盖本地文件夹</td><td>完整支持打开、另存、备份、版本管理</td></tr>
+          <tr><td><strong>性能上限</strong></td><td>受浏览器内存和 WebGL 限制，超大场景更容易卡</td><td>通常更稳，适合长期、大素材、多场景项目</td></tr>
+          <tr><td><strong>适合场景</strong></td><td>马上开始、轻量项目、跨设备、课堂/借来的电脑</td><td>认真做项目、素材多、需要本地备份、经常离线</td></tr>
+          <tr><td><strong>发布能力</strong></td><td>gd.games、Web、桌面/Android/iOS 云打包（按档位）</td><td>同样支持，且本地构建/调试更灵活</td></tr>
+          <tr><td><strong>切换成本</strong></td><td>可下载项目 zip，或在桌面版里把云项目另存到本地</td><td>可把本地项目另存到 GDevelop 云</td></tr>
+        </tbody>
+      </table>
+      <p class="table-note">在线版可以手动下载项目压缩包，但它不是自动保存，也不会持续覆盖你电脑上的版本；日常本地编辑仍推荐桌面版。用桌面版登录同一账号，也可以把云项目另存到本地。</p>
+    </div>
+
+    <div class="subhead">建议路线：先在线，后桌面</div>
+    <div class="grid-3">
+      <div class="card card-lime">
+        <div class="card-num">STEP 1 / 现在</div>
+        <h3>用在线版试水</h3>
+        <p class="small">不装软件、不折腾环境，先确认自己喜不喜欢“做游戏”这件事。做第一个 2–4 小时的小关，发布到 gd.games。</p>
+        <p class="small mb-0"><span class="tag free">免费</span> <span class="tag">云项目 3 个</span></p>
+      </div>
+      <div class="card">
+        <div class="card-num">STEP 2 / 认真做</div>
+        <h3>装桌面版，把项目落到本地</h3>
+        <p class="small">当你开始做第二个游戏、素材超过几十 MB、或者不想被网络绑架时，下载桌面版。它免费，且能直接管理本地文件。</p>
+        <p class="small mb-0"><span class="tag free">免费</span> <span class="tag">本地保存</span></p>
+      </div>
+      <div class="card">
+        <div class="card-num">STEP 3 / 需要时</div>
+        <h3>再考虑付费</h3>
+        <p class="small">只有当你确实需要更多云项目、iOS 发布、更多一键打包或更高 AI 额度时，才看 Silver / Gold / Pro。不要为了“看起来专业”先买。</p>
+        <p class="small mb-0"><span class="tag paid">按需</span> <span class="tag">可随时取消</span></p>
+      </div>
+    </div>
+
+    <div class="subhead">三个存储选项，别点错</div>
+    <div class="table-wrap">
+      <table class="compact">
+        <thead><tr><th>选项</th><th>实际含义</th><th>适合</th></tr></thead>
+        <tbody>
+          <tr><td><strong>GDevelop 云</strong></td><td>项目存到账号云端，自动保存；免费账号最多 3 个云项目</td><td>认真做、想跨设备继续、需要 AI 恢复点</td></tr>
+          <tr><td><strong>在您的计算机上保存：下载 GDevelop 桌面应用程序</strong></td><td>提示你下载桌面版；不是浏览器直接存本地</td><td>准备长期做、要本地文件和备份</td></tr>
+          <tr><td><strong>现在不保存此项目</strong></td><td>只在当前浏览器会话里存在；刷新、关标签页、崩溃都可能丢</td><td>只看一眼、临时试验，不用于正式项目</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout info">
+      <strong>建好项目后想留一份在电脑上：</strong>点顶部「保存项目」→「下载副本」→「下载压缩游戏和资源」，浏览器会下载一个 zip，里面是 <code>game.json</code> 和资源。解压后用桌面版打开 <code>game.json</code> 就能继续。它不是“自动保存到本地”，每次都要手动下载；重要版本建议同时留云副本。
+    </div>
+    <div class="callout warn">
+      <strong>最重要的习惯：</strong>认真做的项目，永远选“GDevelop 云”或桌面版本地保存。不要用“现在不保存此项目”做你舍不得丢的东西。它不会自动帮你留后路。
+    </div>
+
+    <div class="subhead">项目怎么搬家</div>
+    <div class="split">
+      <div class="card">
+        <h3>云 → 本地</h3>
+        <ol class="list-tight">
+          <li>下载并打开 GDevelop 桌面版。</li>
+          <li>用同一个账号登录。</li>
+          <li>在项目列表里打开云项目。</li>
+          <li>用“另存为 / Save as”存到本地文件夹。</li>
+        </ol>
+        <p class="small">不想装桌面版时，也可以直接在在线编辑器「保存项目 → 下载副本 → 下载压缩游戏和资源」下载 zip；解压后用桌面版打开 <code>game.json</code>。它适合一次性备份/迁移，不适合当作持续自动保存。</p>
+        <p class="small muted mb-0">之后重点维护本地文件；云副本可以作为异地备份，但要注意别改错版本。</p>
+      </div>
+      <div class="card">
+        <h3>本地 → 云</h3>
+        <ol class="list-tight">
+          <li>在桌面版打开本地项目。</li>
+          <li>“另存为 / Save as”选择 GDevelop 云。</li>
+          <li>确认云端出现副本，再决定是否继续用云版。</li>
+        </ol>
+        <p class="small muted mb-0">免费账号只有 3 个云项目名额；上传前先清理不再需要的实验项目。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="s03">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">03 / ACCOUNT &amp; CLOUD</div>
+      <div>
+        <h2>注册、登录与云项目：先把“东西不会丢”这件事搞定</h2>
+        <p class="lede">做游戏最打击人的不是 bug，而是做了两小时的东西刷新没了。先花五分钟把账号和保存方式弄对，后面会轻松很多。</p>
+      </div>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-body">
+          <h3>打开编辑器，点右上角“注册”</h3>
+          <p>在线编辑器首页右上角有 <strong>Ask AI</strong>、<strong>获取应用程序</strong>、<strong>登录</strong>、<strong>注册</strong> 和语言切换。点“注册”，按页面提示创建账号。</p>
+          <p class="small muted">常见方式包括邮箱注册，以及 Google / GitHub / Apple 等第三方登录；具体以你打开时登录页显示的选项为准。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-body">
+          <h3>完成邮箱验证（如果要求）</h3>
+          <p>用常用邮箱注册，收到验证邮件后点链接。没收到就看垃圾邮件；仍然没有就换一个邮箱或稍后再试。不要在共享电脑上保存密码。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-body">
+          <h3>回到“创建”，新建项目并选“GDevelop 云”</h3>
+          <p>登录后创建项目，存储位置选 <strong>GDevelop 云</strong>。如果未登录就选云，系统会提示你先创建账号——这是正常的，不是报错。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-body">
+          <h3>等编辑器完全打开，再开始加东西</h3>
+          <p>第一次加载可能比较慢。看到场景画布、右侧对象面板和顶部“预览”按钮都出现了，再开始操作。中途不要反复刷新。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="subhead">免费账号实际给你什么</div>
+    <div class="table-wrap">
+      <table class="compact">
+        <thead><tr><th>项目</th><th>免费档</th><th>对第一个游戏的意义</th></tr></thead>
+        <tbody>
+          <tr><td>引擎功能</td><td>完整、开源</td><td>不锁核心功能，能做完一个完整小游戏</td></tr>
+          <tr><td>云项目</td><td>3 个</td><td>够用，但要学会“做完一个再开一个”</td></tr>
+          <tr><td>AI credits</td><td>40 / 月</td><td>够问很多“这个怎么做”“为什么报错”</td></tr>
+          <tr><td>gd.games 发布</td><td>不限量</td><td>免费生成分享链接，适合给朋友试玩</td></tr>
+          <tr><td>桌面 / Android 一键打包</td><td>各 1 次 / 天</td><td>偶尔导出够用；频繁打包会受限</td></tr>
+          <tr><td>iOS 发布</td><td>不包含</td><td>需要 Gold 或更高档位</td></tr>
+          <tr><td>编辑器提示</td><td>有升级提示（nag screen）</td><td>不影响做游戏，只是会看到推广</td></tr>
+        </tbody>
+      </table>
+      <p class="table-note">以上为 2026-10-28 官网价格页信息；免费档的 AI 额度按月发放，付费档按周额度，具体以编辑器内显示为准。</p>
+    </div>
+
+    <div class="subhead">云项目怎么保存：看到“已保存”再关页面</div>
+    <div class="grid-2">
+      <div class="card">
+        <h3>自动保存，但不是“瞬移”</h3>
+        <p>云项目会在你编辑时自动保存。网络慢的时候，保存会滞后。做完一段关键改动后，停两秒，确认界面上的保存状态再继续。</p>
+        <p class="mb-0">如果你要关电脑、换设备，先回到项目列表，确认项目卡片是最新状态，再关标签页。</p>
+      </div>
+      <div class="card card-warn">
+        <h3>这些操作会让云项目“没保存”</h3>
+        <ul class="list-tight mb-0">
+          <li>断网后继续大改，然后直接关页面。</li>
+          <li>同一项目在两台设备同时打开、同时改。</li>
+          <li>用无痕/隐私窗口，关掉后本地缓存清空。</li>
+          <li>把“现在不保存此项目”当成正式项目。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout info">
+      <strong>免费 3 个云项目怎么管：</strong>一个项目 = 一个游戏。游戏里的不同关卡用“场景（Scene）”区分，不要为每一关新建一个项目。旧实验项目做完就导出/截图留档，然后删掉，腾出名额。
+    </div>
+
+    <div class="subhead">账号与公开发布的安全习惯</div>
+    <div class="grid-3">
+      <div class="card card-soft">
+        <h4>用昵称，不用真名</h4>
+        <p class="small mb-0">gd.games 上的作者名、游戏页可能公开。不要用真实姓名、学校、住址、常用社交账号当用户名。</p>
+      </div>
+      <div class="card card-soft">
+        <h4>游戏里不放个人信息</h4>
+        <p class="small mb-0">包括真实照片、位置、学校、电话号码、聊天账号。发布前把测试用的占位文字清掉。</p>
+      </div>
+      <div class="card card-soft">
+        <h4>付费与发布前先问清楚</h4>
+        <p class="small mb-0">订阅会自动续费；公开发布意味着任何人可见。未成年人请在监护人知情的情况下操作付费和发布。</p>
+      </div>
+    </div>
+    <p class="note">GDevelop 的服务条款、隐私政策和年龄要求以其官网为准。这份指南不替代监护人的判断，也不鼓励瞒着家人注册或付费。</p>
+  </div>
+</section>
+
+<section class="section" id="s04">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">04 / INTERFACE MAP</div>
+      <div>
+        <h2>界面地图：第一次打开，先认识这 7 个地方</h2>
+        <p class="lede">不要一上来就研究所有按钮。你只需要先找到：项目管理器、场景/事件标签、预览、对象面板、属性/行为、图层、分享。其余的面板可以以后再用。</p>
+      </div>
+    </div>
+
+    <div class="subhead">首页导航：五个入口</div>
+    <div class="grid-3">
+      <div class="card card-soft"><h4>学习</h4><p class="small mb-0">官方课程、教程和免费应用内教程。部分课程单独收费，先挑免费的看。</p></div>
+      <div class="card card-soft"><h4>创建</h4><p class="small mb-0">你的游戏项目列表、创建新游戏、从模板开始、浏览模板、重新混合现有游戏。</p></div>
+      <div class="card card-soft"><h4>游玩</h4><p class="small mb-0">玩 gd.games 上的作品，适合找灵感和看别人怎么做出手感。</p></div>
+      <div class="card card-soft"><h4>商店</h4><p class="small mb-0">素材包、模板、角色动画、UI、特效。有免费也有付费，注意卡片价格。</p></div>
+      <div class="card card-soft"><h4>教育</h4><p class="small mb-0">给老师/学校用的教学管理功能，需要 Education 订阅；个人学习不用管。</p></div>
+      <div class="card card-soft"><h4>右上角</h4><p class="small mb-0"><strong>Ask AI</strong>、<strong>获取应用程序</strong>、<strong>登录/注册</strong>、语言（ZH-CN）。找不到功能时先看这里。</p></div>
+    </div>
+
+    <div class="subhead">新建项目：路径与尺寸</div>
+    <p>路径：<span class="path"><b>创建</b> → <b>创建新游戏</b> → <b>空项目</b> → 选尺寸 → 填项目名称 → 选存储位置 → <b>创建新游戏</b></span>。</p>
+    <div class="table-wrap">
+      <table class="compact">
+        <thead><tr><th>尺寸</th><th>适合</th><th>建议</th></tr></thead>
+        <tbody>
+          <tr><td><strong>720 × 1280</strong></td><td>手机竖屏</td><td>做竖屏休闲/点击类时选；电脑上预览会是竖长窗口</td></tr>
+          <tr><td><strong>1280 × 720</strong></td><td>桌面和手机横屏</td><td><strong>第一个平台游戏选这个</strong>，视野和素材都好处理</td></tr>
+          <tr><td><strong>1920 × 1080</strong></td><td>桌面全高清</td><td>画面更细，但素材要更大；新手先别选</td></tr>
+          <tr><td><strong>自定义尺寸</strong></td><td>特殊比例</td><td>知道自己在做什么时再用；后期也能在游戏设置里改</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="subhead">编辑器里最重要的 7 个位置</div>
+    <p class="small muted">点下面的数字，看看每个区域是干什么的。示意图是按 2026-10 在线版布局画的，实际面板可以拖动、关闭或重新排列。</p>
+    <div class="ui-map">
+      <div class="ui-stage">
+        <div class="ui-canvas">
+          <div class="ui-top"><span>☰</span><span>未命名场景</span><span class="grow"></span><b>Ask AI</b><span>预览</span><span>分享</span><span>2D</span><span>3D</span></div>
+          <div class="ui-tabs"><span class="on">场景</span><span>场景（事件）</span><span>+</span></div>
+          <div class="ui-body">
+            <div class="ui-side">
+              <div class="mock-panel-title"><b>属性</b><span>行为</span></div>
+              <div class="line"></div><div class="line s"></div><div class="line"></div><div class="line s"></div>
+            </div>
+            <div class="ui-canvas-area">
+              <div class="ui-floor"></div>
+              <div class="ui-player"></div>
+              <div class="ui-coin" style="left:118px;bottom:92px"></div>
+              <div class="ui-coin" style="left:168px;bottom:120px"></div>
+              <div class="ui-coin" style="left:216px;bottom:86px"></div>
+              <div class="ui-flag"></div>
+              <button class="hotspot" style="left:8px;top:8px" data-ui="project" aria-label="项目管理器">1</button>
+              <button class="hotspot" style="left:8px;top:48px" data-ui="tabs" aria-label="场景与事件标签">2</button>
+              <button class="hotspot" style="right:8px;top:8px" data-ui="preview" aria-label="预览与分享">3</button>
+              <button class="hotspot" style="left:8px;top:88px" data-ui="props" aria-label="属性行为变量">4</button>
+              <button class="hotspot" style="left:46%;top:48%" data-ui="canvas" aria-label="画布">5</button>
+              <button class="hotspot" style="right:8px;top:88px" data-ui="objects" aria-label="对象面板">6</button>
+              <button class="hotspot" style="right:8px;bottom:8px" data-ui="layers" aria-label="图层面板">7</button>
+            </div>
+            <div class="ui-side right">
+              <div class="mock-panel-title"><b>对象</b></div>
+              <div class="line"></div><div class="line s"></div><div class="line"></div><div class="line s"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ui-detail" id="uiDetail" aria-live="polite">
+        <div class="kicker">HOTSPOT 1 / PROJECT</div>
+        <h3>项目管理器</h3>
+        <p>点左上角三横线打开。这里能看到整个游戏的骨架：<strong>游戏设置、场景列表、扩展、资源</strong>。右键场景可以设为启动场景。</p>
+        <p class="hint">找不到某个场景时，先来这里。</p>
+      </div>
+    </div>
+
+    <div class="subhead">七个区域，一句话记住</div>
+    <div class="table-wrap">
+      <table class="compact">
+        <thead><tr><th>区域</th><th>在哪里</th><th>你主要用它做什么</th></tr></thead>
+        <tbody>
+          <tr><td><strong>项目管理器</strong></td><td>左上角三横线</td><td>看场景列表、游戏设置、扩展、资源；设置启动场景</td></tr>
+          <tr><td><strong>场景 / 场景事件</strong></td><td>编辑器顶部标签</td><td>在“摆东西”和“写逻辑”之间切换</td></tr>
+          <tr><td><strong>工具栏</strong></td><td>顶部</td><td>Ask AI、预览、分享、2D/3D 切换、打开各种面板</td></tr>
+          <tr><td><strong>属性 / 行为 / 场景变量</strong></td><td>左侧面板的三个折叠区</td><td>改选中实例的位置、大小、图层；给对象加行为；展开场景变量并点 + 新建</td></tr>
+          <tr><td><strong>画布</strong></td><td>中间</td><td>摆对象、拉平台、看游戏窗口边框；按 <kbd>F</kbd> 聚焦选中物体</td></tr>
+          <tr><td><strong>对象面板</strong></td><td>右侧</td><td>管理全局对象/场景对象；点“添加对象”创建新对象</td></tr>
+          <tr><td><strong>图层面板</strong></td><td>工具栏里的图层按钮</td><td>分 UI、背景、游戏层；每层有独立相机和效果</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="subhead">先搞懂“对象”和“实例”</div>
+    <div class="split">
+      <div class="card card-lime">
+        <h3>对象 = 饼干模具</h3>
+        <p>对象是蓝图：它的图片、动画、碰撞掩码、行为都定义在这里。你在对象面板里改的是“这一类东西”。</p>
+        <p class="small mb-0">例：<code>Coin</code> 这个对象长什么样、有没有动画。</p>
+      </div>
+      <div class="card">
+        <h3>实例 = 压出来的饼干</h3>
+        <p>实例是真正摆在场景里的那一个。同一个 <code>Coin</code> 对象可以摆 3 个实例，它们共享对象设置，但位置、大小、图层可以各自不同。</p>
+        <p class="small mb-0">例：三枚金币分别在三个平台上方。</p>
+      </div>
+    </div>
+    <div class="callout tip">
+      <strong>第一次打开编辑器，只做三件事：</strong>① 双击场景标签，把它改名为 <code>Level1</code>；② 点一次“预览”，确认能看到空窗口；③ 在对象面板点“添加对象”，随便加一个 Sprite 再删掉，熟悉流程。做完这三步，再看下一节。
+    </div>
+  </div>
+</section>
+
+<section class="section" id="s05">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">05 / FIRST GAME</div>
+      <div>
+        <h2>第一个游戏：三枚金币的平台关</h2>
+        <p class="lede">这一节是整份指南的主干。你会在一个 1280×720 的空项目里，做出“移动、跳跃、吃金币、加分、掉下去重来、碰旗子过关”的完整循环，最后发布到 gd.games。照着做，不要跳步。</p>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card card-accent">
+        <h3>做完你会得到</h3>
+        <ul class="list-tight mb-0">
+          <li>一个能左右跑、跳的平台角色</li>
+          <li>3 个平台、3 枚金币、1 面终点旗</li>
+          <li>金币计数 UI、吃到金币的音效</li>
+          <li>掉出画面自动重开、碰旗子进入胜利场景</li>
+          <li>一个可以发给朋友的 gd.games 链接</li>
+        </ul>
+      </div>
+      <div class="card card-soft">
+        <h3>开始前</h3>
+        <p class="small">新建 <strong>1280×720</strong> 空项目，命名 <code>coin-run-01</code>，存储位置选 <strong>GDevelop 云</strong>。等编辑器完全打开。</p>
+        <p class="small mb-0">下面所有对象名和变量名建议保持英文（<code>Player</code>、<code>Coin</code>、<code>Score</code>），这样查教程、问 AI 时不容易对不上。界面按钮仍是中文。</p>
+      </div>
+    </div>
+
+    <div class="subhead">素材：先用我做的占位图，或者去商店挑免费的</div>
+    <p>如果你不想花时间找素材，直接用下面四张占位图。点击下载，然后在 GDevelop 里作为 Sprite 的图片导入。它们很小、很丑，但足够让你把游戏逻辑跑通。做完再换好看的美术。</p>
+    <div class="grid-4">
+      <div class="card card-soft center">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAwCAYAAABwrHhvAAAAfklEQVR42mNgGAWjYBSMglFABLA28fhPDh51wKgDhocDPm3o/08JHnXA8HGAooQ+GBOyEF3dqANGE+GoA0YdQJHlJz/l/qcGHroOOB9v958amOw4p5YDSEoTow4YdcCoAwbcAaR0TEhVQ/We0agDRh1AcwfA2vj4MCnqBqUDAMO2UYVZkktvAAAAAElFTkSuQmCC" alt="玩家占位图" style="width:32px;height:48px;image-rendering:pixelated">
+        <p class="small mb-0"><a download="player.png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAwCAYAAABwrHhvAAAAfklEQVR42mNgGAWjYBSMglFABLA28fhPDh51wKgDhocDPm3o/08JHnXA8HGAooQ+GBOyEF3dqANGE+GoA0YdQJHlJz/l/qcGHroOOB9v958amOw4p5YDSEoTow4YdcCoAwbcAaR0TEhVQ/We0agDRh1AcwfA2vj4MCnqBqUDAMO2UYVZkktvAAAAAElFTkSuQmCC">下载 player.png</a><br><span class="tiny muted">32×48 · 透明背景</span></p>
+      </div>
+      <div class="card card-soft center">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAOUlEQVR42mNgGL7gw2Gv/8iYbI0kGwRT+P9p1/+dXfpwTJQByDbhMgCvIcPAAIoDkSrRSHFCGnoAAMU856F+IVt4AAAAAElFTkSuQmCC" alt="金币占位图" style="width:32px;height:32px;image-rendering:pixelated">
+        <p class="small mb-0"><a download="coin.png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAOUlEQVR42mNgGL7gw2Gv/8iYbI0kGwRT+P9p1/+dXfpwTJQByDbhMgCvIcPAAIoDkSrRSHFCGnoAAMU856F+IVt4AAAAAElFTkSuQmCC">下载 coin.png</a><br><span class="tiny muted">16×16 · 透明背景</span></p>
+      </div>
+      <div class="card card-soft center">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAbUlEQVR42mPov1j1fyAxw6gDRh0w4A7I25jwfyDxqAMYvKw9/+PDMe5BeDGl+oe/AyriUuCYoAOQFY86YOQkQlpbQEj/0HMAejoZdcDISwPDzwGDujYkVI4PKgdgq0eGvgNISQMD7oDRNiG5+gEBrYicEWfI0QAAAABJRU5ErkJggg==" alt="地面占位图" style="width:32px;height:32px;image-rendering:pixelated">
+        <p class="small mb-0"><a download="ground.png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAbUlEQVR42mPov1j1fyAxw6gDRh0w4A7I25jwfyDxqAMYvKw9/+PDMe5BeDGl+oe/AyriUuCYoAOQFY86YOQkQlpbQEj/0HMAejoZdcDISwPDzwGDujYkVI4PKgdgq0eGvgNISQMD7oDRNiG5+gEBrYicEWfI0QAAAABJRU5ErkJggg==">下载 ground.png</a><br><span class="tiny muted">32×32 · 可平铺</span></p>
+      </div>
+      <div class="card card-soft center">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAwCAYAAABwrHhvAAAAf0lEQVR42mNgGAU4gLWJx38YHnVAd8w3quBc+yVgTLIDYBqphQfUAWRFwYA7gFppgOxESHff08IBFGXDAXfAkE8DFJeEdLd80DlgyKWB0TbhqANGHTDqgFEHjDpg1AGjDhh1wKgDRh0w6gCqWEoMHhYOAAC94fE8LUNjPQAAAABJRU5ErkJggg==" alt="旗子占位图" style="width:32px;height:48px;image-rendering:pixelated">
+        <p class="small mb-0"><a download="flag.png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAwCAYAAABwrHhvAAAAf0lEQVR42mNgGAU4gLWJx38YHnVAd8w3quBc+yVgTLIDYBqphQfUAWRFwYA7gFppgOxESHff08IBFGXDAXfAkE8DFJeEdLd80DlgyKWB0TbhqANGHTDqgFEHjDpg1AGjDhh1wKgDRh0w6gCqWEoMHhYOAAC94fE8LUNjPQAAAABJRU5ErkJggg==">下载 flag.png</a><br><span class="tiny muted">32×48 · 透明背景</span></p>
+      </div>
+    </div>
+    <p class="note">想用更好看的素材：在“添加对象”里点“从素材商店选择”，或去 <a href="https://kenney.nl/assets" target="_blank" rel="noopener" class="ext">Kenney</a> 下 CC0 素材。注意每个素材包的授权条款，商用前确认。</p>
+
+    <div class="subhead">第 1 步：把场景改名，确认保存</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-body">
+          <h3>双击顶部的“未命名场景”标签</h3>
+          <p>改成 <code>Level1</code>，回车。然后打开左上角项目管理器，确认 Scenes 列表里有它，并且它被设为启动场景（通常第一个场景会自动成为启动场景）。</p>
+          <p class="small muted mb-0">为什么先改名：后面事件里“切换场景”要选名字，早点改省得混。</p>
+        </div>
+      </div>
+
+      <div class="subhead">第 2 步：创建玩家对象</div>
+      <div class="step">
+        <div class="step-body">
+          <h3>右侧对象面板 → 添加对象 → Sprite</h3>
+          <p>路径：<span class="path"><b>对象</b> → <b>添加对象</b> → <b>从零开始新建对象</b> → <b>Sprite</b></span>。对象名填 <code>Player</code>。</p>
+          <p>在 Sprite 编辑器里点“添加动画”，再点“添加精灵”，选择刚下载的 <code>player.png</code>。一张静态图也能做游戏；动画可以以后再加。点“应用”。</p>
+          <p>把 <code>Player</code> 从对象面板拖到画布左侧，放在地面高度附近（先随便放，下一步会调）。</p>
+        </div>
+      </div>
+
+      <div class="subhead">第 3 步：给玩家加“平台角色”行为</div>
+      <div class="step">
+        <div class="step-body">
+          <h3>选中 Player 对象 → 左侧“行为” → 添加行为</h3>
+          <p>搜索 <strong>Platformer character</strong>（平台角色 / 平台跳跃角色），添加。它自带方向键移动和跳跃，不需要你写移动事件。</p>
+          <p>先填一组能用的起始值（不同版本的中文标签可能略有差异，认英文即可）：</p>
+          <div class="table-wrap mt-8">
+            <table class="compact">
+              <thead><tr><th>参数</th><th>起始值</th><th>作用</th></tr></thead>
+              <tbody>
+                <tr><td>Max speed / 最大速度</td><td>250</td><td>跑多快</td></tr>
+                <tr><td>Acceleration / 加速度</td><td>1500</td><td>起步多快</td></tr>
+                <tr><td>Deceleration / 减速度</td><td>1800</td><td>松手后停得多快</td></tr>
+                <tr><td>Jump speed / 跳跃速度</td><td>700</td><td>起跳瞬间的向上速度</td></tr>
+                <tr><td>Gravity / 重力</td><td>1500</td><td>下落加速</td></tr>
+                <tr><td>Max. falling speed / 最大下落速度</td><td>1000</td><td>防止越掉越快</td></tr>
+                <tr><td>Default controls / 默认控制</td><td>开启</td><td>方向键 + 空格/Shift</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="small muted mt-8 mb-0">这组值只是起点。第 11 步会讲怎么根据手感微调。不要一次改五个参数，一次只改一个。</p>
+        </div>
+      </div>
+
+      <div class="subhead">第 4 步：做地面和平台</div>
+      <div class="step">
+        <div class="step-body">
+          <h3>新建 Sprite 对象 <code>Ground</code>，加 Platform 行为</h3>
+          <p>对象面板 → 添加对象 → Sprite → 命名 <code>Ground</code> → 添加 <code>ground.png</code>。然后选中 Ground 对象，左侧“行为” → 添加行为 → 搜索 <strong>Platform</strong>（平台），添加，类型保持默认的 <strong>Platform</strong>。</p>
+          <p>把 Ground 拖进场景，在左侧属性里设：<strong>X = 0，Y = 656，宽 = 1280，高 = 64</strong>。这样它正好铺在 720 高的画面底部。</p>
+          <p>再复制几个平台实例，做成阶梯：</p>
+          <ul class="list-tight">
+            <li>平台 A：X = 320，Y = 520，宽 = 240，高 = 32</li>
+            <li>平台 B：X = 640，Y = 400，宽 = 240，高 = 32</li>
+            <li>平台 C：X = 960，Y = 520，宽 = 220，高 = 32</li>
+          </ul>
+          <p class="small muted mb-0">垂直间距约 120–136 px，按上面的跳跃参数是够得着的。水平缺口不要超过 180 px，否则新手容易摔。</p>
+        </div>
+      </div>
+
+      <div class="subhead">第 5 步：让相机跟着玩家</div>
+      <div class="step">
+        <div class="step-body">
+          <h3>切到“场景（事件）”标签，新建一个空事件</h3>
+          <p>路径：<span class="path"><b>场景（事件）</b> → <b>添加事件</b> → <b>添加动作</b> → 搜索 <b>camera</b> → <b>将相机居中到对象 / Center the camera on an object</b> → 选 <code>Player</code></span>。</p>
+          <p>这个事件没有条件，所以每帧都会执行，相机就会一直跟着玩家。动作里的图层保持基础层（Base layer）即可。</p>
+          <p class="small muted mb-0">如果关卡只有一屏宽，相机看不出效果。把地面拉宽到 2400、把平台往右再摆几组，就能看到滚动。你也可以先用“将相机居中到对象并限制范围”，把边界限制在关卡内，避免看到画面外的空白。</p>
+        </div>
+      </div>
+
+      <div class="subhead">第 6 步：金币、碰撞、加分</div>
+      <div class="step">
+        <div class="step-body">
+          <h3>新建 <code>Coin</code> 对象，摆 3 个实例</h3>
+          <p>对象面板 → 添加对象 → Sprite → 命名 <code>Coin</code> → 添加 <code>coin.png</code>。把它拖到三个平台上方，各放一个。位置不用精确，能跳到就行。</p>
+          <p>在加事件之前，先在左侧面板展开 <strong>“场景变量”</strong>，点 <strong>+</strong> 新建一个数字变量 <code>Score</code>，初始值 0（也可以右键场景 → 场景属性 → 编辑场景变量）。然后新建事件：</p>
+          <div class="event-card">
+            <div class="event-head"><b>Event</b><span>金币被吃到</span></div>
+            <div class="event-cols">
+              <div class="event-col">
+                <h4>Conditions / 条件</h4>
+                <div class="event-line"><i>C1</i><span><b>Player</b> 与 <b>Coin</b> 碰撞（Collision）</span></div>
+              </div>
+              <div class="event-col">
+                <h4>Actions / 动作</h4>
+                <div class="event-line act"><i>A1</i><span><b>Coin</b>：删除对象（Delete）</span></div>
+                <div class="event-line act"><i>A2</i><span>更改场景变量 <b>Score</b>：+1</span></div>
+                <div class="event-line act"><i>A3</i><span><b>ScoreText</b>：把文本设为 <code>"金币 " + Score</code></span></div>
+                <div class="event-line act"><i>A4</i><span>播放声音 <b>coin.wav</b>（可稍后加）</span></div>
+              </div>
+            </div>
+          </div>
+          <p><strong>为什么删除的是“碰到的那一枚”，不是全部？</strong>因为碰撞条件会把 <code>Coin</code> 的候选实例缩小到“和 Player 接触的那一个”。后面的 Delete 只作用于被选中的实例。这就是 GDevelop 的“对象挑选（object picking）”。第 06 节会详细讲。</p>
+          <p class="small muted mb-0">如果 <code>ScoreText</code> 还没建好，A3 可以先跳过，第 7 步建好后回来补。金币没消失的话，先检查 Delete 动作的目标是不是 <code>Coin</code>，以及碰撞条件是不是真的加了两个对象。</p>
+        </div>
+      </div>
+
+      <div class="subhead">第 7 步：做分数 UI，并放到 UI 图层</div>
+      <div class="step">
+        <div class="step-body">
+          <h3>新建 Text 对象 <code>ScoreText</code></h3>
+          <p>对象面板 → 添加对象 → <strong>Text</strong>（文本）→ 命名 <code>ScoreText</code> → 内容写 <code>金币 0</code>。字号 32，颜色选一个在背景上看得清的（深色或白色加描边都行）。把它放在画面左上角，比如 X = 24，Y = 20。</p>
+          <p>打开图层面板（工具栏里的图层按钮），新建一个图层叫 <code>UI</code>。选中 ScoreText 实例，在左侧属性里把它的 <strong>Layer</strong> 改成 <code>UI</code>。</p>
+          <p>这样相机跟随只作用于基础层，分数不会跟着世界滚动。背景层也可以这样单独做，但第一个游戏先不用。</p>
+          <p class="small muted mb-0">如果分数文字跟着场景跑出了画面，八成是它还在基础层。</p>
+        </div>
+      </div>
+
+      <div class="subhead">第 8 步：掉下去就重开</div>
+      <div class="step">
+        <div class="step-body">
+          <h3>新建事件：Player 的 Y 大于 760 → 切换场景到 Level1</h3>
+          <p>条件：<span class="path"><b>Player</b> → <b>位置</b> → <b>Y 位置</b> → <b>&gt;</b> → <b>760</b></span>。动作：<span class="path"><b>场景</b> → <b>更改场景</b> → <b>Level1</b></span>。</p>
+          <p>Y 轴向下增加，所以“掉出画面”是 Y 变大，不是变小。760 是画面高度 720 再加一点余量；角色高 48，等它完全掉下去再重开，视觉上更自然。</p>
+          <p class="small muted mb-0">重开会重置场景变量 Score 和所有金币，所以是“干净的一局”。如果你想让分数跨重开保留，把 Score 改成全局变量（第 08 节）。</p>
+        </div>
+      </div>
+
+      <div class="subhead">第 9 步：终点旗与胜利场景</div>
+      <div class="step">
+        <div class="step-body">
+          <h3>新建 <code>Flag</code> 对象，放到关卡右侧</h3>
+          <p>用 <code>flag.png</code> 建 Sprite，命名 <code>Flag</code>，放在最后一个平台附近。它不需要 Platform 行为，只是一个碰得到的终点。</p>
+          <p>新建事件：条件 <strong>Player 与 Flag 碰撞</strong>；动作 <strong>更改场景 → Win</strong>。</p>
+          <p>然后创建 <code>Win</code> 场景：项目管理器 → Scenes → 添加场景；放一个 Text 对象，写“你做到了！”，再写一行小字“按 R 再玩一次”。在 Win 场景的事件里加：按键 <kbd>R</kbd> → 更改场景 → Level1。</p>
+          <p class="small muted mb-0">场景切换会重置场景变量；如果胜利页想显示最终分数，用全局变量 Score，或在切换前把分数写进 Storage。</p>
+        </div>
+      </div>
+
+      <div class="subhead">第 10 步：加音效（可选，但很提气）</div>
+      <div class="step">
+        <div class="step-body">
+          <h3>在金币事件里加“播放声音”</h3>
+          <p>在 A4 动作里选择“播放声音 / Play a sound”，文件槽里导入一个短的 <code>coin.wav</code>。没有音效就去 <a href="https://freesound.org/" target="_blank" rel="noopener" class="ext">Freesound</a> 找 CC0 的短音效，或从免费素材包拿一个。</p>
+          <p><strong>浏览器限制：</strong>网页游戏必须等你先点一下页面/按一次键，才允许播放声音。这是浏览器的自动播放策略，不是 GDevelop 的 bug。正式发布时，最好在第一个场景放一句“点击开始”。</p>
+          <p class="small muted mb-0">短音效用 WAV；背景音乐用 AAC/M4A，别拿几分钟的 WAV 当 BGM，文件会很大。</p>
+        </div>
+      </div>
+
+      <div class="subhead">第 11 步：预览、试玩、调手感</div>
+      <div class="step">
+        <div class="step-body">
+          <h3>点“预览”，用方向键和空格试玩</h3>
+          <p>预览会打开一个新窗口。默认从你当前编辑的场景开始。试这几件事：能不能跑、能不能跳、金币是不是只消失一个、分数有没有变、掉下去是不是重开、碰旗子是不是进 Win。</p>
+          <p>改完参数后，不要关预览——点顶部的“更新 / Update”，它会把改动热更新到正在运行的预览里。这就是“Live Preview”，调手感非常快。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="subhead">手感调参：一次只改一个</div>
+    <div class="table-wrap">
+      <table class="compact">
+        <thead><tr><th>症状</th><th>先调什么</th><th>方向</th></tr></thead>
+        <tbody>
+          <tr><td>跳得太低，上不去平台</td><td>Jump speed</td><td>每次 +50，直到够得着；或把平台降低</td></tr>
+          <tr><td>跳得太飘，像在月球</td><td>Gravity</td><td>每次 +150，落地更干脆</td></tr>
+          <tr><td>跑起来像滑冰</td><td>Acceleration / Deceleration</td><td>都调高；松手更快停</td></tr>
+          <tr><td>角色穿进地面</td><td>Platform 行为 / 速度</td><td>确认地面有 Platform；最大速度别突然调得离谱</td></tr>
+          <tr><td>站不稳、边缘抖动</td><td>碰撞掩码</td><td>把掩码裁到身体/脚底，别把透明边也算进去</td></tr>
+          <tr><td>相机抖</td><td>相机动作</td><td>改用“限制范围”或 Smooth Camera 扩展</td></tr>
+        </tbody>
+      </table>
+      <p class="table-note">调参没有标准答案。目标不是“物理真实”，而是“你自己玩起来舒服”。每次只改一个值，改完立刻预览，才能知道是哪个值起了作用。</p>
+    </div>
+
+    <div class="subhead">第 12 步：发布到 gd.games</div>
+    <div class="step step-static">
+      <div class="step-body">
+        <h3>点“分享” → gd.games → 发布游戏</h3>
+        <p>确认已登录。顶部“分享”会打开导出面板：<strong>gd.games</strong>、浏览器、桌面、安卓、iOS、查看所有导出。选 gd.games，点“发布游戏 / Publish game”。</p>
+        <p>构建完成后会显示一个链接和二维码。复制链接，用手机扫二维码试玩。第一次发布后，再发布时可以关掉“Update game page”，得到一个不替换公开页面的测试链接，适合发给朋友挑 bug。</p>
+        <p>在游戏 dashboard 里可以改 16:9 缩略图、名称、描述、可见性，也可以下架游戏。缩略图很重要，别用默认灰图。</p>
+      </div>
+    </div>
+
+    <div class="callout warn">
+      <strong>发布前最后检查：</strong>游戏名不是“未命名”；缩略图不是默认图；手机上能看清文字；知道怎么操作；没有测试用的脏话/个人信息；素材授权允许你发布。免费档导出可能带 GDevelop 启动画面/标识，正式发布前在导出界面确认。
+    </div>
+
+    <div class="subhead">如果你不想从零搭：模板路线</div>
+    <div class="split">
+      <div class="card">
+        <h3>用官方模板起步</h3>
+        <p>路径：<span class="path"><b>创建</b> → <b>从一个模板开始</b> → 选 <b>Platformer</b> 或 <b>Top-down</b></span>。模板里已经有角色、平台、相机和事件，你可以直接改。</p>
+        <p class="small mb-0">注意：模板有免费也有付费，卡片上会标价格；先选免费的。</p>
+      </div>
+      <div class="card">
+        <h3>怎么“读”模板，而不是被吓到</h3>
+        <ol class="list-tight">
+          <li>先玩一遍，知道它有哪些机制。</li>
+          <li>打开事件表，只找“玩家移动/跳跃”那几条。</li>
+          <li>改一个数字，看游戏变化。</li>
+          <li>再找“碰撞/加分/切场景”，一次只读一类。</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="subhead">本关验收清单</div>
+    <div class="grid-2">
+      <div class="checklist-box">
+        <h4>功能</h4>
+        <ul class="list-tight mb-0">
+          <li>方向键能左右移动，空格/Shift 能跳</li>
+          <li>三个平台都跳得上去</li>
+          <li>吃到金币：金币消失、分数 +1、有声音</li>
+          <li>掉下去：回到起点，分数归零</li>
+          <li>碰到旗子：进入 Win 场景</li>
+          <li>按 R 能从 Win 回到 Level1</li>
+        </ul>
+      </div>
+      <div class="checklist-box">
+        <h4>发布</h4>
+        <ul class="list-tight mb-0">
+          <li>gd.games 链接能在手机上打开</li>
+          <li>手机横屏时 UI 没有被裁掉</li>
+          <li>第一次点击后声音正常</li>
+          <li>缩略图、标题、描述都填了</li>
+          <li>把链接发给一个朋友，能独立玩懂</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section" id="s06">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">06 / EVENTS</div>
+      <div>
+        <h2>事件系统：GDevelop 的“因果表”</h2>
+        <p class="lede">事件表看起来像一张表格，实际上是一条条规则：<strong>当这些条件成立，就执行这些动作</strong>。理解“每帧执行、从上到下、对象挑选”这三件事，你就跨过了新手最大的坎。</p>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card card-accent">
+        <h3>条件（Conditions）</h3>
+        <p>“什么时候做”“对谁做”。例如：玩家碰到金币、分数大于 3、按下了空格、场景刚开始。</p>
+        <p class="small mb-0">条件还负责<strong>挑选对象</strong>：只有满足条件的实例，才会被后面的动作影响。</p>
+      </div>
+      <div class="card card-accent">
+        <h3>动作（Actions）</h3>
+        <p>“做什么”。例如：删除金币、分数 +1、切换场景、播放声音、改变文字。</p>
+        <p class="small mb-0">一个事件可以没有条件（每帧都执行），但不能没有动作（否则什么也不会发生）。</p>
+      </div>
+    </div>
+
+    <div class="subhead">一张事件表长什么样</div>
+    <div class="event-card">
+      <div class="event-head"><b>Event 1</b><span>金币被吃到</span></div>
+      <div class="event-cols">
+        <div class="event-col">
+          <h4>Conditions</h4>
+          <div class="event-line"><i>C1</i><span><b>Player</b> 与 <b>Coin</b> 碰撞</span></div>
+        </div>
+        <div class="event-col">
+          <h4>Actions</h4>
+          <div class="event-line act"><i>A1</i><span><b>Coin</b>：删除</span></div>
+          <div class="event-line act"><i>A2</i><span><b>Score</b>：+1</span></div>
+          <div class="event-line act"><i>A3</i><span><b>ScoreText</b>：设为 <code>"金币 " + Score</code></span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subhead">规则一：没有条件的事件，每帧都会执行</div>
+    <p>游戏通常以每秒 60 帧运行。一个没有条件的事件，动作会被执行约 60 次/秒。这既可以是好事（相机每帧跟随），也可以是灾难（每帧给分数 +1，一秒加 60 分）。</p>
+    <div class="callout warn">
+      <strong>最常见的 bug：</strong>“碰到金币加分”忘了删除金币，也没加“仅触发一次”。只要玩家还压在金币上，分数就会每帧上涨。解决办法不是加 <code>TimeDelta()</code>，而是让这件事<strong>只发生一次</strong>：删掉金币，或加“Trigger once while true / 仅触发一次”。
+    </div>
+
+    <div class="subhead">规则二：从上到下执行，顺序会影响结果</div>
+    <p>事件按列表顺序执行。上面的事件先改变量、先删对象，下面的事件看到的就是改过之后的状态。如果你发现“明明写了却没生效”，先看它上面是不是有事件已经把对象删了、把场景切了、把变量改了。</p>
+    <div class="callout info">
+      <strong>子事件：</strong>子事件只有在父事件的条件成立、并且父事件的动作执行完之后才会运行。适合表达“在……的基础上，再……”。例如父事件“分数 ≥ 3”，子事件“显示胜利文字”。
+    </div>
+
+    <div class="subhead">规则三：对象挑选（Object Picking）</div>
+    <p>这是 GDevelop 最容易被误会、也最值得花十分钟搞懂的机制。事件里写 <code>Coin</code>，到底是指“所有金币”，还是“某一个金币”？答案是：<strong>看它前面被什么条件挑选过</strong>。</p>
+    <div class="table-wrap">
+      <table class="compact">
+        <thead><tr><th>规则</th><th>含义</th><th>例子</th></tr></thead>
+        <tbody>
+          <tr><td><strong>第一次使用</strong></td><td>默认选中场景里该对象的全部实例</td><td>事件第一行写 <code>Delete Coin</code>，会删掉所有金币</td></tr>
+          <tr><td><strong>条件会过滤</strong></td><td>条件只保留满足它的实例，后面的动作只影响这些实例</td><td><code>Player</code> 与 <code>Coin</code> 碰撞 → 只选中碰到的那一枚</td></tr>
+          <tr><td><strong>作用域有限</strong></td><td>挑选结果只影响当前事件及其子事件；事件结束后恢复</td><td>这个事件删了一枚金币，不会影响下一个事件里的“所有金币”</td></tr>
+          <tr><td><strong>特殊动作</strong></td><td>“Pick all instances”会恢复全部；“Pick a random instance”会随机选一个</td><td>想做“随机掉落”，先用它选一个</td></tr>
+        </tbody>
+      </table>
+      <p class="table-note">官方文档专门有一页讲 object picking；如果你只记住一句话：<strong>条件不只是判断，它还在选对象。</strong></p>
+    </div>
+    <div class="callout tip">
+      <strong>自检方法：</strong>在动作的目标对象上问自己——“这个 <code>Coin</code> 是被哪个条件选中的？”如果前面没有任何条件提到 Coin，那它默认就是全部。想只影响一个，就先写碰撞/距离/被点击等条件。
+    </div>
+
+    <div class="subhead">TimeDelta()：让速度不随帧率变化</div>
+    <p>有些操作是“持续”的：旋转、移动、冷却、逐渐加速。这类操作要用 <code>TimeDelta()</code> 乘一下。它返回上一帧到这一帧经过的秒数。这样在 30 帧和 60 帧的电脑上，速度看起来一致。</p>
+    <div class="mono-block"><span class="c">// 让物体每秒旋转 90 度，而不是每帧旋转 90 度</span>
+每帧：<span class="k">Rotate</span> 对象 → 角度增加 <span class="s">90 * TimeDelta()</span>
+
+<span class="c">// 让变量按“每秒 100”的速度增长，而不是“每帧 100”</span>
+每帧：<span class="k">Change variable</span> Score → + <span class="s">100 * TimeDelta()</span></div>
+    <p class="small muted">计分、一次性开关、碰撞删除这类“瞬间发生”的动作，不需要乘 TimeDelta。只有“持续一段时间”的变化才需要。</p>
+
+    <div class="subhead">Trigger once：只想让它发生一次</div>
+    <p>条件面板里搜 <strong>Trigger once while true</strong>（仅触发一次）。它适合“分数达到 3 时显示提示”“玩家第一次进入区域时弹对话”这类只需要触发一次的规则。它不适合“碰到金币就删除”——那种情况直接删金币更自然。</p>
+
+    <div class="subhead">事件类型：先会用标准事件就够了</div>
+    <div class="table-wrap">
+      <table class="compact">
+        <thead><tr><th>类型</th><th>用途</th><th>新手要不要现在学</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Standard / 标准事件</strong></td><td>最常用的条件 + 动作</td><td>必须会</td></tr>
+          <tr><td><strong>Else / 否则</strong></td><td>条件不成立时执行另一组动作</td><td>可以稍后</td></tr>
+          <tr><td><strong>For each object / 遍历对象</strong></td><td>对每个实例分别做一件事</td><td>做敌人/背包时再学</td></tr>
+          <tr><td><strong>Repeat / 重复</strong></td><td>重复执行固定次数</td><td>生成一排金币时有用</td></tr>
+          <tr><td><strong>While / 当……时</strong></td><td>条件成立期间反复执行</td><td>容易写出死循环，先别碰</td></tr>
+          <tr><td><strong>Group / 组</strong></td><td>把多个事件折叠管理</td><td>事件多了再整理</td></tr>
+          <tr><td><strong>JavaScript / 脚本</strong></td><td>写代码做高级逻辑</td><td>完全可选</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="subhead">新手最常见的 9 个事件错误</div>
+    <div class="table-wrap">
+      <table class="compact">
+        <thead><tr><th>症状</th><th>真正的原因</th><th>怎么修</th></tr></thead>
+        <tbody>
+          <tr><td>分数疯涨</td><td>事件每帧执行，金币没删</td><td>删除金币，或加“仅触发一次”</td></tr>
+          <tr><td>一碰金币全消失</td><td>Delete 动作前面没有条件挑选 Coin</td><td>把碰撞条件放在删除动作所在事件里</td></tr>
+          <tr><td>文字不变</td><td>改的是对象默认文本，不是场景里的实例；或变量作用域错</td><td>动作目标选场景里的 ScoreText；检查 Score 是场景还是全局</td></tr>
+          <tr><td>切场景后分数归零</td><td>用的是场景变量</td><td>跨场景要保留就改用全局变量或 Storage</td></tr>
+          <tr><td>掉下去不重开</td><td>Y 轴方向搞反，或条件对象选错</td><td>Y 向下增大；条件选 Player 的 Y 位置</td></tr>
+          <tr><td>跳不起来</td><td>没加行为、默认控制关了、预览窗口没聚焦</td><td>检查 Platformer character；点一下预览窗口再按键</td></tr>
+          <tr><td>角色穿地</td><td>地面没有 Platform 行为，或碰撞掩码太小/太大</td><td>给地面加 Platform；调整掩码</td></tr>
+          <tr><td>UI 跟着世界跑</td><td>UI 和游戏对象在同一图层</td><td>新建 UI 图层，把 UI 实例放上去</td></tr>
+          <tr><td>“明明改了却没变化”</td><td>改的是对象，不是实例；或改完没点应用/没更新预览</td><td>确认选中的是实例；点“更新”热重载</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="quote">事件表不是“代码的简化版”，它本身就是一套完整的逻辑语言。你写下的每一行，都在决定玩家下一秒看到什么。<small>—— 先把因果写对，再追求效果</small></div>
+  </div>
+</section>
+
+<section class="section" id="s07">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">07 / OBJECTS &amp; ASSETS</div>
+      <div>
+        <h2>对象、图层与素材：画面是怎么被组织起来的</h2>
+        <p class="lede">GDevelop 里“看到的东西”几乎都是对象。对象负责长相和能力，实例负责摆在哪里，图层负责前后关系和相机，素材负责长相的来源。把这三层分开想，画面就不会乱。</p>
+      </div>
+    </div>
+
+    <div class="subhead">常用对象类型</div>
+    <div class="table-wrap">
+      <table class="compact">
+        <thead><tr><th>类型</th><th>用途</th><th>新手提示</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Sprite</strong></td><td>带一张或多张动画帧的图片：角色、敌人、金币、平台、按钮</td><td>最常用；先会用这个就够做第一个游戏</td></tr>
+          <tr><td><strong>Tiled Sprite</strong></td><td>把一张小图平铺成一大片：地面、墙面、背景</td><td>比拉伸一张大图更省资源、更清晰</td></tr>
+          <tr><td><strong>Panel Sprite（9-patch）</strong></td><td>九宫格拉伸：对话框、按钮、边框</td><td>做 UI 时很好用，边角不会变形</td></tr>
+          <tr><td><strong>Text / BBText</strong></td><td>分数、对话、按钮文字；BBText 支持富文本标记</td><td>UI 文字放独立图层</td></tr>
+          <tr><td><strong>Tilemap</strong></td><td>用瓦片地图拼关卡，可带碰撞</td><td>关卡变大后再学，第一个游戏用 Sprite 平台即可</td></tr>
+          <tr><td><strong>Particle Emitter</strong></td><td>火焰、烟雾、爆炸、星光</td><td>很吃性能，少量使用</td></tr>
+          <tr><td><strong>Shape Painter</strong></td><td>用事件画线、矩形、圆</td><td>做debug可视化、简单特效</td></tr>
+          <tr><td><strong>3D Box / 3D Model</strong></td><td>3D 物体与模型</td><td>GDevelop 能做 3D，但这不是它的主战场</td></tr>
+          <tr><td><strong>Video</strong></td><td>播放视频文件</td><td>注意格式、体积和自动播放限制</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="subhead">Sprite 的五个关键设置</div>
+    <div class="grid-2">
+      <div class="card">
+        <h3>动画（Animation）</h3>
+        <p>一个 Sprite 可以有多组动画：Idle、Run、Jump、Hurt。每组可以有多帧，设置每帧间隔（默认 0.08 秒）和是否循环。</p>
+        <p class="small mb-0">给动画起名字（Idle/Run），事件里用名字切换，比记编号可靠。</p>
+      </div>
+      <div class="card">
+        <h3>碰撞掩码（Collision Mask）</h3>
+        <p>决定“哪里算碰到”。默认可能是整张图（包括透明边），会让角色看起来悬空或卡住。用“编辑碰撞掩码”裁到身体/脚底。</p>
+        <p class="small mb-0">平台角色使用自定义掩码时，实际只用掩码外围的矩形做平台碰撞；别把掩码画得太碎。</p>
+      </div>
+      <div class="card">
+        <h3>原点与点（Origin / Points）</h3>
+        <p>原点决定对象位置对应图片的哪个位置；点可以标记枪口、脚底、头顶，用于生成子弹或对齐。</p>
+        <p class="small mb-0">第一个游戏保持默认即可，遇到“角色位置怪怪的”再检查。</p>
+      </div>
+      <div class="card">
+        <h3>图层与 Z 顺序</h3>
+        <p>图层决定大块的前后关系（背景/游戏/UI）；同一图层内用 Z-order 决定谁盖住谁。</p>
+        <p class="small mb-0">UI 永远单独一层；背景可以单独一层并降低视差速度。</p>
+      </div>
+      <div class="card">
+        <h3>翻转、染色、混合模式</h3>
+        <p>Flip 可以左右翻转角色，省一套图；Change color 可以受伤闪红；混合模式可以做发光/阴影。</p>
+        <p class="small mb-0">这些都是事件动作，不用改原图。</p>
+      </div>
+      <div class="card">
+        <h3>可见性</h3>
+        <p>实例可以在属性里设为“开始时隐藏”，之后用事件显示。适合胜利文字、对话、还没解锁的按钮。</p>
+        <p class="small mb-0">隐藏不等于删除：它仍然存在，仍然参与碰撞和事件。</p>
+      </div>
+    </div>
+
+    <div class="subhead">图层与相机：为什么 UI 会跟着跑</div>
+    <p>每个图层都有自己的相机。默认所有对象在 <strong>Base layer</strong>，相机跟随玩家时，整层一起动。把分数放到新建的 <code>UI</code> 层，UI 层的相机不动，文字就固定在屏幕上。</p>
+    <div class="table-wrap">
+      <table class="compact">
+        <thead><tr><th>图层</th><th>放什么</th><th>相机</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Background</strong></td><td>天空、远山、背景装饰</td><td>可以比游戏层移动得慢，做视差</td></tr>
+          <tr><td><strong>Base layer</strong></td><td>玩家、平台、金币、敌人</td><td>跟随玩家 / 限制在关卡边界内</td></tr>
+          <tr><td><strong>UI</strong></td><td>分数、血量、按钮、对话</td><td>固定不动</td></tr>
+        </tbody>
+      </table>
+      <p class="table-note">图层还可以整体隐藏、改时间缩放、加视觉效果。效果很酷但吃性能，先别给每一层都加。</p>
+    </div>
+
+    <div class="subhead">素材从哪来：免费不等于随便用</div>
+    <div class="grid-3">
+      <div class="card card-lime">
+        <h4>GDevelop 素材商店</h4>
+        <p class="small mb-0">编辑器内直接浏览，免费包和付费包都有。每个包会写授权；下载前看清楚能不能商用、要不要署名。</p>
+      </div>
+      <div class="card">
+        <h4>Kenney</h4>
+        <p class="small mb-0">大量 CC0 游戏素材，适合原型。仍然建议保留来源记录，别把“免费”当成“无主”。</p>
+      </div>
+      <div class="card">
+        <h4>OpenGameArt / itch.io</h4>
+        <p class="small mb-0">质量参差，授权混杂。每个包单独看 License：CC0、CC-BY、CC-BY-SA 的义务不同。</p>
+      </div>
+    </div>
+    <div class="callout warn">
+      <strong>不要直接从 Google 图片、Pinterest、动漫截图里抠图。</strong>“我没收钱”不是授权。商用、公开发布、甚至放到 gd.games 都可能涉及版权。用 CC0/CC-BY 素材，或自己画/买授权，并保留 license 文本。
+    </div>
+    <div class="table-wrap mt-16">
+      <table class="compact">
+        <thead><tr><th>素材类型</th><th>推荐格式</th><th>注意</th></tr></thead>
+        <tbody>
+          <tr><td>角色/道具/平台</td><td>PNG（透明背景）</td><td>像素风关闭平滑/用最近邻；别用超大图再缩小</td></tr>
+          <tr><td>背景</td><td>PNG / JPG</td><td>控制尺寸；4K 背景会拖慢加载</td></tr>
+          <tr><td>短音效</td><td>WAV</td><td>短、干净；别拿长 WAV 当 BGM</td></tr>
+          <tr><td>背景音乐</td><td>AAC / M4A</td><td>文件更小；注意循环点和音量</td></tr>
+          <tr><td>字体</td><td>TTF / OTF</td><td>确认字体授权允许嵌入/商用</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="subhead">整理项目的三个小习惯</div>
+    <ul class="list-tight">
+      <li><strong>命名统一：</strong><code>Player</code>、<code>Coin</code>、<code>ScoreText</code>，不要用“新建对象1”“精灵2”。事件里全是一堆“新建对象”，你会疯。</li>
+      <li><strong>一个场景一件事：</strong>Level1、Level2、Win、Menu 分开；不要把所有关卡塞进一个场景。</li>
+      <li><strong>对象组：</strong>把 Coin、Gem、Heart 放进 <code>Collectibles</code> 组，事件里可以对组统一处理。等对象多了再学，不要一开始就过度设计。</li>
+    </ul>
+
+    <div class="callout info">
+      <strong>关于 3D：</strong>GDevelop 支持 3D 对象、3D 相机和一些 3D 逻辑，但它的强项仍是 2D。第三方评测普遍认为 3D 功能在成熟中；如果你是第一次做游戏，先用 2D 把“完成一个游戏”的流程走通。
+    </div>
+  </div>
+</section>
+
+<section class="section" id="s08">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">08 / VARIABLES &amp; SAVE</div>
+      <div>
+        <h2>变量与存档：让游戏记住“刚刚发生了什么”</h2>
+        <p class="lede">分数、血量、是否拿到钥匙、最高纪录——这些都是变量。变量只在游戏运行期间存在；想让玩家关掉游戏后还记得，就要用 Storage 写进本地存储。</p>
+      </div>
+    </div>
+
+    <div class="subhead">四个作用域，先分清“活多久”</div>
+    <div class="table-wrap">
+      <table class="compact">
+        <thead><tr><th>作用域</th><th>在哪建</th><th>活多久</th><th>典型用途</th></tr></thead>
+        <tbody>
+          <tr><td><strong>全局变量 Global</strong></td><td>项目/游戏设置里的全局变量</td><td>整个游戏运行期间；切场景不丢；关游戏就丢</td><td>总分、已解锁关卡、玩家名字</td></tr>
+          <tr><td><strong>场景变量 Scene</strong></td><td>左侧面板 → 场景变量（或场景右键 → 场景属性）</td><td>只在当前场景；切场景/重开就重置</td><td>本关金币数、本关计时</td></tr>
+          <tr><td><strong>对象变量 Object</strong></td><td>对象编辑器里的变量</td><td>跟着对象走；事件里用 <code>对象名.变量名</code></td><td>敌人的血量、NPC 的状态</td></tr>
+          <tr><td><strong>事件局部 Local</strong></td><td>事件里的局部变量</td><td>只在这个事件/子事件内</td><td>临时计算、循环计数</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="subhead">数据类型与写法</div>
+    <div class="grid-2">
+      <div class="card">
+        <h3>五种类型</h3>
+        <ul class="list-tight mb-0">
+          <li><strong>Number：</strong>0、100、-10、3.5</li>
+          <li><strong>Text：</strong>"你好"、玩家名</li>
+          <li><strong>Boolean：</strong>真/假</li>
+          <li><strong>Structure：</strong>带字段的集合，如 <code>player.name</code></li>
+          <li><strong>Array：</strong>列表，如背包物品</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>表达式里怎么用</h3>
+        <div class="mono-block" style="margin:6px 0"><span class="c">// 场景/全局变量</span>
+Score
+<span class="c">// 对象变量</span>
+Player.Health
+<span class="c">// 拼文字</span>
+<span class="s">"金币 " + Score</span></div>
+        <p class="small muted mb-0">变量名不要含空格、点、逗号；用 <code>camelCase</code> 或下划线。</p>
+      </div>
+    </div>
+
+    <div class="callout tip">
+      <strong>场景变量还是全局变量？</strong>问自己：“切到下一关，这个值还要不要？”要，就用全局；不要，就用场景。第一个游戏的金币分数用场景变量最简单，掉下去重开就归零，符合“干净的一局”。
+    </div>
+
+    <div class="subhead">Storage：真正把进度写下来</div>
+    <p>GDevelop 的 Storage 动作会把数据写进运行环境的内部存储：网页游戏用浏览器的 <strong>LocalStorage</strong>，桌面游戏用应用自己的本地存储。它适合存最高分、已解锁关卡、设置项。</p>
+    <div class="table-wrap">
+      <table class="compact">
+        <thead><tr><th>概念</th><th>怎么理解</th><th>例子</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Storage</strong></td><td>像“文件名”，一个存储空间</td><td><code>save</code>、<code>settings</code></td></tr>
+          <tr><td><strong>Group</strong></td><td>像“文件夹/分区”，可用斜杠分层</td><td><code>progress/bestScore</code>、<code>progress/level</code></td></tr>
+          <tr><td><strong>Value</strong></td><td>实际存的值，只支持数字和字符串</td><td><code>1200</code>、<code>"Level2"</code></td></tr>
+        </tbody>
+      </table>
+      <p class="table-note">布尔值不是原生存储类型：存成 1/0 或 "true"/"false"。Storage 不跟着账号走，换设备/换浏览器不会自动同步。</p>
+    </div>
+
+    <div class="subhead">一个最小存档流程</div>
+    <div class="event-card">
+      <div class="event-head"><b>Level1 结束时</b><span>写入最高分与进度</span></div>
+      <div class="event-cols">
+        <div class="event-col">
+          <h4>Conditions</h4>
+          <div class="event-line"><i>C1</i><span><b>Player</b> 与 <b>Flag</b> 碰撞</span></div>
+        </div>
+        <div class="event-col">
+          <h4>Actions</h4>
+          <div class="event-line act"><i>A1</i><span>Storage <code>save</code> / group <code>progress</code> / key <code>bestScore</code> ← <code>Score</code></span></div>
+          <div class="event-line act"><i>A2</i><span>Storage <code>save</code> / group <code>progress</code> / key <code>level</code> ← <code>2</code></span></div>
+          <div class="event-line act"><i>A3</i><span>更改场景 → Win</span></div>
+        </div>
+      </div>
+    </div>
+    <p>下次启动时，在菜单/第一场景读取 <code>save</code> 的 <code>progress/bestScore</code>，写进一个全局变量，再显示“最高分”。如果读不到（第一次玩），就保持默认 0。</p>
+
+    <div class="grid-2 mt-16">
+      <div class="card card-warn">
+        <h3>Storage 不是“云存档”</h3>
+        <p>它存在玩家自己的浏览器/设备里。清浏览器数据、换浏览器、换电脑、无痕模式，都可能让存档消失。云项目保存的是“你的项目”，不是“玩家的进度”。</p>
+      </div>
+      <div class="card">
+        <h3>测试时怎么清存档</h3>
+        <p>预览窗口里打开开发者工具（View → Toggle developer tools），到 Application → Local Storage，找到对应条目清除。官方文档也给了这个流程。</p>
+        <p class="small muted mb-0">清完重开预览，就是“第一次玩”的状态。</p>
+      </div>
+    </div>
+
+    <div class="subhead">存档的安全边界</div>
+    <ul class="list-tight">
+      <li>LocalStorage 可以被玩家手动修改，<strong>不要</strong>把“付费解锁”“排行榜分数”只信本地值。</li>
+      <li>不要把密码、身份证、真实地址等敏感信息写进 Storage 或游戏文件。</li>
+      <li>做排行榜/联机时，分数要服务器校验；GDevelop 的在线服务能帮一部分，但不是自动防作弊。</li>
+      <li>发布前测试“第一次玩”和“有存档”两条路径，别只测其中一条。</li>
+    </ul>
+
+    <div class="callout info">
+      <strong>调试变量：</strong>用“预览”下拉菜单里的调试器，可以暂停游戏、查看全局/场景/对象变量的实时值。比在事件里到处加文字打印快得多。第 11 节会讲怎么打开。
+    </div>
+  </div>
+</section>
+
+<section class="section" id="s09">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">09 / BEHAVIORS</div>
+      <div>
+        <h2>行为（Behaviors）：少写事件，先让东西动起来</h2>
+        <p class="lede">行为是别人（官方或社区）写好的“能力包”：平台跳跃、俯视移动、物理、寻路、拖拽。加到对象上，再调几个参数，就能省掉大量事件。新手最容易犯的错，是一次加太多行为，然后不知道谁在改位置。</p>
+      </div>
+    </div>
+
+    <div class="subhead">常用行为速查</div>
+    <div class="table-wrap">
+      <table class="compact">
+        <thead><tr><th>行为</th><th>给它什么对象</th><th>能做什么</th><th>注意</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Platformer character</strong></td><td>玩家、敌人</td><td>左右跑、跳、下跳、爬梯、抓边</td><td>默认方向键 + 空格/Shift；可在参数里关掉默认控制</td></tr>
+          <tr><td><strong>Platform</strong></td><td>地面、平台、墙</td><td>让角色站上去/撞上去</td><td>类型有 Platform、Jumpthru、Ladder；平台和角色都要开抓边才能抓</td></tr>
+          <tr><td><strong>Top-down movement</strong></td><td>俯视角角色</td><td>4/8 方向移动，可调加速度、朝向</td><td>适合 RPG、俯视射击；图片朝向不对就调 Angle offset</td></tr>
+          <tr><td><strong>Physics2</strong></td><td>球、箱子、碎片</td><td>重力、弹力、摩擦、碰撞</td><td>真实但不精确，做平台跳跃会很滑；调参成本高</td></tr>
+          <tr><td><strong>Pathfinding</strong></td><td>敌人、NPC</td><td>绕开障碍走到目标点</td><td>需要障碍物/可行走区域设置；场景大时注意性能</td></tr>
+          <tr><td><strong>Tween</strong></td><td>UI、道具、相机</td><td>在指定时间内平滑改变位置/大小/角度/透明度</td><td>做弹出菜单、飘字、过场很好用</td></tr>
+          <tr><td><strong>Draggable</strong></td><td>拼图块、卡片</td><td>鼠标/触摸拖动</td><td>要处理“放回原位”“吸附”等逻辑</td></tr>
+          <tr><td><strong>Destroy outside screen</strong></td><td>子弹、掉落物</td><td>离开画面自动删除</td><td>防止对象越积越多拖慢游戏</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="subhead">平台角色的参数，到底在调什么</div>
+    <div class="grid-2">
+      <div class="card">
+        <h3>移动手感</h3>
+        <ul class="list-tight mb-0">
+          <li><strong>Max speed：</strong>最高跑速</li>
+          <li><strong>Acceleration：</strong>从静止到最高速有多快</li>
+          <li><strong>Deceleration：</strong>松手后停得多快</li>
+          <li><strong>Slope max angle：</strong>能爬多陡的坡；0 度只能走平地</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>跳跃手感</h3>
+        <ul class="list-tight mb-0">
+          <li><strong>Jump speed：</strong>起跳初速度，决定跳多高</li>
+          <li><strong>Gravity：</strong>下落加速度，决定“飘不飘”</li>
+          <li><strong>Jump sustain time：</strong>按住跳键能维持初速度多久</li>
+          <li><strong>Max falling speed：</strong>最大下落速度，防止越掉越快</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout tip">
+      <strong>先调 Jump speed，再调 Gravity。</strong>跳不上去 → 加 Jump speed；跳得飘 → 加 Gravity。两个一起大改，你会不知道是哪个起了作用。热更新开着，边玩边调。
+    </div>
+
+    <div class="subhead">平台、跳穿平台、梯子</div>
+    <div class="table-wrap">
+      <table class="compact">
+        <thead><tr><th>Platform 类型</th><th>效果</th><th>适合</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Platform</strong></td><td>实心：能站、能撞墙</td><td>地面、墙、实心平台</td></tr>
+          <tr><td><strong>Jumpthru</strong></td><td>从下面能跳穿，从上面能站；按下键可下落</td><td>浮空平台、单向平台</td></tr>
+          <tr><td><strong>Ladder</strong></td><td>可上下爬，不碰撞阻挡</td><td>梯子、藤蔓</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="subhead">俯视移动：RPG 和射击的起点</div>
+    <p>给角色加 <strong>Top-down movement</strong>，可以选择 4 方向或 8 方向，调加速度、减速度、最大速度和转向速度。默认角色角度 0 朝右；如果你的图片朝上，改 <strong>Angle offset</strong>，不然移动时角色会“横着走”。</p>
+
+    <div class="subhead">扩展与自定义行为</div>
+    <p>行为列表里有很多官方扩展，也有社区扩展。官方审核过的扩展更稳；社区扩展可能缺文档、停更或和当前版本不兼容。装之前先看说明、评分和最近更新时间。</p>
+    <ul class="list-tight">
+      <li><strong>先装一个，测试一个。</strong>不要一次装五个，否则出问题不知道是谁。</li>
+      <li><strong>读行为参数。</strong>很多“bug”其实是参数默认值不适合你的游戏。</li>
+      <li><strong>AI 的边界：</strong>GDevelop AI 了解内置功能和官方审核过的扩展；社区扩展它可能不知道，别指望它替你调试。</li>
+      <li><strong>自定义行为：</strong>熟练后可以把重复逻辑封装成行为，给自己或团队复用。</li>
+    </ul>
+
+    <div class="callout warn">
+      <strong>行为冲突：</strong>同一个对象上，Platformer character 和 Physics2 都在改位置，通常不会得到“更真实”的效果，而是互相打架。一个角色只选一套主移动方案。要加“被击退”“弹簧”等效果，用事件临时改变速度，而不是再叠一个物理行为。
+    </div>
+  </div>
+</section>
+
+<section class="section" id="s10">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">10 / AI ASSISTANT</div>
+      <div>
+        <h2>AI 助手：把它当助教，不要当代做</h2>
+        <p class="lede">GDevelop 内置的 Ask AI 不只是聊天机器人：它能读你的对象、行为、变量和事件，也能直接改项目。用得好，它能把“我不知道从哪下手”变成“我知道下一步试什么”；用不好，它会在你的项目里留下一堆你不理解的逻辑。</p>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card card-lime">
+        <h3>它擅长</h3>
+        <ul class="list-tight mb-0">
+          <li>解释某个行为/条件/动作是干什么的</li>
+          <li>按你的描述搭一小段机制（二段跳、追逐敌人、血条）</li>
+          <li>检查你写的事件，指出对象挑选/变量作用域问题</li>
+          <li>把“我想要……”翻译成 GDevelop 的具体步骤</li>
+          <li>给美术/关卡/命名提建议</li>
+        </ul>
+      </div>
+      <div class="card card-warn">
+        <h3>它不擅长</h3>
+        <ul class="list-tight mb-0">
+          <li>一次生成完整、好玩、无 bug 的商业游戏</li>
+          <li>理解你没说清楚的“感觉”和“氛围”</li>
+          <li>保证代码/事件一定正确；它会自信地犯错</li>
+          <li>知道未审核的社区扩展</li>
+          <li>代替你测试、判断“好不好玩”</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="subhead">怎么打开、怎么控制它</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-body">
+          <h3>点右上角“Ask AI”</h3>
+          <p>在编辑器里打开对话面板。它会读取当前项目结构；你描述需求，它决定是回答、解释，还是直接动手改。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-body">
+          <h3>先关掉 Auto edit，把需求聊清楚</h3>
+          <p><strong>Auto edit 开：</strong>AI 直接改项目，适合“我已经想清楚，你给我搭”。<strong>Auto edit 关：</strong>它只能读和建议，每次改动都问你，适合规划、学习、怕它乱改。</p>
+          <p class="small muted mb-0">推荐流程：先关掉 Auto edit 聊方案 → 确认后打开 Auto edit 让它做 → 做完立刻试玩验收。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-body">
+          <h3>选推理等级</h3>
+          <p><strong>Medium</strong> 所有人可用，日常够用；<strong>High</strong> 需要 Gold/Pro，适合复杂机制；<strong>Maximum</strong> 需要 Pro，适合最难的请求。等级越高，思考越久、消耗越多。</p>
+          <p class="small muted mb-0">不要什么都用最高档。一个“金币怎么旋转”的问题，Medium 足够。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-body">
+          <h3>盯着它的步骤，随时 Stop</h3>
+          <p>复杂请求会拆成多步：探索项目、检查结构、编辑游戏、搜索素材。每一步都能展开看它做了什么。发现方向不对，点 Stop，重新描述，不要等它跑完再后悔。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="subhead">AI 额度：免费 40/月，付费按周</div>
+    <div class="table-wrap">
+      <table class="compact">
+        <thead><tr><th>档位</th><th>AI 额度</th><th>推理等级</th></tr></thead>
+        <tbody>
+          <tr><td>Free</td><td>40 credits / 月</td><td>Medium</td></tr>
+          <tr><td>Silver</td><td>200 credits / 周</td><td>Medium</td></tr>
+          <tr><td>Gold</td><td>1,000 credits / 周</td><td>Medium、High</td></tr>
+          <tr><td>Pro</td><td>3,000 credits / 周</td><td>Medium、High、Maximum</td></tr>
+        </tbody>
+      </table>
+      <p class="table-note">额度消耗取决于请求大小和推理等级。快速提问很便宜，一次搭很多事件很贵。付费档按周重置（官方说明为周日 23:50 UTC）；免费档按月发放。以界面显示的剩余百分比为准。</p>
+    </div>
+
+    <div class="subhead">恢复点：云项目才有自动后悔药</div>
+    <div class="callout warn">
+      <strong>重要：</strong>对云项目，GDevelop 会在你每次发消息/请求前自动保存一个恢复点，可以回滚。对本地项目，这个自动恢复点没有——在用 AI 大改之前，自己先另存一份。恢复会覆盖当前状态，确认后再点。
+    </div>
+
+    <div class="subhead">好用的提示词，长什么样</div>
+    <p>公式：<strong>目标 + 现状 + 具体数值 + 不要改什么 + 验收标准</strong>。不要只说“帮我做个游戏”，那等于让设计师猜。</p>
+    <div class="grid-3">
+      <div class="card">
+        <h4>示例 1：加机制</h4>
+        <p class="small mb-0">“我的 <code>Player</code> 已经有 Platformer character 行为。请加二段跳：在空中再按一次空格可以再跳一次，落地后重置。不要改移动速度、重力和碰撞掩码。做完告诉我改了哪些事件，并说明怎么测试。”</p>
+      </div>
+      <div class="card">
+        <h4>示例 2：修 bug</h4>
+        <p class="small mb-0">“金币吃到后分数不增加。现有事件是 Player 与 Coin 碰撞 → 删除 Coin → 场景变量 Score +1 → ScoreText 设为 "金币 " + Score。请先解释可能是对象挑选、变量作用域还是文本目标的问题，再检查并修复，不要重写整个项目。”</p>
+      </div>
+      <div class="card">
+        <h4>示例 3：做敌人</h4>
+        <p class="small mb-0">“做一个巡逻敌人：在平台上左右走，看到玩家靠近 200 px 就追，碰到玩家让玩家回到起点。用现有对象，不要新增付费素材。先给方案，我确认后再改。”</p>
+      </div>
+    </div>
+
+    <div class="subhead">AI 的隐私与边界</div>
+    <ul class="list-tight">
+      <li>官方说明：AI 不会用你的项目训练模型；本地/云项目只在对话期间对它可见；它不能浏览互联网。</li>
+      <li>它看不到你的用户名、排行榜、分析数据等个人信息。</li>
+      <li>它可能误解你的游戏，或把社区扩展当成不存在。关键改动一定自己试玩。</li>
+      <li>不要让 AI 替你决定付费、公开发布或填写个人信息。</li>
+      <li>把好用的提示词记下来，下次直接复用，比每次重新描述省额度。</li>
+    </ul>
+
+    <div class="quote">AI 能帮你更快地到达“可以玩”，但不能替你判断“好不好玩”。后者只能靠你一遍遍试。<small>—— 让 AI 做脚手架，你做判断</small></div>
+  </div>
+</section>
+<section class="section" id="s11">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">11 / PREVIEW &amp; DEBUG</div>
+      <div>
+        <h2>预览、调试、排错：把“为什么不动”变成“我知道哪里错”</h2>
+        <p class="lede">做游戏的时间，大概一半花在“它怎么不按我想的动”。这一节给你一套可重复的排查顺序，以及在线编辑器里最常用的预览/调试工具。</p>
+      </div>
+    </div>
+
+    <div class="subhead">预览的四种用法</div>
+    <div class="table-wrap">
+      <table class="compact">
+        <thead><tr><th>操作</th><th>怎么用</th><th>适合</th></tr></thead>
+        <tbody>
+          <tr><td><strong>预览 / Preview</strong></td><td>点顶部“预览”，从当前场景启动</td><td>每次改完一小段，快速试玩</td></tr>
+          <tr><td><strong>更新 / Update</strong></td><td>预览开着时，预览按钮会变成“更新”，把改动热更新进去</td><td>调手感、改数值、改 UI，不想从头玩</td></tr>
+          <tr><td><strong>多开预览</strong></td><td>预览按钮旁的下拉菜单里再开一个窗口</td><td>对比两个版本、测试联机</td></tr>
+          <tr><td><strong>网络预览 / Network preview</strong></td><td>下拉菜单选 Network preview，用同一 Wi-Fi 的手机浏览器打开地址</td><td>测试手机触控、横屏、真实设备性能</td></tr>
+        </tbody>
+      </table>
+      <p class="table-note">也可以在下拉菜单里指定“用这个场景启动所有预览”，避免每次都从第一关开始。这个设置会保存在项目里。</p>
+    </div>
+
+    <div class="subhead">调试器与性能分析器</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-body">
+          <h3>打开预览下拉菜单 → “使用调试器和性能分析器预览”</h3>
+          <p>会同时打开游戏预览和一个 Debugger 标签。你可以暂停游戏，查看全局变量、场景变量、对象/实例的实时值。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-body">
+          <h3>先看变量，再看实例</h3>
+          <p>分数不对？先看 <code>Score</code> 的实际值。金币没删？看 Coin 的实例数量。角色位置怪？看 Player 的 X/Y 和当前动画。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-body">
+          <h3>卡顿就看 Profiler</h3>
+          <p>性能分析器会显示时间花在事件还是渲染上。如果事件很轻但帧率低，可能是对象/粒子/特效/大图太多；如果事件很重，检查有没有每帧遍历大量对象。</p>
+        </div>
+      </div>
+    </div>
+    <div class="callout info">
+      <strong>浏览器开发者工具也能帮忙：</strong>在预览窗口按 <kbd>F12</kbd>（或右键 → 检查）打开 Console，能看到 JavaScript 报错和资源加载失败。它不是 GDevelop 的官方调试器，但排“黑屏/资源 404”很快。
+    </div>
+
+    <div class="subhead">一套不会乱的排错顺序</div>
+    <div class="grid-3">
+      <div class="card card-soft"><h4>1. 复现</h4><p class="small mb-0">用最短步骤重现：哪个场景、按了什么、期望什么、实际什么。能稳定复现，才容易修。</p></div>
+      <div class="card card-soft"><h4>2. 隔离</h4><p class="small mb-0">关掉其他事件/行为/效果，只留最相关的一条。问题消失，说明被关掉的东西里有元凶。</p></div>
+      <div class="card card-soft"><h4>3. 看数据</h4><p class="small mb-0">用调试器看变量、实例数、位置。不要靠猜“应该是对的”。</p></div>
+      <div class="card card-soft"><h4>4. 查对象</h4><p class="small mb-0">对象有没有行为？碰撞掩码？图层？Z 顺序？实例是不是选错了？</p></div>
+      <div class="card card-soft"><h4>5. 查顺序</h4><p class="small mb-0">上面的事件是不是已经删了对象/切了场景/改了变量？</p></div>
+      <div class="card card-soft"><h4>6. 最小化</h4><p class="small mb-0">新建一个空场景，只放两个对象和一条事件，能复现就说明逻辑本身有问题；不能就是环境/其他对象干扰。</p></div>
+    </div>
+
+    <div class="subhead">常见问题速查</div>
+    <p class="small muted">在下面输入关键词过滤，比如“金币”“声音”“存档”“黑屏”。</p>
+    <div class="checklist-box" style="padding:12px 14px">
+      <label for="troubleSearch" class="sr-only">搜索问题</label>
+      <input id="troubleSearch" type="search" placeholder="搜索症状，例如：金币、黑屏、声音、发布……" style="width:100%;padding:9px 12px;border:1px solid var(--line-2);border-radius:8px;background:var(--card);font:inherit;font-size:13px;color:var(--ink)">
+      <p class="check-status" id="troubleCount" aria-live="polite" style="margin:7px 0 0">共 12 条，显示全部</p>
+    </div>
+
+    <div id="troubleList">
+      <details class="trouble">
+        <summary>编辑器一直加载 / 白屏 / 卡在启动画面</summary>
+        <div class="details-body">
+          <p><strong>先排除环境：</strong>换 Chrome/Edge 无痕窗口打开；关掉广告拦截/脚本拦截插件；换网络；确认不是公司/学校网络拦截了 WebSocket。</p>
+          <p><strong>再看控制台：</strong>F12 打开 Console，如果有红色报错/资源 404，截图留着。第一次加载本来就慢，给它 30–60 秒，不要连续刷新。</p>
+          <span class="fix">如果只有你的账号这样：退出重登，或换一个浏览器登录，判断是账号/缓存还是设备问题。</span>
+        </div>
+      </details>
+      <details class="trouble">
+        <summary>云项目保存失败 / 一直显示保存中</summary>
+        <div class="details-body">
+          <p>最常见是网络波动、登录状态过期、或同一项目在多处同时编辑。先别关页面，复制一份关键内容/截图，再检查网络和登录状态。</p>
+          <p>如果提示冲突，选一个版本继续，不要把两个版本来回覆盖。长期项目建议用桌面版本地保存作为主副本。</p>
+          <span class="fix">养成习惯：大改之前先确认“已保存”；重要版本用“另存为”留一个副本。</span>
+        </div>
+      </details>
+      <details class="trouble">
+        <summary>预览是黑屏 / 空窗口</summary>
+        <div class="details-body">
+          <p>检查：当前场景是不是空的？相机是不是被移到了别处？对象是不是在隐藏图层/被设为隐藏？场景的启动场景是不是选错了？</p>
+          <p>先放一个 Text 对象在 (0,0)，如果文字能看到，说明渲染正常，问题在对象/相机/图层；如果文字也看不到，检查预览窗口和浏览器控制台。</p>
+          <span class="fix">临时把相机动作关掉，再预览一次。相机跑飞是“黑屏”的常见原因。</span>
+        </div>
+      </details>
+      <details class="trouble">
+        <summary>角色不掉落 / 直接穿过地面</summary>
+        <div class="details-body">
+          <p>地面对象有没有 <strong>Platform</strong> 行为？角色有没有 <strong>Platformer character</strong>？地面实例的碰撞掩码是不是太小/被裁掉了？角色速度是不是大到一帧穿过薄平台？</p>
+          <p>平台类型也要对：Jumpthru 从下面可以穿，Ladder 不碰撞。地面用默认 Platform。</p>
+          <span class="fix">把角色起始位置抬高 50 px，地面加厚到 64 px，再试。仍穿就检查掩码。</span>
+        </div>
+      </details>
+      <details class="trouble">
+        <summary>按方向键/空格没反应，跳不起来</summary>
+        <div class="details-body">
+          <p>先点一下预览窗口，让它获得键盘焦点。然后检查 Platformer character 的 <strong>Default controls</strong> 是否开启；如果关了，你必须自己用键盘事件写移动。</p>
+          <p>也有可能是输入法/浏览器快捷键拦截了空格。换一个浏览器或换按键测试。</p>
+          <span class="fix">在事件里临时加“按键按下 → 显示文字”，确认按键事件本身有没有触发。</span>
+        </div>
+      </details>
+      <details class="trouble">
+        <summary>一碰金币，所有金币都消失 / 金币不消失</summary>
+        <div class="details-body">
+          <p><strong>全消失：</strong>Delete 动作所在的事件里，Coin 没有被碰撞条件“挑选”过，默认选中了全部。把碰撞条件放在同一个事件里，且条件里包含 Coin。</p>
+          <p><strong>不消失：</strong>Delete 的目标选错对象；碰撞条件没有真正加两个对象；或者金币在另一个图层/被遮挡，角色其实没碰到。</p>
+          <span class="fix">用调试器看 Coin 的实例数：碰撞前是 3，碰撞后应该变成 2，而不是 0。</span>
+        </div>
+      </details>
+      <details class="trouble">
+        <summary>分数不增加 / 文字不更新 / 文字叠在一起</summary>
+        <div class="details-body">
+          <p>分数不增加：检查变量作用域（场景/全局）、动作目标、事件是否真的执行。文字不更新：确认动作目标是场景里的 <code>ScoreText</code> 实例，而不是对象默认文本；表达式里变量名拼写一致。</p>
+          <p>文字叠在一起：可能创建了多个 Text 实例，或每帧创建一个新的。只保留一个实例，用“修改文本”而不是“创建对象”。</p>
+          <span class="fix">在调试器里看 Score 的值；如果 Score 变了但文字没变，问题在文本动作，不在计分。</span>
+        </div>
+      </details>
+      <details class="trouble">
+        <summary>切换场景后分数/进度归零</summary>
+        <div class="details-body">
+          <p>场景变量只活在当前场景，切场景会重置。需要跨场景保留的值，改用全局变量；需要关游戏后还保留的，用 Storage。</p>
+          <p>注意：重开当前场景也会重置场景变量。如果你的“掉下去重开”是用“更改场景到 Level1”，分数归零是预期行为。</p>
+          <span class="fix">先决定“这个值该活多久”，再选变量作用域，不要全用全局。</span>
+        </div>
+      </details>
+      <details class="trouble">
+        <summary>声音不播放 / 只有第一次有声音</summary>
+        <div class="details-body">
+          <p>浏览器要求用户先交互（点击/按键）才允许音频。预览时先点一下画面再试。检查系统/标签页是否静音，文件格式是否被浏览器支持。</p>
+          <p>短音效用 WAV，音乐用 AAC/M4A。文件太大或采样率奇怪也可能失败。别用“播放音乐”的动作去播很短的点击音效。</p>
+          <span class="fix">换一个确定能播的短 WAV 测试；能播就是原文件问题，不能播就是交互/格式/路径问题。</span>
+        </div>
+      </details>
+      <details class="trouble">
+        <summary>发布/构建失败，或按钮点了没反应</summary>
+        <div class="details-body">
+          <p>确认已登录、网络稳定、没有触发当日打包次数上限。桌面/Android 一键打包要填合法的包名（如 <code>com.yourname.gamename</code>）、版本号（如 <code>1.0.0</code>）和图标。</p>
+          <p>构建是排队任务，慢不等于失败。看界面上的错误提示，不要连续点十次。</p>
+          <span class="fix">先用 gd.games 发布（免费、不限量）验证游戏本身；再做桌面/移动打包。</span>
+        </div>
+      </details>
+      <details class="trouble">
+        <summary>手机网络预览打不开</summary>
+        <div class="details-body">
+          <p>手机和电脑必须连同一个 Wi-Fi；电脑防火墙可能拦截了端口；有些公共 Wi-Fi/校园网开启了设备隔离，设备之间不能互访。</p>
+          <p>用手机流量/另一个网络通常不行，因为预览地址是局域网地址。</p>
+          <span class="fix">换一个手机热点让电脑和手机都连它，再试网络预览；或者直接发布到 gd.games 用链接测试。</span>
+        </div>
+      </details>
+      <details class="trouble">
+        <summary>越做越卡 / 风扇狂转 / 预览掉帧</summary>
+        <div class="details-body">
+          <p>常见原因：粒子/特效太多、超大背景图、每帧创建对象不删除、大量对象同时播放动画、调试器/多个预览窗口同时开。</p>
+          <p>先关掉所有效果和粒子，看是否恢复；再逐个开。用 Profiler 看时间花在事件还是渲染。</p>
+          <span class="fix">给子弹/掉落物加“离开屏幕删除”；把不用的对象设为不播放动画；缩小图片尺寸。</span>
+        </div>
+      </details>
+    </div>
+
+    <div class="callout tip">
+      <strong>修 bug 的心态：</strong>一次只改一个变量，一次只验证一个假设。不要“把能想到的都改一遍”，那样即使好了，你也不知道为什么好，下次还会犯。
+    </div>
+  </div>
+</section>
+
+<section class="section" id="s12">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">12 / PUBLISH</div>
+      <div>
+        <h2>发布与导出：把“我做的”变成“你能玩”</h2>
+        <p class="lede">发布不是最后一步的魔法按钮，而是一条分流：想快速给朋友玩，走 gd.games；想上架 itch.io，导出 Web；想做 Windows 应用，走桌面打包；想上手机商店，走 Android/iOS。不同路线的时间、费用和门槛不一样。</p>
+      </div>
+    </div>
+
+    <div class="subhead">“分享”面板里的五条路</div>
+    <div class="table-wrap">
+      <table class="compact">
+        <thead><tr><th>选项</th><th>产出</th><th>适合</th><th>费用/门槛</th></tr></thead>
+        <tbody>
+          <tr><td><strong>gd.games</strong></td><td>一个可分享的网页链接 + 二维码</td><td>最快给朋友玩、收集反馈</td><td>免费、不限量；需登录</td></tr>
+          <tr><td><strong>浏览器 / Web</strong></td><td>一个包含 <code>index.html</code> 的文件夹/压缩包</td><td>itch.io、Poki、CrazyGames、Newgrounds、自己的网站</td><td>免费；需要自己上传/托管</td></tr>
+          <tr><td><strong>桌面</strong></td><td>Windows / macOS / Linux 可执行包</td><td>Steam、个人下载、桌面分发</td><td>免费档 1 次/天；需包名/版本/图标</td></tr>
+          <tr><td><strong>安卓</strong></td><td>APK（测试）或 AAB（Google Play）</td><td>安卓手机、Google Play</td><td>免费档 1 次/天；Google Play 需开发者账号</td></tr>
+          <tr><td><strong>iOS</strong></td><td>iPhone/iPad 包、App Store Connect 上传</td><td>App Store / TestFlight</td><td>Gold 起；需 Apple Developer 账号（年费）</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="subhead">路线 A：gd.games（推荐第一次发布）</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-body">
+          <h3>登录 → 分享 → gd.games → 发布游戏</h3>
+          <p>构建完成后会显示链接和二维码。任何人拿到链接都能在浏览器里玩，不需要装东西。官方说明托管免费，链接会保留。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-body">
+          <h3>填好游戏页：名称、描述、16:9 缩略图</h3>
+          <p>在游戏 dashboard 里点“Edit details”。缩略图直接影响点击率，别用默认图。描述里写清楚操作方式（方向键/空格/点击）。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-body">
+          <h3>用“Update game page”开关控制公开/测试</h3>
+          <p>发布新版本时，开关<strong>开</strong>：所有人看到新版本；<strong>关</strong>：公开页保持旧版，你拿到一个独立的测试链接。给朋友挑 bug 时用后者。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-body">
+          <h3>看反馈、更新、必要时下架</h3>
+          <p>dashboard 里有链接、分析、玩家反馈、排行榜/多人服务等。下架在 Edit details 里关掉 “Publish game on gd.games”；构建和分析会保留，公开页消失。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="subhead">路线 B：Web 导出，上传到 itch.io 等</div>
+    <div class="grid-2">
+      <div class="card">
+        <h3>步骤</h3>
+        <ol class="list-tight">
+          <li>分享 → 浏览器 → 导出。</li>
+          <li>得到一个文件夹，里面有 <code>index.html</code> 和资源。</li>
+          <li>把整个文件夹压缩成 zip（itch.io 要 zip）。</li>
+          <li>在 itch.io 新建项目，类型选 HTML，上传 zip，勾选“This file will be played in the browser”。</li>
+          <li>设置封面、截图、操作说明，发布。</li>
+        </ol>
+      </div>
+      <div class="card card-warn">
+        <h3>注意</h3>
+        <ul class="list-tight mb-0">
+          <li>不要只上传 <code>index.html</code>，资源要一起。</li>
+          <li>本地双击打开可能因浏览器安全策略失败；用本地服务器或直接上传测试。</li>
+          <li>Poki/CrazyGames 等平台有自己的 SDK、审核和分成规则，先读它们的开发者文档。</li>
+          <li>游戏里不要引用你电脑上的绝对路径。</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="subhead">路线 C：桌面打包（Windows / macOS / Linux）</div>
+    <div class="table-wrap">
+      <table class="compact">
+        <thead><tr><th>检查项</th><th>要求</th></tr></thead>
+        <tbody>
+          <tr><td><strong>包名</strong></td><td>像 <code>com.yourname.gamename</code>；只能用字母、数字、点；点之间要有词；2–5 段；不能和已有应用冲突</td></tr>
+          <tr><td><strong>版本号</strong></td><td>像 <code>1.0.0</code>、<code>1.0.1</code></td></tr>
+          <tr><td><strong>图标</strong></td><td>按界面要求提供不同尺寸</td></tr>
+          <tr><td><strong>签名</strong></td><td>未签名包在 Windows 会触发 SmartScreen，在 macOS 会提示“无法验证开发者”；正式分发需要自己处理签名/公证</td></tr>
+          <tr><td><strong>构建次数</strong></td><td>免费 1 次/天；Silver 10 次/天；Gold 100 次/天；Pro 不限</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="subhead">路线 D：Android</div>
+    <div class="split">
+      <div class="card">
+        <h3>APK vs AAB</h3>
+        <p><strong>APK：</strong>直接发给手机安装，适合自己测试。Android 会提示“允许来自此来源的应用”。</p>
+        <p><strong>AAB：</strong>Google Play 要求的格式，不能直接安装，要上传到 Play Console。</p>
+        <p class="small muted mb-0">免费档 1 次/天；Silver 10 次/天；Gold 100 次/天；Pro 不限。</p>
+      </div>
+      <div class="card">
+        <h3>上架 Google Play 的额外成本</h3>
+        <p>需要 Google Play 开发者账号（注册费以 Google 官方为准），还要准备商店图标、截图、隐私政策、内容分级。GDevelop 只负责生成包，不替你过审。</p>
+      </div>
+    </div>
+
+    <div class="subhead">路线 E：iOS（Gold 起）</div>
+    <div class="callout warn">
+      <strong>不是“点一下就能上架”。</strong>iOS 需要 Apple Developer Program（年费，以 Apple 官网为准）、证书、Provisioning Profile、App Store Connect 配置，还要过 App Store 审核。GDevelop 的 Gold 档提供 15 次/月 iOS 打包，Pro 30 次/月；免费和 Silver 不含 iOS 发布。
+    </div>
+    <p>如果你是第一次做游戏，<strong>不要从 iOS 开始</strong>。先用 gd.games 或 Web 把游戏做完、验证好玩，再考虑移动商店。</p>
+
+    <div class="subhead">发布前检查清单</div>
+    <div class="grid-2">
+      <div class="checklist-box">
+        <h4>游戏本身</h4>
+        <ul class="list-tight mb-0">
+          <li>标题、缩略图、描述、操作说明都填了</li>
+          <li>手机横屏/竖屏下 UI 不被裁切</li>
+          <li>第一次点击后声音正常</li>
+          <li>没有测试文字、占位图、个人信息</li>
+          <li>素材授权允许公开发布/商用</li>
+          <li>能从开始玩到结束，不死循环</li>
+        </ul>
+      </div>
+      <div class="checklist-box">
+        <h4>技术与流程</h4>
+        <ul class="list-tight mb-0">
+          <li>包名/版本/图标符合要求（桌面/移动）</li>
+          <li>知道自己还剩几次打包额度</li>
+          <li>发布了测试版，找一个人独立试玩</li>
+          <li>记录了这个版本的备份/恢复点</li>
+          <li>想好发布后去哪收反馈</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="subhead">发布不是终点</div>
+    <p>第一次发布的目标不是“爆火”，而是<strong>完成一次真实的反馈循环</strong>：有人玩 → 有人卡住 → 你改 → 再发布。哪怕只有三个朋友玩，他们卡住的地方也比你自己猜的准。</p>
+    <div class="quote">一个发布出去的粗糙小游戏，比一个永远在电脑里的完美企划更有价值。<small>—— 先把循环跑通</small></div>
+  </div>
+</section>
+
+<section class="section" id="s13">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">13 / PRICING</div>
+      <div>
+        <h2>价格与额度：免费能走到哪，付费买的是什么</h2>
+        <p class="lede">先把结论说在前面：<strong>做第一个游戏，免费档够用</strong>。付费不是“解锁引擎”，而是买云项目数量、AI 额度、iOS 发布、打包次数和团队功能。以下是 2026-10-28 官网价格页的整理。</p>
+      </div>
+    </div>
+
+    <div class="price-grid">
+      <div class="price free">
+        <span class="badge">先从这个开始</span>
+        <h3>Free</h3>
+        <div class="amount">€0 <small>永久</small></div>
+        <p class="blurb">完整引擎，做完第一个游戏并免费发布。</p>
+        <ul>
+          <li>3 个云项目</li>
+          <li>40 AI credits / 月</li>
+          <li>gd.games 发布不限量</li>
+          <li>桌面/Android 各 1 次/天</li>
+          <li>完整引擎与调试器</li>
+          <li class="no">iOS 发布</li>
+          <li class="no">更多云项目</li>
+        </ul>
+        <div class="best">适合：第一次做游戏、预算为零</div>
+      </div>
+      <div class="price featured">
+        <h3>Silver</h3>
+        <div class="amount">€4.99 <small>/ 月</small></div>
+        <p class="blurb">更多云项目、更多 AI、更多打包。</p>
+        <ul>
+          <li>50 个云项目</li>
+          <li>200 AI credits / 周</li>
+          <li>桌面/Android 10 次/天</li>
+          <li>Web / Android / 桌面发布</li>
+          <li>去升级提示</li>
+          <li class="no">iOS 发布</li>
+        </ul>
+        <div class="best">适合：同时做几个项目、频繁打包</div>
+      </div>
+      <div class="price featured">
+        <h3>Gold</h3>
+        <div class="amount">€9.99 <small>/ 月</small></div>
+        <p class="blurb">要上 iOS、需要更高 AI 额度时看它。</p>
+        <ul>
+          <li>100 个云项目</li>
+          <li>1,000 AI credits / 周</li>
+          <li>桌面/Android 100 次/天</li>
+          <li>iOS 15 次/月</li>
+          <li>High 推理等级</li>
+          <li>每月 1 个免费素材包</li>
+        </ul>
+        <div class="best">适合：认真做作品、要上 App Store</div>
+      </div>
+      <div class="price">
+        <h3>Pro</h3>
+        <div class="amount">按官网 <small>报价</small></div>
+        <p class="blurb">团队、商业项目、无限用量。</p>
+        <ul>
+          <li>无限云项目</li>
+          <li>3,000 AI credits / 周</li>
+          <li>打包不限次数</li>
+          <li>iOS 30 次/月</li>
+          <li>版本历史不限</li>
+          <li>协作 / 团队支持</li>
+        </ul>
+        <div class="best">适合：团队、商业公司、重度使用</div>
+      </div>
+    </div>
+    <p class="table-note">价格单位为欧元，按官网显示；实际结算可能含税/按地区货币。年付最多可省约 40%。Pro 价格官网未显示固定月费，需按官网/销售流程确认。价格与额度可能调整，购买前以 <a href="https://gdevelop.io/pricing" target="_blank" rel="noopener" class="ext">gdevelop.io/pricing</a> 为准。</p>
+
+    <div class="subhead">关键额度对照</div>
+    <div class="table-wrap">
+      <table class="compact">
+        <thead><tr><th>项目</th><th>Free</th><th>Silver</th><th>Gold</th><th>Pro</th></tr></thead>
+        <tbody>
+          <tr><td><strong>云项目</strong></td><td>3</td><td>50</td><td>100</td><td>无限</td></tr>
+          <tr><td><strong>AI 额度</strong></td><td>40 / 月</td><td>200 / 周</td><td>1,000 / 周</td><td>3,000 / 周</td></tr>
+          <tr><td><strong>桌面打包</strong></td><td>1 / 天</td><td>10 / 天</td><td>100 / 天</td><td>无限</td></tr>
+          <tr><td><strong>Android 打包</strong></td><td>1 / 天</td><td>10 / 天</td><td>100 / 天</td><td>无限</td></tr>
+          <tr><td><strong>iOS 打包</strong></td><td>—</td><td>—</td><td>15 / 月</td><td>30 / 月</td></tr>
+          <tr><td><strong>gd.games 发布</strong></td><td>无限</td><td>无限</td><td>无限</td><td>无限</td></tr>
+          <tr><td><strong>版本历史</strong></td><td>—</td><td>2 天</td><td>5 天</td><td>无限</td></tr>
+          <tr><td><strong>协作者</strong></td><td>—</td><td>—</td><td>—</td><td>有</td></tr>
+          <tr><td><strong>升级提示</strong></td><td>有</td><td>无</td><td>无</td><td>无</td></tr>
+        </tbody>
+      </table>
+      <p class="table-note">“版本历史”按官网对比表整理；不同版本/时间的显示可能变化。免费档导出可能带 GDevelop 启动画面/标识，具体以导出界面为准。</p>
+    </div>
+
+    <div class="subhead">到底要不要买？按场景判断</div>
+    <div class="grid-2">
+      <div class="card card-lime">
+        <h3>先别买，如果……</h3>
+        <ul class="list-tight mb-0">
+          <li>你还没做完第一个游戏。</li>
+          <li>你只是“想试试”，不确定会不会继续。</li>
+          <li>你不需要 iOS，也不介意每天一次打包。</li>
+          <li>你只是想要更多 AI 额度——先把免费额度用完，学会怎么问。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>可以考虑付费，如果……</h3>
+        <ul class="list-tight mb-0">
+          <li>你已经做完一个，确定要做第二个，3 个云项目不够。</li>
+          <li>你要上 iOS，Gold 是门槛。</li>
+          <li>你每天多次打包测试，免费额度明显不够。</li>
+          <li>你需要版本历史/协作/商业支持，Pro 更合适。</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout warn">
+      <strong>付费前算总成本：</strong>Gold 只是 GDevelop 的费用。上架 iOS 还要 Apple Developer Program 年费；上架 Google Play 还要开发者注册费；买素材、音乐、字体也可能要钱。先把“游戏做出来”跑通，再算这些。
+    </div>
+
+    <div class="subhead">三个容易忽略的细节</div>
+    <div class="grid-3">
+      <div class="card card-soft">
+        <h4>订阅会自动续费</h4>
+        <p class="small mb-0">不想继续就提前取消；取消后通常还能用到当前周期结束。具体以购买页条款为准。</p>
+      </div>
+      <div class="card card-soft">
+        <h4>AI 额度不是“无限聊天”</h4>
+        <p class="small mb-0">复杂请求、深度推理消耗更多。把“聊天”和“动手”分开，能省不少。</p>
+      </div>
+      <div class="card card-soft">
+        <h4>价格可能随地区/时间变</h4>
+        <p class="small mb-0">以你打开购买页看到的最终价格（含税/货币）为准，不要拿这篇当发票。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="s14">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">14 / LIMITS</div>
+      <div>
+        <h2>边界与局限：什么时候它够用，什么时候该换</h2>
+        <p class="lede">一份只讲优点的指南是不负责的。GDevelop 在线版能带你走很远，但它有明确的天花板。提前知道，能避免“做到一半才发现工具不合适”的挫败。</p>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card card-warn">
+        <h3>1. 浏览器不是无限性能</h3>
+        <p>在线编辑器跑在浏览器里，受内存、WebGL、标签页资源限制。超大场景、大量粒子/特效、很多高分辨率素材、同时开多个预览，都可能让帧率下降。</p>
+        <p class="small mb-0"><span class="tag">第三方观点</span> 一些评测也提到 GDevelop 在大型项目上的性能上限；这不是官方指标，但和你实际体验相符时，换桌面版或缩小规模是合理的。</p>
+      </div>
+      <div class="card card-warn">
+        <h3>2. 云依赖与 3 个项目</h3>
+        <p>在线版没有网络就很难工作；免费账号只有 3 个云项目。网络不稳、账号冲突、云服务维护，都可能打断你。</p>
+        <p class="small mb-0">对策：认真做时用桌面版本地保存；云项目只放当前活跃的；重要版本另存备份。</p>
+      </div>
+      <div class="card card-warn">
+        <h3>3. 本地文件与离线</h3>
+        <p>在线编辑器可以手动下载项目 zip 作备份，但不能像桌面软件那样持续保存/覆盖本地文件夹，也不适合 Git、离线编辑。需要这些，就用桌面版。</p>
+        <p class="small mb-0">这不是“功能阉割”，是浏览器安全模型的限制；官方也把<strong>持续的本地编辑</strong>导向桌面应用。</p>
+      </div>
+      <div class="card card-warn">
+        <h3>4. 3D 仍在成熟中</h3>
+        <p>GDevelop 能做 3D 对象、3D 相机和一些 3D 游戏，但生态、教程、工作流更偏 2D。复杂 3D 项目通常会用 Unity/Unreal/Godot。</p>
+        <p class="small mb-0"><span class="tag">第三方观点</span> 多家评测认为它的 3D 功能在发展中；不要拿它和做了十几年 3D 的引擎硬比。</p>
+      </div>
+      <div class="card card-warn">
+        <h3>5. 没有主机一键导出</h3>
+        <p>官方发布路线是 Web、桌面、Android、iOS。<strong>Switch / PlayStation / Xbox</strong> 不在官方一键导出范围；主机开发需要平台方授权和专门的移植工作。</p>
+      </div>
+      <div class="card card-warn">
+        <h3>6. 打包次数与商店成本</h3>
+        <p>免费档桌面/Android 每天各 1 次；iOS 需要 Gold 起，还要 Apple Developer 年费；Google Play 也要开发者账号。发布不是完全零成本。</p>
+      </div>
+      <div class="card card-warn">
+        <h3>7. AI 会犯错</h3>
+        <p>它可能误解需求、用错对象、写出你不理解的逻辑，甚至“自信地修坏”。云项目有恢复点，本地项目要自己备份。</p>
+      </div>
+      <div class="card card-warn">
+        <h3>8. 工具不保证有人玩</h3>
+        <p>做完、发布、被看见、被喜欢，是四件不同的事。GDevelop 解决“能做出来”；发行、社区、运气、持续更新，它不包。</p>
+      </div>
+    </div>
+
+    <div class="subhead">它适合的项目类型</div>
+    <div class="pill-row">
+      <span class="pill">2D 平台跳跃</span><span class="pill">俯视角 RPG/射击</span><span class="pill">解谜</span><span class="pill">点击/放置</span><span class="pill">弹幕/清版</span><span class="pill">视觉小说式叙事</span><span class="pill">Game Jam 原型</span><span class="pill">互动课件</span><span class="pill">手机小游戏</span><span class="pill">桌面小工具</span>
+    </div>
+
+    <div class="subhead">它不太适合的项目类型</div>
+    <div class="pill-row">
+      <span class="pill">3A 写实 3D</span><span class="pill">大型开放世界</span><span class="pill">主机独占</span><span class="pill">MMO</span><span class="pill">高精度物理模拟</span><span class="pill">实时大规模联机</span><span class="pill">需要大量自定义渲染管线的项目</span>
+    </div>
+
+    <div class="callout info">
+      <strong>第三方观点，不是官方结论：</strong>2026 年的一些独立评测认为 GDevelop 的免费档很适合学习和 2D 原型，但大型项目会碰到性能与工作流上限，3D 功能仍在成熟。你可以读一读 <a href="https://egmatic.com/blog/gdevelop-review-is-this-no-code-engine-worth-it" target="_blank" rel="noopener" class="ext">Egmatic 的 GDevelop Review 2026</a>，但记住它是第三方体验，不是官方规格。
+    </div>
+
+    <div class="subhead">什么时候该换工具</div>
+    <div class="table-wrap">
+      <table class="compact">
+        <thead><tr><th>信号</th><th>可以先试</th><th>再考虑</th></tr></thead>
+        <tbody>
+          <tr><td>浏览器越来越卡，但项目还想继续</td><td>换桌面版、压缩素材、减少特效</td><td>如果桌面版也卡，评估 Godot/Unity</td></tr>
+          <tr><td>你要做复杂 3D</td><td>GDevelop 的 3D 原型</td><td>Unity / Unreal / Godot</td></tr>
+          <tr><td>你要上主机</td><td>先做 PC/Web 版验证</td><td>联系平台方，评估专业移植</td></tr>
+          <tr><td>你要做大型联机</td><td>GDevelop 的多人服务/原型</td><td>专门的后端/网络方案</td></tr>
+          <tr><td>你只是卡在“不会做”</td><td>先别换工具，缩小范围、问 AI、读模板</td><td>换工具不会自动让你会做游戏</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="quote">工具的天花板，通常在你做出第一个完整游戏之后才会碰到。在那之前，限制你的多半不是引擎。<small>—— 先做完，再换</small></div>
+  </div>
+</section>
+<section class="section" id="s15">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">15 / LEARNING PLAN</div>
+      <div>
+        <h2>7 天学习计划：每天 45–90 分钟，做出一个能发布的游戏</h2>
+        <p class="lede">不要“有空就学”，那通常等于不学。下面把第一个游戏拆成 7 天、21 个小任务。完成一项就勾一项；进度会自动记在这台设备的浏览器里。</p>
+      </div>
+    </div>
+
+    <div class="checklist-box">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+        <div>
+          <h4 style="margin-bottom:2px">我的 7 天进度</h4>
+          <p class="small muted" style="margin:0">建议顺序执行；卡住超过 20 分钟就先跳过，第二天回头再看。</p>
+        </div>
+        <div class="check-actions" style="margin:0">
+          <button class="btn btn-light btn-sm" id="resetChecks" type="button">清空进度</button>
+        </div>
+      </div>
+
+      <div class="subhead" style="margin-top:24px">Day 1 · 认识工具，让东西动起来</div>
+      <div class="checklist">
+        <label class="check"><input type="checkbox" data-check="d1a"><span>注册账号，新建 1280×720 云项目 <small>名称用英文，例如 coin-run-01；确认保存状态</small></span></label>
+        <label class="check"><input type="checkbox" data-check="d1b"><span>找到界面 7 个区域，把场景改名为 Level1 <small>项目管理器、场景/事件标签、预览、属性/行为、画布、对象、图层</small></span></label>
+        <label class="check"><input type="checkbox" data-check="d1c"><span>加一个 Sprite，用事件让它左右移动 <small>先不用平台行为：条件“按键 ←/→”，动作“改变 X 位置”；体验条件+动作</small></span></label>
+      </div>
+
+      <div class="subhead">Day 2 · 平台、跳跃、相机</div>
+      <div class="checklist">
+        <label class="check"><input type="checkbox" data-check="d2a"><span>给玩家加 Platformer character，给地面加 Platform <small>方向键 + 空格试玩；能站住、能跳</small></span></label>
+        <label class="check"><input type="checkbox" data-check="d2b"><span>摆 3 个平台，调 Jump speed / Gravity <small>每次只改一个值，用“更新”热重载试手感</small></span></label>
+        <label class="check"><input type="checkbox" data-check="d2c"><span>加相机跟随，拉宽关卡看滚动 <small>动作：Center the camera on an object；UI 以后要单独图层</small></span></label>
+      </div>
+
+      <div class="subhead">Day 3 · 金币、分数、UI</div>
+      <div class="checklist">
+        <label class="check"><input type="checkbox" data-check="d3a"><span>加 Coin，做“碰撞 → 删除金币”事件 <small>确认只删碰到的那一枚，不是全部</small></span></label>
+        <label class="check"><input type="checkbox" data-check="d3b"><span>加 Score 变量和 ScoreText，分数实时更新 <small>表达式："金币 " + Score</small></span></label>
+        <label class="check"><input type="checkbox" data-check="d3c"><span>把 ScoreText 放到 UI 图层，相机滚动时不动 <small>图层面板 → 新建 UI → 实例属性里改 Layer</small></span></label>
+      </div>
+
+      <div class="subhead">Day 4 · 失败、终点、第二个场景</div>
+      <div class="checklist">
+        <label class="check"><input type="checkbox" data-check="d4a"><span>加“掉出画面 → 重开 Level1” <small>条件：Player Y &gt; 760；动作：Change scene to Level1</small></span></label>
+        <label class="check"><input type="checkbox" data-check="d4b"><span>加 Flag 和 Win 场景，碰旗子过关 <small>Win 场景放“你做到了”和“按 R 再玩一次”</small></span></label>
+        <label class="check"><input type="checkbox" data-check="d4c"><span>在 Win 场景加 R 键返回 Level1 <small>测试：过关 → 按 R → 回到第一关</small></span></label>
+      </div>
+
+      <div class="subhead">Day 5 · 声音、动画、手机</div>
+      <div class="checklist">
+        <label class="check"><input type="checkbox" data-check="d5a"><span>加金币音效，处理浏览器“先点击才能播放” <small>短音效用 WAV；在金币事件里 Play a sound</small></span></label>
+        <label class="check"><input type="checkbox" data-check="d5b"><span>给玩家加待机/跑步动画，或至少做左右翻转 <small>动画命名 Idle/Run；事件里按速度切换；或 Flip sprite</small></span></label>
+        <label class="check"><input type="checkbox" data-check="d5c"><span>用网络预览在手机试玩，检查横屏和触控 <small>同一 Wi-Fi；或先发布到 gd.games 用链接测试</small></span></label>
+      </div>
+
+      <div class="subhead">Day 6 · 打磨、存档、性能</div>
+      <div class="checklist">
+        <label class="check"><input type="checkbox" data-check="d6a"><span>加一个“点击开始”场景，顺便解锁音频 <small>Text/按钮 + 点击事件 → 切换场景；也可以用它放操作说明</small></span></label>
+        <label class="check"><input type="checkbox" data-check="d6b"><span>用 Storage 存最高分或已解锁关卡 <small>Storage save / group progress / key bestScore；启动时读取</small></span></label>
+        <label class="check"><input type="checkbox" data-check="d6c"><span>做一次性能清理：大图、粒子、离屏对象 <small>给子弹/掉落物加 Destroy outside screen；缩小背景图</small></span></label>
+      </div>
+
+      <div class="subhead">Day 7 · 发布、反馈、复盘</div>
+      <div class="checklist">
+        <label class="check"><input type="checkbox" data-check="d7a"><span>发布到 gd.games，填缩略图、标题、描述、操作说明 <small>16:9 缩略图；手机能看清字；链接能打开</small></span></label>
+        <label class="check"><input type="checkbox" data-check="d7b"><span>找 1–3 个人试玩，记录他们卡住的地方 <small>不要解释，先看他们会不会自己玩；记原话</small></span></label>
+        <label class="check"><input type="checkbox" data-check="d7c"><span>写 5 行复盘：什么好玩、什么卡、下一步改什么 <small>然后决定：继续改这个，还是开第二个小项目</small></span></label>
+      </div>
+      <div class="check-actions">
+        <span class="check-status" id="checkStatus">进度只存在本机浏览器，不会上传。</span>
+      </div>
+    </div>
+
+    <div class="subhead">7 天之后，往哪走</div>
+    <div class="grid-4">
+      <div class="card card-soft">
+        <div class="card-num">PATH 01</div>
+        <h4>把这一关做“厚”</h4>
+        <p class="small mb-0">加 2–3 个关卡、一种敌人、一个可收集物、一个 Boss。比重开新项目更能学到东西。</p>
+      </div>
+      <div class="card card-soft">
+        <div class="card-num">PATH 02</div>
+        <h4>参加一次 Game Jam</h4>
+        <p class="small mb-0">限定时间、限定主题，逼你完成。itch.io 上常年有 jam；先选 48 小时/新手友好的。</p>
+      </div>
+      <div class="card card-soft">
+        <div class="card-num">PATH 03</div>
+        <h4>学一点 JavaScript</h4>
+        <p class="small mb-0">只学变量、函数、数组、对象，够你读懂文档和写简单扩展。不是入门必需。</p>
+      </div>
+      <div class="card card-soft">
+        <div class="card-num">PATH 04</div>
+        <h4>做美术/音频专项</h4>
+        <p class="small mb-0">像素画、UI、音效设计。游戏完成度很大一部分来自“看起来/听起来舒服”。</p>
+      </div>
+    </div>
+
+    <div class="subhead">学习资源：先官方，再社区</div>
+    <div class="grid-3">
+      <div class="card">
+        <h3>官方文档</h3>
+        <p class="small">最准的功能说明，英文为主。遇到菜单找不到，先在 wiki 搜英文名。</p>
+        <p class="small mb-0"><a href="https://wiki.gdevelop.io/gdevelop5/" target="_blank" rel="noopener" class="ext">wiki.gdevelop.io</a></p>
+      </div>
+      <div class="card">
+        <h3>官方教程与示例</h3>
+        <p class="small">从“Basic game making concepts”开始；示例项目能直接打开看事件。</p>
+        <p class="small mb-0"><a href="https://wiki.gdevelop.io/gdevelop5/tutorials/" target="_blank" rel="noopener" class="ext">Tutorials</a> · <a href="https://wiki.gdevelop.io/gdevelop5/tutorials/basic-game-making-concepts/" target="_blank" rel="noopener" class="ext">基础概念</a></p>
+      </div>
+      <div class="card">
+        <h3>视频</h3>
+        <p class="small">官方 YouTube 有完整流程演示；看的时候跟着做，不要只看。</p>
+        <p class="small mb-0"><a href="https://www.youtube.com/@GDevelop" target="_blank" rel="noopener" class="ext">youtube.com/@GDevelop</a></p>
+      </div>
+      <div class="card">
+        <h3>论坛</h3>
+        <p class="small">搜错误信息、问具体问题。提问时贴版本、截图、你期望发生什么。</p>
+        <p class="small mb-0"><a href="https://forum.gdevelop.io/" target="_blank" rel="noopener" class="ext">forum.gdevelop.io</a></p>
+      </div>
+      <div class="card">
+        <h3>玩别人的作品</h3>
+        <p class="small">在 gd.games 找同类小游戏，观察它们的节奏、UI、失败惩罚。</p>
+        <p class="small mb-0"><a href="https://gd.games/" target="_blank" rel="noopener" class="ext">gd.games</a></p>
+      </div>
+      <div class="card">
+        <h3>素材与工具</h3>
+        <p class="small">Kenney（CC0）、Piskel（在线像素画）、Krita（免费绘画）、Freesound（音效）。</p>
+        <p class="small mb-0"><a href="https://kenney.nl/assets" target="_blank" rel="noopener" class="ext">Kenney</a> · <a href="https://www.piskelapp.com/" target="_blank" rel="noopener" class="ext">Piskel</a> · <a href="https://krita.org/" target="_blank" rel="noopener" class="ext">Krita</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="s16">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">16 / CHEAT SHEET</div>
+      <div>
+        <h2>速查表：菜单路径、术语、链接</h2>
+        <p class="lede">做的时候把这一节放在手边。找不到按钮时，先按“路径”走一遍；听不懂教程时，回来看“术语”。</p>
+      </div>
+    </div>
+
+    <div class="subhead">常用菜单路径</div>
+    <div class="table-wrap">
+      <table class="compact">
+        <thead><tr><th>我想……</th><th>路径</th></tr></thead>
+        <tbody>
+          <tr><td>新建游戏</td><td><span class="path"><b>创建</b> → <b>创建新游戏</b> → 空项目/模板</span></td></tr>
+          <tr><td>打开项目结构</td><td><span class="path">左上角 <b>☰</b> → 项目管理器</span></td></tr>
+          <tr><td>添加对象</td><td><span class="path">右侧 <b>对象</b> → <b>添加对象</b> → 选类型</span></td></tr>
+          <tr><td>给对象加能力</td><td><span class="path">选中对象 → 左侧 <b>行为</b> → <b>添加行为</b></span></td></tr>
+          <tr><td>写逻辑</td><td><span class="path">顶部 <b>场景（事件）</b> → <b>添加事件</b> → 条件/动作</span></td></tr>
+          <tr><td>预览</td><td><span class="path">顶部 <b>预览</b>；改完点 <b>更新</b></span></td></tr>
+          <tr><td>调试</td><td><span class="path">预览下拉 → <b>调试器和性能分析器</b></span></td></tr>
+          <tr><td>分层</td><td><span class="path">工具栏 <b>图层</b> → 新建/编辑图层</span></td></tr>
+          <tr><td>发布</td><td><span class="path">顶部 <b>分享</b> → gd.games / 浏览器 / 桌面 / 安卓 / iOS</span></td></tr>
+          <tr><td>改游戏窗口/包名</td><td><span class="path">项目管理器 → <b>游戏设置</b> → 属性</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="subhead">术语表</div>
+    <div class="table-wrap">
+      <table class="compact">
+        <thead><tr><th>术语</th><th>一句话解释</th><th>类比</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Scene / 场景</strong></td><td>一个屏幕/关卡/菜单</td><td>一页纸</td></tr>
+          <tr><td><strong>Object / 对象</strong></td><td>一类东西的定义：图、动画、行为</td><td>饼干模具</td></tr>
+          <tr><td><strong>Instance / 实例</strong></td><td>真正摆在场景里的那一个</td><td>压出来的饼干</td></tr>
+          <tr><td><strong>Behavior / 行为</strong></td><td>给对象加的能力包</td><td>给角色装“跑跳模块”</td></tr>
+          <tr><td><strong>Event / 事件</strong></td><td>条件 + 动作的规则</td><td>如果……就……</td></tr>
+          <tr><td><strong>Condition / 条件</strong></td><td>什么时候做、对谁做</td><td>门禁</td></tr>
+          <tr><td><strong>Action / 动作</strong></td><td>具体做什么</td><td>按下开关</td></tr>
+          <tr><td><strong>Picking / 对象挑选</strong></td><td>条件筛出哪些实例被后续动作影响</td><td>只点亮被选中的灯泡</td></tr>
+          <tr><td><strong>Layer / 图层</strong></td><td>对象的前后容器，每层有相机</td><td>透明纸叠放</td></tr>
+          <tr><td><strong>Camera / 相机</strong></td><td>玩家看到的窗口</td><td>摄影机取景框</td></tr>
+          <tr><td><strong>Variable / 变量</strong></td><td>运行期间存数据</td><td>白板上的数字</td></tr>
+          <tr><td><strong>Storage / 存储</strong></td><td>关掉游戏后还留着的本地数据</td><td>存档文件</td></tr>
+          <tr><td><strong>Build / 构建</strong></td><td>把项目打包成可运行版本</td><td>把菜装盒</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="subhead">快捷键与小技巧</div>
+    <div class="grid-2">
+      <div class="card">
+        <h3>编辑器</h3>
+        <ul class="list-tight mb-0">
+          <li><kbd>F</kbd>：把视图聚焦到选中的实例（官方文档说明）</li>
+          <li><kbd>Ctrl/Cmd</kbd> + <kbd>Z</kbd>：撤销（通用快捷键）</li>
+          <li><kbd>Ctrl/Cmd</kbd> + <kbd>D</kbd>：复制选中对象/实例（视界面而定）</li>
+          <li>拖动面板标题栏可以重新排列面板</li>
+          <li>双击场景标签可以重命名</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>试玩</h3>
+        <ul class="list-tight mb-0">
+          <li>方向键 + <kbd>空格</kbd>/<kbd>Shift</kbd>：平台角色默认控制</li>
+          <li>点一下预览窗口，确保键盘焦点在游戏里</li>
+          <li><kbd>F12</kbd>：预览窗口的浏览器控制台</li>
+          <li>Win 场景里的 <kbd>R</kbd>：本指南示例的重开键</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="subhead">链接库</div>
+    <div class="link-grid">
+      <a class="link-card" href="https://editor.gdevelop.io/?utm_medium=website&amp;utm_source=hero" target="_blank" rel="noopener"><b>在线编辑器</b><span>打开就能用，记得登录后存云</span><span class="u">editor.gdevelop.io</span></a>
+      <a class="link-card" href="https://gdevelop.io/" target="_blank" rel="noopener"><b>GDevelop 官网</b><span>下载、功能、新闻</span><span class="u">gdevelop.io</span></a>
+      <a class="link-card" href="https://gdevelop.io/download" target="_blank" rel="noopener"><b>下载桌面版</b><span>本地保存、离线、长期项目</span><span class="u">gdevelop.io/download</span></a>
+      <a class="link-card" href="https://gdevelop.io/pricing" target="_blank" rel="noopener"><b>价格与额度</b><span>Free / Silver / Gold / Pro 最新对比</span><span class="u">gdevelop.io/pricing</span></a>
+      <a class="link-card" href="https://wiki.gdevelop.io/gdevelop5/" target="_blank" rel="noopener"><b>官方文档</b><span>功能、菜单、行为、发布，最准</span><span class="u">wiki.gdevelop.io</span></a>
+      <a class="link-card" href="https://wiki.gdevelop.io/gdevelop5/interface/" target="_blank" rel="noopener"><b>界面文档</b><span>首页、项目管理器、面板说明</span><span class="u">wiki.../interface</span></a>
+      <a class="link-card" href="https://wiki.gdevelop.io/gdevelop5/events/" target="_blank" rel="noopener"><b>事件系统</b><span>条件、动作、执行顺序、TimeDelta</span><span class="u">wiki.../events</span></a>
+      <a class="link-card" href="https://wiki.gdevelop.io/gdevelop5/events/object-picking/" target="_blank" rel="noopener"><b>对象挑选</b><span>为什么只影响一个/全部</span><span class="u">wiki.../object-picking</span></a>
+      <a class="link-card" href="https://wiki.gdevelop.io/gdevelop5/behaviors/platformer/" target="_blank" rel="noopener"><b>平台行为</b><span>Platform / Platformer character 参数</span><span class="u">wiki.../platformer</span></a>
+      <a class="link-card" href="https://wiki.gdevelop.io/gdevelop5/all-features/variables/" target="_blank" rel="noopener"><b>变量</b><span>作用域、类型、表达式</span><span class="u">wiki.../variables</span></a>
+      <a class="link-card" href="https://wiki.gdevelop.io/gdevelop5/all-features/storage/" target="_blank" rel="noopener"><b>Storage 存档</b><span>最高分、进度、LocalStorage</span><span class="u">wiki.../storage</span></a>
+      <a class="link-card" href="https://wiki.gdevelop.io/gdevelop5/interface/ai/" target="_blank" rel="noopener"><b>AI 助手</b><span>Auto edit、推理等级、恢复点</span><span class="u">wiki.../ai</span></a>
+      <a class="link-card" href="https://wiki.gdevelop.io/gdevelop5/publishing/web/" target="_blank" rel="noopener"><b>发布到 gd.games</b><span>链接、测试版、下架</span><span class="u">wiki.../publishing/web</span></a>
+      <a class="link-card" href="https://wiki.gdevelop.io/gdevelop5/publishing/windows-macos-linux/" target="_blank" rel="noopener"><b>桌面发布</b><span>包名、版本、图标、签名</span><span class="u">wiki.../windows-macos-linux</span></a>
+      <a class="link-card" href="https://gd.games/" target="_blank" rel="noopener"><b>gd.games</b><span>玩别人的游戏，也发布你的</span><span class="u">gd.games</span></a>
+      <a class="link-card" href="https://forum.gdevelop.io/" target="_blank" rel="noopener"><b>官方论坛</b><span>搜问题、问具体问题</span><span class="u">forum.gdevelop.io</span></a>
+      <a class="link-card" href="https://www.youtube.com/@GDevelop" target="_blank" rel="noopener"><b>官方 YouTube</b><span>跟着视频做一遍</span><span class="u">youtube.com/@GDevelop</span></a>
+      <a class="link-card" href="https://kenney.nl/assets" target="_blank" rel="noopener"><b>Kenney 素材</b><span>大量 CC0 游戏素材</span><span class="u">kenney.nl/assets</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="s17">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">17 / SOURCES</div>
+      <div>
+        <h2>来源与核验：哪些是官方事实，哪些是经验判断</h2>
+        <p class="lede">这份页面尽量把“官方说明”和“实用建议/第三方观点”分开。下面是主要来源和核验方式。功能、价格、界面会变，重要决定请回到原始链接确认。</p>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table class="compact">
+        <thead><tr><th>来源</th><th>用它核对了什么</th><th>链接</th></tr></thead>
+        <tbody>
+          <tr><td>在线编辑器实际界面</td><td>首页导航、中文界面、新建项目尺寸/存储选项、编辑器面板、分享/导出菜单</td><td><a href="https://editor.gdevelop.io/?utm_medium=website&amp;utm_source=hero" target="_blank" rel="noopener" class="ext">editor.gdevelop.io</a></td></tr>
+          <tr><td>GDevelop 价格页</td><td>Free/Silver/Gold/Pro 价格、云项目、AI 额度、打包次数、iOS、版本历史、协作</td><td><a href="https://gdevelop.io/pricing" target="_blank" rel="noopener" class="ext">gdevelop.io/pricing</a></td></tr>
+          <tr><td>官方文档 · 界面</td><td>首页分区、项目管理器、场景编辑器、对象/实例、图层、预览</td><td><a href="https://wiki.gdevelop.io/gdevelop5/interface/" target="_blank" rel="noopener" class="ext">wiki.../interface</a></td></tr>
+          <tr><td>官方文档 · 事件</td><td>条件/动作、每帧执行、从上到下、子事件、TimeDelta</td><td><a href="https://wiki.gdevelop.io/gdevelop5/events/" target="_blank" rel="noopener" class="ext">wiki.../events</a></td></tr>
+          <tr><td>官方文档 · 对象挑选</td><td>默认全选、条件过滤、作用域、特殊动作</td><td><a href="https://wiki.gdevelop.io/gdevelop5/events/object-picking/" target="_blank" rel="noopener" class="ext">wiki.../object-picking</a></td></tr>
+          <tr><td>官方文档 · 平台行为</td><td>Platform 类型、Platformer character 参数、抓边/梯子/跳穿</td><td><a href="https://wiki.gdevelop.io/gdevelop5/behaviors/platformer/" target="_blank" rel="noopener" class="ext">wiki.../platformer</a></td></tr>
+          <tr><td>官方文档 · 变量/Storage</td><td>作用域、类型、表达式、LocalStorage、清除存档</td><td><a href="https://wiki.gdevelop.io/gdevelop5/all-features/variables/" target="_blank" rel="noopener" class="ext">variables</a> · <a href="https://wiki.gdevelop.io/gdevelop5/all-features/storage/" target="_blank" rel="noopener" class="ext">storage</a></td></tr>
+          <tr><td>官方文档 · AI</td><td>Auto edit、推理等级、恢复点、额度重置、隐私</td><td><a href="https://wiki.gdevelop.io/gdevelop5/interface/ai/" target="_blank" rel="noopener" class="ext">wiki.../ai</a></td></tr>
+          <tr><td>官方文档 · 发布</td><td>gd.games、Web、桌面、Android、iOS 的流程与限制</td><td><a href="https://wiki.gdevelop.io/gdevelop5/publishing/" target="_blank" rel="noopener" class="ext">wiki.../publishing</a></td></tr>
+          <tr><td>官方文档 · 音频</td><td>浏览器需交互解锁、WAV/AAC 格式建议、音乐内存问题</td><td><a href="https://wiki.gdevelop.io/gdevelop5/all-features/audio/" target="_blank" rel="noopener" class="ext">wiki.../audio</a></td></tr>
+          <tr><td>第三方评测</td><td>大型项目性能、3D 成熟度等体验判断（非官方规格）</td><td><a href="https://egmatic.com/blog/gdevelop-review-is-this-no-code-engine-worth-it" target="_blank" rel="noopener" class="ext">Egmatic Review 2026</a></td></tr>
+        </tbody>
+      </table>
+      <p class="table-note">核验日期：2026-10-28。在线界面核验方式：在无头浏览器打开编辑器官网，创建一个临时空项目（选择“现在不保存此项目”），检查新建项目对话框、编辑器布局、场景变量面板、保存/下载副本对话框；没有登录账号、没有保存任何云项目。</p>
+    </div>
+
+    <div class="grid-2 mt-24">
+      <div class="card">
+        <h3>哪些是“事实”</h3>
+        <ul class="list-tight mb-0">
+          <li>价格、云项目数、AI 额度、打包次数：来自官网价格页。</li>
+          <li>菜单路径、面板名称、存储选项：来自实际界面与官方文档。</li>
+          <li>事件执行顺序、对象挑选、TimeDelta：来自官方文档。</li>
+          <li>Storage 用 LocalStorage、清浏览器数据会丢：来自官方文档。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>哪些是“判断/建议”</h3>
+        <ul class="list-tight mb-0">
+          <li>“第一个游戏做三金币平台关”：教学经验，不是官方规定。</li>
+          <li>跳跃参数 700/1500、平台间距 120–180：起始建议，不是标准答案。</li>
+          <li>“8 GB 内存更稳”“先在线后桌面”：实用建议。</li>
+          <li>“3D 成熟中”“大型项目有性能上限”：第三方评测/社区反馈。</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout source">
+      <strong>更正与变化：</strong>如果页面内容和你看到的 GDevelop 不一致，以编辑器/官网为准。价格、额度、AI 等级、界面按钮都可能随版本更新。你可以用上面的链接逐项复核。
+    </div>
+  </div>
+</section>
+
+<section class="section" id="s18">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">18 / START</div>
+      <div>
+        <h2>不用等谁批准，开始就好</h2>
+        <p class="lede">读到这儿，你已经知道它是什么、项目存在哪、事件怎么读、做完怎么发布。剩下的不是“准备好”，而是打开编辑器，把第一个方块拖进画布。</p>
+      </div>
+    </div>
+
+    <div class="grid-3">
+      <div class="card"><h4>今天</h4><p class="small mb-0">注册账号，新建一个 1280×720 的空项目，选“GDevelop 云”。只做一件事：放一个会动的角色。</p></div>
+      <div class="card"><h4>这周</h4><p class="small mb-0">按第 15 节的 7 天计划走。每天 30–60 分钟，做完一个能捡金币、能通关的小关卡。</p></div>
+      <div class="card"><h4>做完后</h4><p class="small mb-0">发布到 gd.games，把链接发给两三个朋友。有人真的玩过，比再改十个细节更有用。</p></div>
+    </div>
+
+    <div class="callout tip">
+      <strong>第一个游戏的目标不是“好玩到能卖”。</strong>它能跑、能发布、有人玩过，就已经是一次完整的创造。剩下的，等你做完这一轮再说。
+    </div>
+
+    <div class="callout info">
+      <strong>给读到这里的人：</strong>如果你就是那个想做游戏的人——不用等谁批准，也不用先买什么。打开编辑器，新建一个空项目，把第一个方块拖进去。你已经开始了。
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-in">
+    <div>
+      <h3>GDEVELOP 在线编辑器 · 新手情报网页</h3>
+      <p>一份自包含的网页指南：没有外部脚本、没有追踪、不依赖外部资源也能读（外部链接除外）。清单进度只存在你这台设备的浏览器里。</p>
+      <p class="tiny" style="color:#8f81a3">信息核验：2026-10-28 · 非 GDevelop 官方文档 · GDevelop 是其权利人的商标 · 价格与功能以官网为准。</p>
+    </div>
+    <div>
+      <p style="font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:#8f81a3;margin-bottom:8px">START HERE</p>
+      <div class="cols">
+        <a href="https://editor.gdevelop.io/?utm_medium=website&amp;utm_source=hero" target="_blank" rel="noopener">打开在线编辑器 ↗</a>
+        <a href="https://gdevelop.io/pricing" target="_blank" rel="noopener">查看最新价格 ↗</a>
+        <a href="https://wiki.gdevelop.io/gdevelop5/" target="_blank" rel="noopener">官方文档 ↗</a>
+        <a href="https://gd.games/" target="_blank" rel="noopener">gd.games ↗</a>
+        <a href="#s05">回到第一个游戏</a>
+        <a href="#s15">回到 7 天计划</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>FIELD GUIDE · NO TRACKING</span>
+    <span>CHECKLIST SAVED IN LOCALSTORAGE</span>
+  </div>
+</footer>
+</main>
+
+<button class="to-top" id="toTop" type="button" aria-label="回到顶部">↑</button>
+
+<script>
+(function(){
+  'use strict';
+  var $ = function(id){ return document.getElementById(id); };
+
+  /* ---------- mobile menu ---------- */
+  var menuBtn = $('menuBtn'), overlay = $('overlay');
+  function closeMenu(){
+    document.body.classList.remove('menu-open');
+    if(menuBtn) menuBtn.setAttribute('aria-expanded', 'false');
+  }
+  if(menuBtn){
+    menuBtn.addEventListener('click', function(){
+      var open = document.body.classList.toggle('menu-open');
+      menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  }
+  if(overlay) overlay.addEventListener('click', closeMenu);
+  document.querySelectorAll('.sidebar-nav a, .sidebar-actions a').forEach(function(a){
+    a.addEventListener('click', closeMenu);
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape') closeMenu();
+  });
+
+  /* ---------- reading progress ---------- */
+  var readbar = $('readbar'), toTop = $('toTop');
+  function onScroll(){
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - window.innerHeight;
+    var pct = max > 0 ? (window.scrollY / max) * 100 : 0;
+    if(readbar) readbar.style.width = Math.min(100, Math.max(0, pct)) + '%';
+    if(toTop) toTop.classList.toggle('show', window.scrollY > 650);
+    spy();
+  }
+  var ticking = false;
+  window.addEventListener('scroll', function(){
+    if(!ticking){
+      window.requestAnimationFrame(function(){ onScroll(); ticking = false; });
+      ticking = true;
+    }
+  }, { passive: true });
+  if(toTop) toTop.addEventListener('click', function(){ window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+  /* ---------- scrollspy ---------- */
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('.sidebar-nav .nav-link'));
+  var sections = navLinks.map(function(a){
+    var id = a.getAttribute('href');
+    return id ? document.querySelector(id) : null;
+  }).filter(Boolean);
+  function spy(){
+    if(!sections.length) return;
+    var y = window.scrollY + 140;
+    var current = sections[0];
+    for(var i = 0; i < sections.length; i++){
+      if(sections[i].offsetTop <= y) current = sections[i];
+    }
+    navLinks.forEach(function(a){
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current.id);
+    });
+  }
+
+  /* ---------- interactive UI map ---------- */
+  var uiData = {
+    project: { kicker:'HOTSPOT 1 / PROJECT', title:'项目管理器', html:'<p>点左上角三横线打开。这里能看到整个游戏的骨架：<strong>游戏设置、场景列表、扩展、资源</strong>。右键场景可以设为启动场景。</p><p class="hint">找不到某个场景时，先来这里。</p>' },
+    tabs: { kicker:'HOTSPOT 2 / TABS', title:'场景 / 场景事件', html:'<p>“场景”用来摆对象，“场景（事件）”用来写逻辑。两个标签来回切，不需要保存。</p><p class="hint">事件写完后，回场景预览；预览开着时点“更新”热重载。</p>' },
+    preview: { kicker:'HOTSPOT 3 / PREVIEW', title:'预览与分享', html:'<p>顶部工具栏：<strong>Ask AI、预览、分享、2D/3D</strong>。预览跑当前场景；分享打开 gd.games/导出面板。</p><p class="hint">预览按钮旁的下拉菜单里还有“调试器”和“网络预览”。</p>' },
+    props: { kicker:'HOTSPOT 4 / PROPERTIES', title:'属性 / 行为 / 场景变量', html:'<p>左侧面板有<strong>属性、行为、场景变量</strong>三个折叠区：选中实例看位置/大小/图层；选中对象看行为；展开场景变量，点 + 就能新建。</p><p class="hint">改了实例属性，只影响那一个；改了对象设置，会影响同类的所有实例。</p>' },
+    canvas: { kicker:'HOTSPOT 5 / CANVAS', title:'画布与游戏窗口', html:'<p>中间是摆东西的地方，黑/灰边框代表游戏窗口大小。你可以在画布上拖对象、拉平台、对齐网格。</p><p class="hint">按 <kbd>F</kbd> 可以把视图聚焦到选中的实例。</p>' },
+    objects: { kicker:'HOTSPOT 6 / OBJECTS', title:'对象面板', html:'<p>右侧列出全局对象和场景对象。点“添加对象”创建 Sprite/Text 等；把对象拖进画布就产生一个实例。</p><p class="hint">对象是模具，实例是摆进去的那一个。</p>' },
+    layers: { kicker:'HOTSPOT 7 / LAYERS', title:'图层与相机', html:'<p>工具栏的图层面板可以新建 UI/背景层。每个图层有自己的相机；把 UI 放 UI 层，相机跟随就不会把文字带走。</p><p class="hint">图层还能整体隐藏、加效果；效果很酷但吃性能。</p>' }
+  };
+  var uiDetail = $('uiDetail');
+  var hotspots = Array.prototype.slice.call(document.querySelectorAll('.hotspot'));
+  hotspots.forEach(function(btn){
+    btn.setAttribute('aria-pressed', 'false');
+    btn.addEventListener('click', function(){
+      var data = uiData[btn.getAttribute('data-ui')];
+      if(!data || !uiDetail) return;
+      hotspots.forEach(function(b){ b.setAttribute('aria-pressed', 'false'); });
+      btn.setAttribute('aria-pressed', 'true');
+      uiDetail.innerHTML = '<div class="kicker">' + data.kicker + '</div><h3>' + data.title + '</h3>' + data.html;
+    });
+  });
+
+  /* ---------- checklist ---------- */
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('[data-check]'));
+  var KEY = 'gdguide.checklist.v1';
+  var ringFg = $('ringFg'), ringPct = $('ringPct'), ringCount = $('ringCount');
+  var saveState = $('saveState'), checkStatus = $('checkStatus');
+  var storageOK = true;
+  var state = {};
+  try {
+    state = JSON.parse(window.localStorage.getItem(KEY) || '{}') || {};
+  } catch(e) { storageOK = false; state = {}; }
+
+  function persist(){
+    if(!storageOK) return;
+    try {
+      window.localStorage.setItem(KEY, JSON.stringify(state));
+      if(saveState){
+        saveState.textContent = '已记录';
+        saveState.classList.add('show');
+        window.setTimeout(function(){
+          saveState.textContent = '自动记录在本机';
+          saveState.classList.remove('show');
+        }, 1600);
+      }
+    } catch(e) {
+      storageOK = false;
+      if(checkStatus) checkStatus.textContent = '浏览器阻止了本地存储，本次进度只在当前页面有效。';
+    }
+  }
+
+  function updateChecks(){
+    var done = boxes.filter(function(b){ return b.checked; }).length;
+    var total = boxes.length || 1;
+    var pct = Math.round(done / total * 100);
+    if(ringFg) ringFg.style.strokeDashoffset = String(163.36 * (1 - done / total));
+    if(ringPct) ringPct.textContent = pct + '%';
+    if(ringCount) ringCount.textContent = done + ' / ' + total;
+    if(checkStatus) checkStatus.textContent = done + ' / ' + total + ' 项完成' + (done === total ? ' —— 你做完了第一个游戏，去发布吧。' : '。进度只存在本机浏览器，不会上传。');
+  }
+
+  boxes.forEach(function(box){
+    var key = box.getAttribute('data-check');
+    if(state[key]) box.checked = true;
+    box.addEventListener('change', function(){
+      state[key] = box.checked;
+      updateChecks();
+      persist();
+    });
+  });
+  var resetBtn = $('resetChecks');
+  if(resetBtn){
+    resetBtn.addEventListener('click', function(){
+      if(!window.confirm('清空 7 天清单的勾选进度？')) return;
+      state = {};
+      boxes.forEach(function(b){ b.checked = false; });
+      updateChecks();
+      persist();
+    });
+  }
+  updateChecks();
+
+  /* ---------- troubleshooting filter ---------- */
+  var search = $('troubleSearch'), count = $('troubleCount');
+  var troubles = Array.prototype.slice.call(document.querySelectorAll('#troubleList details'));
+  if(search){
+    search.addEventListener('input', function(){
+      var q = search.value.trim().toLowerCase();
+      var visible = 0;
+      troubles.forEach(function(d){
+        var hit = !q || d.textContent.toLowerCase().indexOf(q) !== -1;
+        d.hidden = !hit;
+        if(hit) visible++;
+      });
+      if(count) count.textContent = '共 ' + troubles.length + ' 条，显示 ' + visible + ' 条';
+    });
+  }
+
+  /* ---------- print ---------- */
+  var printBtn = $('printBtn');
+  if(printBtn) printBtn.addEventListener('click', function(){ window.print(); });
+
+  /* ---------- initial ---------- */
+  onScroll();
+})();
+</script>
+</body>
+</html>
